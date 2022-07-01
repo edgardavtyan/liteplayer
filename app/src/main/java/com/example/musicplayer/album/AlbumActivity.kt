@@ -1,12 +1,12 @@
 package com.example.musicplayer.album
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.musicplayer.MainAdapter
-import com.example.musicplayer.MainModel
 import com.example.musicplayer.R
+import com.example.musicplayer.track.TrackActivity
 
 class AlbumActivity : AppCompatActivity() {
     companion object {
@@ -20,12 +20,17 @@ class AlbumActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album)
 
-        val artist = intent.getStringExtra(EXTRA_ARTIST)!!
-        model = AlbumModel(this)
-        adapter = AlbumAdapter(this, model.getArtistAlbums(artist))
+        model = AlbumModel(this, intent.getStringExtra(EXTRA_ARTIST)!!)
+        adapter = AlbumAdapter(this, model, AlbumPresenter(this, model))
 
         val list: RecyclerView = findViewById(R.id.list)
         list.layoutManager = LinearLayoutManager(this)
         list.adapter = adapter
+    }
+
+    fun gotoTrackActivity(albumId: Int) {
+        val intent = Intent(this, TrackActivity::class.java)
+        intent.putExtra(TrackActivity.EXTRA_ALBUM, albumId)
+        startActivity(intent)
     }
 }

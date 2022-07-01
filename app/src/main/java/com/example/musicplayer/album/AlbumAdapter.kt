@@ -5,20 +5,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.R
-import com.example.musicplayer.db.Album
 
-class AlbumAdapter(private val context: Context, private val albums: List<Album>)
-    : RecyclerView.Adapter<AlbumViewHolder>() {
+class AlbumAdapter(
+    private val context: Context,
+    private val model: AlbumModel,
+    private val presenter: AlbumPresenter) : RecyclerView.Adapter<AlbumViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.listitem_album, parent, false)
-        return AlbumViewHolder(view)
+        return AlbumViewHolder(view, presenter)
     }
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        holder.setTitle(albums[position].title)
+        holder.setTitle(model.getAlbumAt(position).title)
     }
 
     override fun getItemCount(): Int {
-        return albums.size
+        return model.size
     }
 }
