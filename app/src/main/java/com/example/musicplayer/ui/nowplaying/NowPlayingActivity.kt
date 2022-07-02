@@ -1,10 +1,10 @@
 package com.example.musicplayer.ui.nowplaying
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.example.musicplayer.databinding.ActivityNowplayingBinding
 
-class NowPlayingActivity : AppCompatActivity() {
+class NowPlayingActivity : Activity() {
     private lateinit var binding: ActivityNowplayingBinding
     private lateinit var presenter: NowPlayingPresenter
 

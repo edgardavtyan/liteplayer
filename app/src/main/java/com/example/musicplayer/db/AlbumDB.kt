@@ -3,7 +3,6 @@ package com.example.musicplayer.db
 import android.content.Context
 import android.database.Cursor
 import android.provider.MediaStore
-import androidx.core.database.getStringOrNull
 
 
 class AlbumDB(context: Context) {
@@ -43,7 +42,7 @@ class AlbumDB(context: Context) {
         album.id = cursor.getInt(INDEX_ID)
         album.title = cursor.getString(INDEX_TITLE)
         album.artistTitle = cursor.getString(INDEX_ARTIST_TITLE)
-        album.art = cursor.getStringOrNull(INDEX_ART)
+        album.art = cursor.getString(INDEX_ART)
         album.tracksCount = cursor.getInt(INDEX_TRACKS_COUNT)
         return album
     }
