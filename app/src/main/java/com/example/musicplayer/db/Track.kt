@@ -4,7 +4,7 @@ class Track {
     var id = 0
     var track = 0
     var title: String = ""
-    var path: String? = null
+    var path: String = ""
     var dateModified: Long = 0
     var duration: Long = 0
     var artistId = 0

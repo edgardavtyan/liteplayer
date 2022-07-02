@@ -5,21 +5,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.R
-import com.example.musicplayer.db.Track
 
-class TrackAdapter(private val context: Context, private val tracks: List<Track>)
+class TrackAdapter(
+    private val context: Context,
+    private val model: TrackModel,
+    private val presenter: TrackPresenter)
     : RecyclerView.Adapter<TrackViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.listitem_album, parent, false)
-        return TrackViewHolder(view)
+        return TrackViewHolder(view, presenter)
     }
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        holder.setTitle(tracks[position].title)
+        holder.setTitle(model.getTrackAt(position).title)
     }
 
     override fun getItemCount(): Int {
-        return tracks.size
+        return model.itemCount
     }
 }
