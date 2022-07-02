@@ -6,20 +6,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.album.AlbumActivity
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var model: MainModel
-    private lateinit var presenter: MainPresenter
-    private lateinit var adapter: MainAdapter
+    @Inject lateinit var adapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        model = MainModel(this)
-        presenter = MainPresenter(model ,this)
-        adapter = MainAdapter(this, presenter, model.artists)
+        DaggerMainComponent
+            .builder()
+            .appDaggerComponent((application as App).appComponent)
+            .mainDaggerModule(MainDaggerModule(this))
+            .build()
+            .inject(this)
 
         val list: RecyclerView = findViewById(R.id.list)
         list.layoutManager = LinearLayoutManager(this)

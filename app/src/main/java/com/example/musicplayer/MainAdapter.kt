@@ -10,6 +10,7 @@ class MainAdapter(
         private val context: Context,
         private val presenter: MainPresenter,
         private val artists: List<Artist>) : RecyclerView.Adapter<MainViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.listitem_artist, parent, false)
         return MainViewHolder(view, presenter)
