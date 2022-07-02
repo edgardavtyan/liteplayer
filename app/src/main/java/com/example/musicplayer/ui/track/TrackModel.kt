@@ -5,15 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import com.example.musicplayer.db.Track
 import com.example.musicplayer.db.TrackDB
 import com.example.musicplayer.service.PlayerService
 
 class TrackModel(private val context: Context, albumId: Int): ServiceConnection {
-    private val tracks = TrackDB(context).getTracksWithAlbumId(albumId)
-    private var service: PlayerService? = null
+    var tracks = TrackDB(context).getTracksWithAlbumId(albumId)
 
-    val itemCount get() = tracks.size
+    private var service: PlayerService? = null
 
     fun bind() {
         val intent = Intent(context, PlayerService::class.java)
@@ -33,9 +31,5 @@ class TrackModel(private val context: Context, albumId: Int): ServiceConnection 
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {
-    }
-
-    fun getTrackAt(position: Int): Track {
-        return tracks[position]
     }
 }
