@@ -5,23 +5,32 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.musicplayer.App
 import com.example.musicplayer.R
+import com.example.musicplayer.db.Album
 import com.example.musicplayer.ui.track.TrackActivity
+import javax.inject.Inject
 
 class AlbumActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_ARTIST = "extra_artist"
     }
 
-    private lateinit var model: AlbumModel
-    private lateinit var adapter: AlbumAdapter
+    @Inject lateinit var adapter: AlbumAdapter
+    @Inject lateinit var presenter: AlbumPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album)
 
-        model = AlbumModel(this, intent.getStringExtra(EXTRA_ARTIST)!!)
-        adapter = AlbumAdapter(this, model, AlbumPresenter(this, model))
+        DaggerAlbumComponent
+            .builder()
+            .appDaggerComponent((application as App).appComponent)
+            .albumDaggerModule(AlbumDaggerModule(this))
+            .build()
+            .inject(this)
+
+        presenter.onCreate()
 
         val list: RecyclerView = findViewById(R.id.list)
         list.layoutManager = LinearLayoutManager(this)
@@ -32,5 +41,9 @@ class AlbumActivity : AppCompatActivity() {
         val intent = Intent(this, TrackActivity::class.java)
         intent.putExtra(TrackActivity.EXTRA_ALBUM, albumId)
         startActivity(intent)
+    }
+
+    fun updateData(albums: List<Album>) {
+        adapter.update(albums)
     }
 }

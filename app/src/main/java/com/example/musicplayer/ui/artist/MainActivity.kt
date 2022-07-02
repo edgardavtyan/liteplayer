@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.App
-import com.example.musicplayer.DaggerMainComponent
 import com.example.musicplayer.R
 import com.example.musicplayer.ui.album.AlbumActivity
 import javax.inject.Inject
