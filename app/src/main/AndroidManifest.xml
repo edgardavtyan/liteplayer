@@ -17,16 +17,16 @@
         android:theme="@style/Theme.MusicPlayer"
         tools:targetApi="31" >
         <activity
-            android:name=".nowplaying.NowPlayingActivity"
+            android:name="com.example.musicplayer.ui.nowplaying.NowPlayingActivity"
             android:exported="false" />
         <activity
-            android:name=".track.TrackActivity"
+            android:name="com.example.musicplayer.ui.track.TrackActivity"
             android:exported="false" />
         <activity
-            android:name=".album.AlbumActivity"
+            android:name=".ui.album.AlbumActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.artist.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

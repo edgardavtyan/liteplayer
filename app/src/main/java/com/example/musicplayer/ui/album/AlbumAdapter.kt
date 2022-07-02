@@ -1,4 +1,4 @@
-package com.example.musicplayer.album
+package com.example.musicplayer.ui.album
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,8 @@ import com.example.musicplayer.R
 class AlbumAdapter(
     private val context: Context,
     private val model: AlbumModel,
-    private val presenter: AlbumPresenter) : RecyclerView.Adapter<AlbumViewHolder>() {
+    private val presenter: AlbumPresenter
+) : RecyclerView.Adapter<AlbumViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.listitem_album, parent, false)

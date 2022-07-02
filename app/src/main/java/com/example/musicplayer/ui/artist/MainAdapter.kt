@@ -1,15 +1,16 @@
-package com.example.musicplayer
+package com.example.musicplayer.ui.artist
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.musicplayer.R
 import com.example.musicplayer.db.Artist
 
 class MainAdapter(
-        private val context: Context,
-        private val presenter: MainPresenter,
-        private val artists: List<Artist>) : RecyclerView.Adapter<MainViewHolder>() {
+    private val context: Context,
+    private val presenter: MainPresenter,
+    private val artists: List<Artist>) : RecyclerView.Adapter<MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.listitem_artist, parent, false)

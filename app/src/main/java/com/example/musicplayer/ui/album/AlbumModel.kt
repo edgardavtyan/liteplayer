@@ -1,4 +1,4 @@
-package com.example.musicplayer.album
+package com.example.musicplayer.ui.album
 
 import android.content.Context
 import com.example.musicplayer.db.Album

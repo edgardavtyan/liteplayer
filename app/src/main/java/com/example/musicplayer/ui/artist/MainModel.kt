@@ -1,4 +1,4 @@
-package com.example.musicplayer
+package com.example.musicplayer.ui.artist
 
 import com.example.musicplayer.db.ArtistDB
 

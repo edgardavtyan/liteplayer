@@ -16,6 +16,7 @@ class Player {
 
     fun playTrack(track: Track) {
         this.track = track
+        player.reset()
         player.setDataSource(track.path)
         player.prepareAsync()
     }

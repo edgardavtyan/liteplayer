@@ -1,11 +1,14 @@
-package com.example.musicplayer
+package com.example.musicplayer.ui.artist
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.musicplayer.album.AlbumActivity
+import com.example.musicplayer.App
+import com.example.musicplayer.DaggerMainComponent
+import com.example.musicplayer.R
+import com.example.musicplayer.ui.album.AlbumActivity
 import javax.inject.Inject
 
 
@@ -16,8 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DaggerMainComponent
-            .builder()
+        DaggerMainComponent.builder()
             .appDaggerComponent((application as App).appComponent)
             .mainDaggerModule(MainDaggerModule(this))
             .build()

@@ -1,4 +1,4 @@
-package com.example.musicplayer.nowplaying
+package com.example.musicplayer.ui.nowplaying
 
 class NowPlayingPresenter(
     private val view: NowPlayingActivity,

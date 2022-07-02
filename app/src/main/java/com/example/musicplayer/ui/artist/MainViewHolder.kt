@@ -1,13 +1,12 @@
-package com.example.musicplayer.album
+package com.example.musicplayer.ui.artist
 
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.R
 
-class AlbumViewHolder(itemView: View, private val presenter: AlbumPresenter)
-    : RecyclerView.ViewHolder(itemView) {
-
+class MainViewHolder(itemView: View, private val presenter: MainPresenter)
+        : RecyclerView.ViewHolder(itemView) {
     private val titleView: TextView
 
     init {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/black"
-    tools:context=".MainActivity">
+    tools:context=".ui.artist.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"

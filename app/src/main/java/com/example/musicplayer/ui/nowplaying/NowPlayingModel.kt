@@ -1,19 +1,22 @@
-package com.example.musicplayer.track
+package com.example.musicplayer.ui.nowplaying
 
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import com.example.musicplayer.db.Track
-import com.example.musicplayer.db.TrackDB
 import com.example.musicplayer.service.PlayerService
 
-class TrackModel(private val context: Context, albumId: Int): ServiceConnection {
-    private val tracks = TrackDB(context).getTracksWithAlbumId(albumId)
-    private var service: PlayerService? = null
+class NowPlayingModel(private val context: Context)
+    : ServiceConnection {
 
-    val itemCount get() = tracks.size
+    private lateinit var service: PlayerService
+
+    val title get() = service.player.track?.title
+    val info get() = service.player.track?.artistTitle
+    val isPlaying get() = service.player.isPlaying
+
+    var onServiceConnectedListener: OnServiceConnectedListener? = null
 
     fun bind() {
         val intent = Intent(context, PlayerService::class.java)
@@ -24,18 +27,15 @@ class TrackModel(private val context: Context, albumId: Int): ServiceConnection 
         context.unbindService(this)
     }
 
-    fun playTrack(position: Int) {
-        service?.player?.playTrack(tracks[position])
-    }
-
     override fun onServiceConnected(name: ComponentName?, binder: IBinder) {
         service = (binder as PlayerService.PlayerBinder).getService()
+        onServiceConnectedListener?.onConnected()
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {
     }
 
-    fun getTrackAt(position: Int): Track {
-        return tracks[position]
+    fun playPause() {
+        service.player.playPause()
     }
 }

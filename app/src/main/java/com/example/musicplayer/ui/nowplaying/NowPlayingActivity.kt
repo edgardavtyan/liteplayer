@@ -1,4 +1,4 @@
-package com.example.musicplayer.nowplaying
+package com.example.musicplayer.ui.nowplaying
 
 import android.os.Bundle
 import android.widget.ImageButton

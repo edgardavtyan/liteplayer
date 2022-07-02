@@ -1,4 +1,4 @@
-package com.example.musicplayer.album
+package com.example.musicplayer.ui.album
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.R
-import com.example.musicplayer.track.TrackActivity
+import com.example.musicplayer.ui.track.TrackActivity
 
 class AlbumActivity : AppCompatActivity() {
     companion object {

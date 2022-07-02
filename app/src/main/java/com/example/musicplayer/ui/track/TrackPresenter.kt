@@ -1,4 +1,4 @@
-package com.example.musicplayer.track
+package com.example.musicplayer.ui.track
 
 class TrackPresenter(private val view: TrackActivity, private val model: TrackModel) {
     fun onCreate() {
