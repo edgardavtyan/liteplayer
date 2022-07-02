@@ -12,6 +12,7 @@ class Player {
 
     init {
         player.setOnPreparedListener { this.onPrepared() }
+        player.setOnCompletionListener { this.onCompleted() }
     }
 
     fun playTrack(track: Track) {
@@ -23,6 +24,10 @@ class Player {
 
     private fun onPrepared() {
         player.start()
+    }
+
+    private fun onCompleted() {
+        player.seekTo(0)
     }
 
     fun playPause() {
