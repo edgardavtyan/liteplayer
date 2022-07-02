@@ -12,7 +12,7 @@ class AlbumViewHolder(itemView: View, private val presenter: AlbumPresenter)
 
     init {
         titleView = itemView.findViewById(R.id.titleView)
-        titleView.setOnClickListener { presenter.onItemClick(bindingAdapterPosition) }
+        itemView.setOnClickListener { presenter.onItemClick(bindingAdapterPosition) }
     }
 
     fun setTitle(title: String) {
