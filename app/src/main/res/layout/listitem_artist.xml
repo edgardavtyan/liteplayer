@@ -4,21 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:orientation="horizontal"
-    android:clickable="true"
-    android:focusable="true"
-    android:background="@drawable/listitem_onclick">
+    android:background="@drawable/listitem_onclick"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/titleView"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:textColor="#eee"
         android:textSize="16sp"
         android:gravity="center_vertical"
-        tools:text="Sample Text"
-        />
+        tools:text="Sample Text" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#333" />
 
 </LinearLayout>
