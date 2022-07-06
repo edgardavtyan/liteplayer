@@ -1,32 +1,19 @@
 package com.example.musicplayer.ui.album
 
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import android.view.View
 import com.example.musicplayer.R
 import com.example.musicplayer.db.Album
+import com.example.musicplayer.ui.CustomAdapter
 
-class AlbumAdapter(private val context: Context, private val presenter: AlbumPresenter)
-    : RecyclerView.Adapter<AlbumViewHolder>() {
+class AlbumAdapter(context: Context, private val presenter: AlbumPresenter)
+    : CustomAdapter<AlbumViewHolder, Album>(context) {
 
-    private var albums: List<Album> = ArrayList()
+    override val layout = R.layout.listitem_album
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.listitem_album, parent, false)
-        return AlbumViewHolder(view, presenter)
-    }
+    override fun onCreateViewHolder(view: View) = AlbumViewHolder(view, presenter)
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        holder.setTitle(albums[position].title)
-    }
-
-    override fun getItemCount(): Int {
-        return albums.size
-    }
-
-    fun update(newAlbums: List<Album>) {
-        albums = newAlbums
-        notifyDataSetChanged()
+        holder.setTitle(list[position].title)
     }
 }

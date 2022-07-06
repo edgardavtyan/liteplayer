@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.App
 import com.example.musicplayer.R
+import com.example.musicplayer.db.Artist
 import com.example.musicplayer.ui.album.AlbumActivity
 import javax.inject.Inject
 
 
 class MainActivity : Activity() {
     @Inject lateinit var adapter: MainAdapter
+    @Inject lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,12 @@ class MainActivity : Activity() {
         val list: RecyclerView = findViewById(R.id.list)
         list.layoutManager = LinearLayoutManager(this)
         list.adapter = adapter
+
+        presenter.onCreate()
+    }
+
+    fun update(newArtists: List<Artist>) {
+        adapter.update(newArtists)
     }
 
     fun gotoAlbumActivity(artist: String) {

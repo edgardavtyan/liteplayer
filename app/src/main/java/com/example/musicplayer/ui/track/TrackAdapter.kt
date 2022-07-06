@@ -1,33 +1,19 @@
 package com.example.musicplayer.ui.track
 
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import android.view.View
 import com.example.musicplayer.R
 import com.example.musicplayer.db.Track
+import com.example.musicplayer.ui.CustomAdapter
 
-class TrackAdapter(
-    private val context: Context,
-    private val presenter: TrackPresenter)
-    : RecyclerView.Adapter<TrackViewHolder>() {
+class TrackAdapter(context: Context, private val presenter: TrackPresenter)
+    : CustomAdapter<TrackViewHolder, Track>(context) {
 
-    private var tracks: List<Track> = ArrayList()
+    override val layout = R.layout.listitem_album
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.listitem_album, parent, false)
-        return TrackViewHolder(view, presenter)
-    }
+    override fun onCreateViewHolder(view: View) = TrackViewHolder(view, presenter)
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        holder.setTitle(tracks[position].title)
-    }
-
-    override fun getItemCount(): Int {
-        return tracks.size
-    }
-
-    fun update(newTracks: List<Track>) {
-        tracks = newTracks
+        holder.setTitle(list[position].title)
     }
 }

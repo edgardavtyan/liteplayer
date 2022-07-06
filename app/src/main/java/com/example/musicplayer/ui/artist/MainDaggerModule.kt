@@ -28,7 +28,7 @@ class MainDaggerModule(private val activity: MainActivity) {
 
     @ActivityScope
     @Provides
-    fun provideMainAdapter(presenter: MainPresenter, model: MainModel): MainAdapter {
-        return MainAdapter(activity, presenter, model.artists)
+    fun provideMainAdapter(presenter: MainPresenter): MainAdapter {
+        return MainAdapter(activity, presenter)
     }
 }
