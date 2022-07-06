@@ -12,22 +12,15 @@ class Player {
 
     init {
         player.setOnPreparedListener { this.onPrepared() }
-        player.setOnCompletionListener { this.onCompleted() }
     }
 
     fun playTrack(track: Track) {
         this.track = track
+        player.stop()
         player.reset()
         player.setDataSource(track.path)
+        player.isLooping = true
         player.prepareAsync()
-    }
-
-    private fun onPrepared() {
-        player.start()
-    }
-
-    private fun onCompleted() {
-        player.seekTo(0)
     }
 
     fun playPause() {
@@ -36,5 +29,9 @@ class Player {
         } else {
             player.start()
         }
+    }
+
+    private fun onPrepared() {
+        player.start()
     }
 }
