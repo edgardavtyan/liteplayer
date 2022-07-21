@@ -3,6 +3,7 @@ package com.example.musicplayer.ui.nowplaying
 import android.app.Activity
 import android.graphics.Bitmap
 import android.os.Bundle
+import com.example.musicplayer.R
 import com.example.musicplayer.databinding.ActivityNowplayingBinding
 
 class NowPlayingActivity : Activity() {
@@ -40,10 +41,10 @@ class NowPlayingActivity : Activity() {
     }
 
     fun setPaused() {
-        binding.btnPlaypause.setImageResource(android.R.drawable.ic_media_play)
+        binding.btnPlaypause.setImageResource(R.drawable.ic_play)
     }
 
     fun setPlaying() {
-        binding.btnPlaypause.setImageResource(android.R.drawable.ic_media_pause)
+        binding.btnPlaypause.setImageResource(R.drawable.ic_pause)
     }
 }
