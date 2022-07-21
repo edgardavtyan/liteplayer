@@ -41,7 +41,10 @@ class NowPlayingModel(private val context: Context)
             val mmr = MediaMetadataRetriever()
             mmr.setDataSource(service.player.track?.path)
             val data = mmr.embeddedPicture
-            coverArt = BitmapFactory.decodeByteArray(data, 0, data?.size!!)
+
+            if (data != null) {
+                coverArt = BitmapFactory.decodeByteArray(data, 0, data.size)
+            }
         }
 
         onServiceConnectedListener?.onConnected()

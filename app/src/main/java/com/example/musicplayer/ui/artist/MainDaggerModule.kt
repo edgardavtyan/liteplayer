@@ -2,6 +2,7 @@ package com.example.musicplayer.ui.artist
 
 import android.content.Context
 import com.example.musicplayer.ActivityScope
+import com.example.musicplayer.db.AlbumDB
 import com.example.musicplayer.db.ArtistDB
 import dagger.Module
 import dagger.Provides
@@ -16,8 +17,8 @@ class MainDaggerModule(private val activity: MainActivity) {
 
     @ActivityScope
     @Provides
-    fun provideMainModel(artistDB: ArtistDB): MainModel {
-        return MainModel(artistDB)
+    fun provideMainModel(artistDB: ArtistDB, albumDB: AlbumDB): MainModel {
+        return MainModel(artistDB, albumDB)
     }
 
     @ActivityScope

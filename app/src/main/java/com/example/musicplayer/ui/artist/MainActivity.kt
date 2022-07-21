@@ -10,6 +10,7 @@ import com.example.musicplayer.R
 import com.example.musicplayer.db.Artist
 import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.ui.album.AlbumActivity
+import com.example.musicplayer.ui.track.TrackActivity
 import javax.inject.Inject
 
 
@@ -44,6 +45,12 @@ class MainActivity : Activity() {
     fun gotoAlbumActivity(artist: String) {
         val intent = Intent(this, AlbumActivity::class.java)
         intent.putExtra(AlbumActivity.EXTRA_ARTIST, artist)
+        startActivity(intent)
+    }
+
+    fun gotoTrackActivity(albumId: Int) {
+        val intent = Intent(this, TrackActivity::class.java)
+        intent.putExtra(TrackActivity.EXTRA_ALBUM, albumId)
         startActivity(intent)
     }
 }
