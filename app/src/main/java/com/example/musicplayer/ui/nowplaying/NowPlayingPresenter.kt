@@ -6,6 +6,7 @@ class NowPlayingPresenter(
 
     init {
         model.onServiceConnectedListener = OnServiceConnectedListener { onServiceConnected() }
+        model.onIsPlayingChangedListener = { onIsPlayingChanged(it) }
     }
 
     fun onCreate() {
@@ -18,21 +19,19 @@ class NowPlayingPresenter(
 
     fun onPlayPauseClick() {
         model.playPause()
-        if (model.isPlaying) {
+    }
+
+    private fun onIsPlayingChanged(isPlaying: Boolean) {
+        if (isPlaying) {
             view.setPlaying()
         } else {
             view.setPaused()
         }
-
     }
 
     private fun onServiceConnected() {
         view.trackTitle = model.title.toString()
         view.trackInfo = model.info.toString()
-        if (model.isPlaying) {
-            view.setPlaying()
-        } else {
-            view.setPaused()
-        }
+        onIsPlayingChanged(model.isPlaying)
     }
 }

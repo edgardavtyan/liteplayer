@@ -17,6 +17,7 @@ class NowPlayingModel(private val context: Context)
     val isPlaying get() = service.player.isPlaying
 
     var onServiceConnectedListener: OnServiceConnectedListener? = null
+    var onIsPlayingChangedListener: ((isPlaying: Boolean) -> Unit)? = null
 
     fun bind() {
         val intent = Intent(context, PlayerService::class.java)
@@ -30,6 +31,7 @@ class NowPlayingModel(private val context: Context)
     override fun onServiceConnected(name: ComponentName?, binder: IBinder) {
         service = (binder as PlayerService.PlayerBinder).getService()
         onServiceConnectedListener?.onConnected()
+        service.player.addOnIsPlayingChangedListener { onIsPlayingChangedListener?.invoke(it) }
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {
