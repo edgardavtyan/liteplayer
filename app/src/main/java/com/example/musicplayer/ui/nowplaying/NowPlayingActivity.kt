@@ -1,6 +1,7 @@
 package com.example.musicplayer.ui.nowplaying
 
 import android.app.Activity
+import android.graphics.Bitmap
 import android.os.Bundle
 import com.example.musicplayer.databinding.ActivityNowplayingBinding
 
@@ -31,6 +32,12 @@ class NowPlayingActivity : Activity() {
     var trackInfo: CharSequence
         get() = binding.info.text
         set(text) { binding.info.text = text }
+
+    fun setCoverArt(cover: Bitmap?) {
+        if (cover != null) {
+            binding.art.setImageBitmap(cover)
+        }
+    }
 
     fun setPaused() {
         binding.btnPlaypause.setImageResource(android.R.drawable.ic_media_play)

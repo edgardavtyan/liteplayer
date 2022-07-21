@@ -33,5 +33,6 @@ class NowPlayingPresenter(
         view.trackTitle = model.title.toString()
         view.trackInfo = model.info.toString()
         onIsPlayingChanged(model.isPlaying)
+        view.setCoverArt(model.coverArt)
     }
 }

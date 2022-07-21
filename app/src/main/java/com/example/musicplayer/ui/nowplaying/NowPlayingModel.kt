@@ -4,6 +4,9 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.media.MediaMetadataRetriever
 import android.os.IBinder
 import com.example.musicplayer.service.PlayerService
 
@@ -11,6 +14,8 @@ class NowPlayingModel(private val context: Context)
     : ServiceConnection {
 
     private lateinit var service: PlayerService
+
+    var coverArt: Bitmap? = null
 
     val title get() = service.player.track?.title
     val info get() = service.player.track?.artistTitle
@@ -30,8 +35,16 @@ class NowPlayingModel(private val context: Context)
 
     override fun onServiceConnected(name: ComponentName?, binder: IBinder) {
         service = (binder as PlayerService.PlayerBinder).getService()
-        onServiceConnectedListener?.onConnected()
         service.player.addOnIsPlayingChangedListener { onIsPlayingChangedListener?.invoke(it) }
+
+        if (service.player.track != null) {
+            val mmr = MediaMetadataRetriever()
+            mmr.setDataSource(service.player.track?.path)
+            val data = mmr.embeddedPicture
+            coverArt = BitmapFactory.decodeByteArray(data, 0, data?.size!!)
+        }
+
+        onServiceConnectedListener?.onConnected()
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {
