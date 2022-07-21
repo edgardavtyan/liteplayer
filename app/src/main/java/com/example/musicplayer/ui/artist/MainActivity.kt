@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.App
 import com.example.musicplayer.R
 import com.example.musicplayer.db.Artist
+import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.ui.album.AlbumActivity
 import javax.inject.Inject
 
@@ -19,6 +20,9 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val i = Intent(this, PlayerService::class.java)
+        startService(i)
 
         DaggerMainComponent.builder()
             .appDaggerComponent((application as App).appComponent)
