@@ -5,7 +5,9 @@ import com.example.musicplayer.AppDaggerComponent
 import dagger.Component
 
 @ActivityScope
-@Component(dependencies = [AppDaggerComponent::class])
+@Component(
+    dependencies = [AppDaggerComponent::class],
+    modules = [PrefsModule::class])
 interface PrefsComponent {
     fun inject(activity: PrefsActivity)
 }

@@ -11,6 +11,7 @@ class PrefsActivity : Activity() {
     private lateinit var binding: ActivityPrefsBinding
 
     @Inject lateinit var prefs: Prefs
+    @Inject lateinit var presenter: PrefsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,23 +19,30 @@ class PrefsActivity : Activity() {
         DaggerPrefsComponent
             .builder()
             .appDaggerComponent((application as App).appComponent)
+            .prefsModule(PrefsModule(this))
             .build()
             .inject(this)
 
         binding = ActivityPrefsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.audioBalanceSeekBar.progress = prefs.getAudioBalance() / 5 + 20
-        binding.audioBalanceTextView.text = prefs.getAudioBalance().toString()
+        presenter.onCreate()
 
         binding.audioBalanceSeekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                prefs.setAudioBalance(progress * 5 - 100)
-                binding.audioBalanceTextView.text = (progress * 5 - 100).toString()
+                presenter.onAudioBalanceChanged(progress * 5 - 100)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) { }
             override fun onStopTrackingTouch(seekBar: SeekBar?) { }
         })
+    }
+
+    fun setAudioBalanceSeekBar(progress: Int) {
+        binding.audioBalanceSeekBar.progress = progress / 5 + 20
+    }
+
+    fun setAudioBalanceText(progress: Int) {
+        binding.audioBalanceTextView.text = progress.toString()
     }
 }
