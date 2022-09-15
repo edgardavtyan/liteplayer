@@ -26,7 +26,7 @@ class PrefsActivity : Activity() {
         setContentView(binding.root)
 
         presenter.onCreate()
-        
+
         binding.audioBalanceSeekBar.onProgressChangedListener = {
             presenter.onAudioBalanceChanged(it * 5 - 100)
         }
