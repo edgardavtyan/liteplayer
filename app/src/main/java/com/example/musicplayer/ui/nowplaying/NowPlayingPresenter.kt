@@ -30,9 +30,9 @@ class NowPlayingPresenter(
     }
 
     private fun onServiceConnected() {
-        view.trackTitle = model.title.toString()
-        view.trackInfo = model.info.toString()
-        onIsPlayingChanged(model.isPlaying)
+        view.setTrackTitle(model.title.toString())
+        view.setTrackInfo(model.info.toString())
         view.setCoverArt(model.coverArt)
+        onIsPlayingChanged(model.isPlaying)
     }
 }

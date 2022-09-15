@@ -1,6 +1,7 @@
 package com.example.musicplayer.player
 
 import com.example.musicplayer.service.PlayerServiceScope
+import com.example.musicplayer.ui.prefs.Prefs
 import dagger.Module
 import dagger.Provides
 
@@ -8,7 +9,7 @@ import dagger.Provides
 class PlayerModule {
     @Provides
     @PlayerServiceScope
-    fun providesPlayer(): Player {
-        return Player()
+    fun providesPlayer(prefs: Prefs): Player {
+        return Player(prefs)
     }
 }

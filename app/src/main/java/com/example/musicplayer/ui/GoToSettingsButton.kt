@@ -4,13 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.util.AttributeSet
 import android.widget.ImageView
-import com.example.musicplayer.ui.nowplaying.NowPlayingActivity
+import com.example.musicplayer.ui.prefs.PrefsActivity
 
-
-class GoToNowPlayingButton(context: Context, attr: AttributeSet): ImageView(context, attr) {
+class GoToSettingsButton(context: Context, attr: AttributeSet): ImageView(context, attr) {
     init {
         setOnClickListener {
-            val intent = Intent(context, NowPlayingActivity::class.java)
+            val intent = Intent(context, PrefsActivity::class.java)
             context.startActivity(intent)
         }
     }

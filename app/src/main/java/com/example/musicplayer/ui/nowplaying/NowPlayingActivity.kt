@@ -26,13 +26,13 @@ class NowPlayingActivity : Activity() {
         presenter.onDestroy()
     }
 
-    var trackTitle: CharSequence
-        get() = binding.title.text
-        set(text) { binding.title.text = text }
+    fun setTrackTitle(title: CharSequence) {
+        binding.title.text = title
+    }
 
-    var trackInfo: CharSequence
-        get() = binding.info.text
-        set(text) { binding.info.text = text }
+    fun setTrackInfo(info: CharSequence) {
+        binding.info.text = info
+    }
 
     fun setCoverArt(cover: Bitmap?) {
         if (cover != null) {

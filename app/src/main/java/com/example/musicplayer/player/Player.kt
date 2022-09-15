@@ -2,8 +2,10 @@ package com.example.musicplayer.player
 
 import android.media.MediaPlayer
 import com.example.musicplayer.db.Track
+import com.example.musicplayer.ui.prefs.Prefs
+import kotlin.math.abs
 
-class Player {
+class Player(prefs: Prefs) {
     private val player = MediaPlayer()
     private val isPlayingChangedListeners = ArrayList<IsPlayingChangedListener>()
 
@@ -13,6 +15,15 @@ class Player {
 
     init {
         player.setOnPreparedListener { this.onPrepared() }
+        prefs.onAudioBalanceChangeListener = {
+            if (it < 0) {
+                player.setVolume(1.0F, (100 - abs(it)) / 100.0F)
+            } else if (it > 0) {
+                player.setVolume((100 - it) / 100F, 1.0F)
+            } else {
+                player.setVolume(1.0F, 1.0F)
+            }
+        }
     }
 
     fun addOnIsPlayingChangedListener(listener: IsPlayingChangedListener) {

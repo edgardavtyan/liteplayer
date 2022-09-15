@@ -4,6 +4,7 @@ import com.example.musicplayer.db.AlbumDB
 import com.example.musicplayer.db.ArtistDB
 import com.example.musicplayer.db.DbModule
 import com.example.musicplayer.db.TrackDB
+import com.example.musicplayer.ui.prefs.Prefs
 import dagger.Component
 import javax.inject.Singleton
 
@@ -13,4 +14,5 @@ interface AppDaggerComponent {
     fun artistDB(): ArtistDB
     fun albumDB(): AlbumDB
     fun trackDB(): TrackDB
+    fun prefs(): Prefs
 }
