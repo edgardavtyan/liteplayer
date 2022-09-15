@@ -2,5 +2,7 @@
     <style name="Theme.MusicPlayer" parent="">
         <item name="android:statusBarColor">@color/black</item>
         <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 </resources>
