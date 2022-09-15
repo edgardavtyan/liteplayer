@@ -2,7 +2,6 @@ package com.example.musicplayer.ui.prefs
 
 import android.app.Activity
 import android.os.Bundle
-import android.widget.SeekBar
 import com.example.musicplayer.App
 import com.example.musicplayer.databinding.ActivityPrefsBinding
 import javax.inject.Inject
@@ -27,15 +26,10 @@ class PrefsActivity : Activity() {
         setContentView(binding.root)
 
         presenter.onCreate()
-
-        binding.audioBalanceSeekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                presenter.onAudioBalanceChanged(progress * 5 - 100)
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) { }
-            override fun onStopTrackingTouch(seekBar: SeekBar?) { }
-        })
+        
+        binding.audioBalanceSeekBar.onProgressChangedListener = {
+            presenter.onAudioBalanceChanged(it * 5 - 100)
+        }
     }
 
     fun setAudioBalanceSeekBar(progress: Int) {

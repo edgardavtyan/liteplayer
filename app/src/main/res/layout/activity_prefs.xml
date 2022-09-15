@@ -51,7 +51,7 @@
             android:paddingLeft="2dp"
             android:paddingRight="2dp">
 
-            <SeekBar
+            <com.example.musicplayer.ui.CustomSeekBar
                 android:id="@+id/audio_balance_seekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
