@@ -1,8 +1,8 @@
 package com.example.musicplayer.ui.artist
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.App
@@ -13,8 +13,7 @@ import com.example.musicplayer.ui.album.AlbumActivity
 import com.example.musicplayer.ui.track.TrackActivity
 import javax.inject.Inject
 
-
-class MainActivity : Activity() {
+class MainActivity : FragmentActivity() {
     @Inject lateinit var adapter: MainAdapter
     @Inject lateinit var presenter: MainPresenter
 

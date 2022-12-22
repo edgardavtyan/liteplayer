@@ -15,6 +15,11 @@
         android:layout_weight="1"
         />
 
-    <include layout="@layout/partial_nowplayingbutton" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nowplaying_bar"
+        android:name="com.example.musicplayer.ui.nowplaying_bar.NowPlayingBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
 </LinearLayout>

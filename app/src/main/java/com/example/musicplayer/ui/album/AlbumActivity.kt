@@ -1,8 +1,8 @@
 package com.example.musicplayer.ui.album
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.App
@@ -11,7 +11,7 @@ import com.example.musicplayer.db.Album
 import com.example.musicplayer.ui.track.TrackActivity
 import javax.inject.Inject
 
-class AlbumActivity : Activity() {
+class AlbumActivity : FragmentActivity() {
     companion object {
         const val EXTRA_ARTIST = "extra_artist"
     }
