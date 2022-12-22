@@ -44,8 +44,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:layout_height="100dp"
+        android:gravity="bottom"
+        android:background="@color/primary">
 
         <Space
             android:layout_width="0dp"
@@ -54,11 +55,8 @@
 
         <ImageButton
             android:id="@+id/btn_prev"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="#000"
             android:src="@drawable/ic_prev"
-            android:scaleType="centerCrop" />
+            style="@style/NowPlayingButton" />
 
         <Space
             android:layout_width="0dp"
@@ -67,11 +65,8 @@
 
         <ImageButton
             android:id="@+id/btn_playpause"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="#000"
             android:src="@drawable/ic_play"
-            android:scaleType="centerCrop" />
+            style="@style/NowPlayingButton" />
 
         <Space
             android:layout_width="0dp"
@@ -80,11 +75,8 @@
 
         <ImageButton
             android:id="@+id/btn_next"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="#000"
             android:src="@drawable/ic_next"
-            android:scaleType="centerCrop" />
+            style="@style/NowPlayingButton" />
 
         <Space
             android:layout_width="0dp"
@@ -92,10 +84,5 @@
             android:layout_weight="1" />
 
     </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
 </LinearLayout>
