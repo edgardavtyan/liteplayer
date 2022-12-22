@@ -2,10 +2,11 @@ package com.example.musicplayer.player
 
 import android.media.MediaPlayer
 import com.example.musicplayer.db.Track
+import com.example.musicplayer.service.PlayerAudioManager
 import com.example.musicplayer.ui.prefs.Prefs
 import kotlin.math.abs
 
-class Player(prefs: Prefs) {
+class Player(prefs: Prefs, private val audioManager: PlayerAudioManager) {
     private val player = MediaPlayer()
     private val isPlayingChangedListeners = ArrayList<IsPlayingChangedListener>()
 
@@ -24,6 +25,8 @@ class Player(prefs: Prefs) {
                 player.setVolume(1.0F, 1.0F)
             }
         }
+
+        audioManager.onFocusLossListener = { pause() }
     }
 
     fun addOnIsPlayingChangedListener(listener: IsPlayingChangedListener) {
@@ -48,6 +51,7 @@ class Player(prefs: Prefs) {
             player.pause()
         } else {
             player.start()
+            audioManager.requestFocus()
         }
 
         isPlayingChangedListeners.forEach { it.onIsPlayingChanged(player.isPlaying) }
@@ -55,6 +59,7 @@ class Player(prefs: Prefs) {
 
     fun pause() {
         player.pause()
+        audioManager.abandonFocus()
         isPlayingChangedListeners.forEach { it.onIsPlayingChanged(player.isPlaying) }
     }
 
