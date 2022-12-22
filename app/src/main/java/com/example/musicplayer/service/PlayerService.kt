@@ -1,16 +1,12 @@
 package com.example.musicplayer.service
 
-import android.app.Notification
-import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioManager
 import android.os.Binder
 import android.os.IBinder
-import androidx.core.app.NotificationCompat
 import com.example.musicplayer.App
-import com.example.musicplayer.R
 import com.example.musicplayer.player.Player
 import com.example.musicplayer.player.PlayerModule
 import javax.inject.Inject
@@ -20,6 +16,7 @@ class PlayerService: Service() {
 
     @Inject lateinit var player: Player
     @Inject lateinit var audioNoisyReceiver: AudioNoisyReceiver
+    @Inject lateinit var notification: PlayerNotification
 
     private val binder = PlayerBinder()
 
@@ -38,25 +35,15 @@ class PlayerService: Service() {
     override fun onCreate() {
         super.onCreate()
 
-        val notifIntent = Intent(this, PlayerService::class.java)
-        val pi = PendingIntent.getActivity(this, 0, notifIntent, 0)
-
-        val notification: Notification = NotificationCompat.Builder(this)
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle(resources.getString(R.string.app_name))
-            .setContentText("Running")
-            .setContentIntent(pi)
-            .build()
-        startForeground(101010, notification)
-
         DaggerPlayerServiceComponent
             .builder()
             .appDaggerComponent((application as App).appComponent)
             .playerModule(PlayerModule())
-            .playerServiceModule(PlayerServiceModule())
+            .playerServiceModule(PlayerServiceModule(this))
             .build()
             .inject(this)
 
+        startForeground(101010, notification.notification)
         registerReceiver(audioNoisyReceiver, IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY))
     }
 }
