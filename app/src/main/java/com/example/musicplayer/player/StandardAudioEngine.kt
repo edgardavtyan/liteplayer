@@ -1,6 +1,7 @@
 package com.example.musicplayer.player
 
 import android.media.MediaPlayer
+import com.example.musicplayer.db.Track
 
 class StandardAudioEngine(private val player: MediaPlayer): AudioEngine {
     private val onIsPlayingChangedListeners = ArrayList<(Boolean) -> Unit>()
@@ -32,6 +33,7 @@ class StandardAudioEngine(private val player: MediaPlayer): AudioEngine {
     }
 
     override val isPlaying: Boolean get() = player.isPlaying
+    override var track: Track? = null
 
     override fun playPause() {
         if (player.isPlaying) {
@@ -48,11 +50,12 @@ class StandardAudioEngine(private val player: MediaPlayer): AudioEngine {
         onIsPlayingChangedListeners.forEach { it(isPlaying) }
     }
 
-    override fun playTrack(filename: String) {
+    override fun playTrack(track: Track) {
+        this.track = track
         player.stop()
         player.reset()
         player.isLooping = true
-        player.setDataSource(filename)
+        player.setDataSource(track.path)
         player.prepareAsync()
     }
 

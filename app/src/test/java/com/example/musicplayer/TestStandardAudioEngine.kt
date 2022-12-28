@@ -1,6 +1,7 @@
 package com.example.musicplayer
 
 import android.media.MediaPlayer
+import com.example.musicplayer.db.Track
 import com.example.musicplayer.player.StandardAudioEngine
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -73,7 +74,11 @@ class TestStandardAudioEngine {
     }
 
     @Test fun should_play_track_async() {
-        audioEngine.playTrack("filename")
+        val track = Track()
+        track.path = "filename"
+
+        audioEngine.playTrack(track)
+
         verify {
             player.stop()
             player.reset()

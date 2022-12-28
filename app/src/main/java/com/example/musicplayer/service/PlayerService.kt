@@ -9,8 +9,9 @@ import android.media.AudioManager
 import android.os.Binder
 import android.os.IBinder
 import com.example.musicplayer.App
-import com.example.musicplayer.player.Player
-import com.example.musicplayer.player.PlayerModule
+import com.example.musicplayer.player.AudioEngine
+import com.example.musicplayer.player.PlayerAudioManager
+import com.example.musicplayer.ui.prefs.Prefs
 import javax.inject.Inject
 
 
@@ -25,8 +26,10 @@ class PlayerService: Service() {
         fun getService() = this@PlayerService
     }
 
-    @Inject lateinit var player: Player
+    @Inject lateinit var audioManager: PlayerAudioManager
     @Inject lateinit var notification: PlayerNotification
+    @Inject lateinit var prefs: Prefs
+    @Inject lateinit var player: AudioEngine
 
     private val binder = PlayerBinder()
     private val audioNoisyReceiver = AudioNoisyReceiver()
@@ -36,6 +39,8 @@ class PlayerService: Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        prefs.onAudioBalanceChangeListener = { player.balance = it }
+        audioManager.onFocusLossListener = { player.pause() }
         return START_STICKY
     }
 
@@ -45,7 +50,6 @@ class PlayerService: Service() {
         DaggerPlayerServiceComponent
             .builder()
             .appDaggerComponent((application as App).appComponent)
-            .playerModule(PlayerModule())
             .playerServiceModule(PlayerServiceModule(this))
             .build()
             .inject(this)
