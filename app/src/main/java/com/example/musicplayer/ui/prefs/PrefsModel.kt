@@ -1,7 +1,12 @@
 package com.example.musicplayer.ui.prefs
 
-class PrefsModel(private val prefs: Prefs) {
+import com.example.musicplayer.PlayerServiceConnection
+
+class PrefsModel(private val prefs: Prefs): PlayerServiceConnection(prefs.context) {
     var audioBalance: Int
-        get() = prefs.getAudioBalance()
-        set(balance) = prefs.setAudioBalance(balance)
+        get() = prefs.audioBalance
+        set(balance) {
+            prefs.audioBalance = balance
+            service.player.balance = balance
+        }
 }

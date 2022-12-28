@@ -32,6 +32,11 @@ class PrefsActivity : Activity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
+    }
+
     fun setAudioBalanceSeekBar(progress: Int) {
         binding.audioBalanceSeekBar.progress = progress / 5 + 20
     }

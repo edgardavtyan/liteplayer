@@ -11,7 +11,6 @@ import android.os.IBinder
 import com.example.musicplayer.App
 import com.example.musicplayer.service.player.Player
 import com.example.musicplayer.service.player.PlayerAudioManager
-import com.example.musicplayer.ui.prefs.Prefs
 import javax.inject.Inject
 
 
@@ -28,7 +27,6 @@ class PlayerService: Service() {
 
     @Inject lateinit var audioManager: PlayerAudioManager
     @Inject lateinit var notification: PlayerNotification
-    @Inject lateinit var prefs: Prefs
     @Inject lateinit var player: Player
 
     private val binder = PlayerBinder()
@@ -39,7 +37,6 @@ class PlayerService: Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        prefs.onAudioBalanceChangeListener = { player.balance = it }
         audioManager.onFocusLossListener = { player.pause() }
         player.addOnIsPlayingChangedListener { audioManager.setFocused(it) }
         return START_STICKY
