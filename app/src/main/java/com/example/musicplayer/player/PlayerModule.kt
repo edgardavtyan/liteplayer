@@ -1,5 +1,6 @@
 package com.example.musicplayer.player
 
+import android.media.MediaPlayer
 import com.example.musicplayer.service.PlayerAudioManager
 import com.example.musicplayer.service.PlayerServiceScope
 import com.example.musicplayer.ui.prefs.Prefs
@@ -10,7 +11,13 @@ import dagger.Provides
 class PlayerModule() {
     @Provides
     @PlayerServiceScope
-    fun providesPlayer(prefs: Prefs, audioManager: PlayerAudioManager): Player {
-        return Player(prefs, audioManager)
+    fun providesPlayer(prefs: Prefs, audioManager: PlayerAudioManager, engine: AudioEngine): Player {
+        return Player(prefs, engine, audioManager)
+    }
+
+    @Provides
+    @PlayerServiceScope
+    fun provideAudioEngine(): AudioEngine {
+        return StandardAudioEngine(MediaPlayer())
     }
 }
