@@ -9,8 +9,8 @@ import android.media.AudioManager
 import android.os.Binder
 import android.os.IBinder
 import com.example.musicplayer.App
-import com.example.musicplayer.player.AudioEngine
-import com.example.musicplayer.player.PlayerAudioManager
+import com.example.musicplayer.service.player.Player
+import com.example.musicplayer.service.player.PlayerAudioManager
 import com.example.musicplayer.ui.prefs.Prefs
 import javax.inject.Inject
 
@@ -29,7 +29,7 @@ class PlayerService: Service() {
     @Inject lateinit var audioManager: PlayerAudioManager
     @Inject lateinit var notification: PlayerNotification
     @Inject lateinit var prefs: Prefs
-    @Inject lateinit var player: AudioEngine
+    @Inject lateinit var player: Player
 
     private val binder = PlayerBinder()
     private val audioNoisyReceiver = AudioNoisyReceiver()

@@ -1,9 +1,9 @@
-package com.example.musicplayer.player
+package com.example.musicplayer.service.player
 
 import android.media.MediaPlayer
 import com.example.musicplayer.db.Track
 
-class StandardAudioEngine(private val player: MediaPlayer): AudioEngine {
+class StandardPlayer(private val player: MediaPlayer): Player {
     private val onIsPlayingChangedListeners = ArrayList<(Boolean) -> Unit>()
 
     init {

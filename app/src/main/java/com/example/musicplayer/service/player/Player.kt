@@ -1,8 +1,8 @@
-package com.example.musicplayer.player
+package com.example.musicplayer.service.player
 
 import com.example.musicplayer.db.Track
 
-interface AudioEngine {
+interface Player {
     var onPreparedListener: (() -> Unit)?
     val isPlaying: Boolean
     val track: Track?

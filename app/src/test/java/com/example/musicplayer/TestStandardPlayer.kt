@@ -2,7 +2,7 @@ package com.example.musicplayer
 
 import android.media.MediaPlayer
 import com.example.musicplayer.db.Track
-import com.example.musicplayer.player.StandardAudioEngine
+import com.example.musicplayer.service.player.StandardPlayer
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(MockKExtension::class)
-class TestStandardAudioEngine {
+class TestStandardPlayer {
     @MockK lateinit var player: MediaPlayer
 
-    private lateinit var audioEngine: StandardAudioEngine
+    private lateinit var audioEngine: StandardPlayer
     private lateinit var onPreparedListener: () -> Unit
 
     @BeforeEach fun beforeEach() {
@@ -28,7 +28,7 @@ class TestStandardAudioEngine {
             player.setOnPreparedListener(capture(slot))
         } answers { onPreparedListener = { slot.captured.onPrepared(player) } }
 
-        audioEngine = StandardAudioEngine(player)
+        audioEngine = StandardPlayer(player)
     }
 
     @Test fun should_set_zero_balance() {

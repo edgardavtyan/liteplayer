@@ -1,7 +1,7 @@
 package com.example.musicplayer
 
-import com.example.musicplayer.player.PlayerAudioManager
-import com.example.musicplayer.player.StandardAudioEngine
+import com.example.musicplayer.service.player.PlayerAudioManager
+import com.example.musicplayer.service.player.StandardPlayer
 import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.ui.prefs.Prefs
 import io.mockk.every
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExtendWith(MockKExtension::class)
 class TestPlayerService {
     @MockK lateinit var prefs: Prefs
-    @MockK lateinit var player: StandardAudioEngine
+    @MockK lateinit var player: StandardPlayer
     @MockK lateinit var audioManager: PlayerAudioManager
 
     private lateinit var service: PlayerService
