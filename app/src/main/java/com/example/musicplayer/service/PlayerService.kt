@@ -41,6 +41,7 @@ class PlayerService: Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         prefs.onAudioBalanceChangeListener = { player.balance = it }
         audioManager.onFocusLossListener = { player.pause() }
+        player.addOnIsPlayingChangedListener { audioManager.setFocused(it) }
         return START_STICKY
     }
 

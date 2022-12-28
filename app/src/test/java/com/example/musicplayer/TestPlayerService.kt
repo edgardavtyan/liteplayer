@@ -1,8 +1,8 @@
 package com.example.musicplayer
 
+import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.service.player.PlayerAudioManager
 import com.example.musicplayer.service.player.StandardPlayer
-import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.ui.prefs.Prefs
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -46,5 +46,18 @@ class TestPlayerService {
         listenerSlot.captured()
 
         verify { player.pause() }
+    }
+
+    @Test fun should_request_focus_on_play_pause() {
+        val listenerSlot = slot<(Boolean) -> Unit>()
+        every { player.addOnIsPlayingChangedListener(capture(listenerSlot)) } answers {}
+
+        service.onStartCommand(null, 0, 0)
+
+        listenerSlot.captured(true)
+        verify { audioManager.setFocused(true) }
+
+        listenerSlot.captured(false)
+        verify { audioManager.setFocused(false) }
     }
 }
