@@ -44,6 +44,8 @@
         </activity>
 
         <service android:name=".service.PlayerService" />
+
+        <receiver android:name=".service.AudioNoisyReceiver" />
     </application>
 
 </manifest>
