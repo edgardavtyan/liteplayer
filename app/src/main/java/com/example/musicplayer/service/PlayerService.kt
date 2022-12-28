@@ -15,14 +15,14 @@ import javax.inject.Inject
 
 
 class PlayerService: Service() {
-    companion object {
-        const val ACTION_AUDIO_NOISY = "com.example.muiscplayer.ACTION_AUDIO_NOISY"
-    }
-
     inner class AudioNoisyReceiver: BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             player.pause()
         }
+    }
+
+    inner class PlayerBinder: Binder() {
+        fun getService() = this@PlayerService
     }
 
     @Inject lateinit var player: Player
@@ -30,10 +30,6 @@ class PlayerService: Service() {
 
     private val binder = PlayerBinder()
     private val audioNoisyReceiver = AudioNoisyReceiver()
-
-    inner class PlayerBinder: Binder() {
-        fun getService() = this@PlayerService
-    }
 
     override fun onBind(intent: Intent?): IBinder {
         return binder
