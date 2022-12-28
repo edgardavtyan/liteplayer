@@ -2,12 +2,12 @@ package com.example.musicplayer.ui.prefs
 
 class PrefsPresenter(private val view: PrefsActivity, private val model: PrefsModel) {
     fun onCreate() {
-        view.setAudioBalanceSeekBar(model.getAudioBalance())
-        view.setAudioBalanceText(model.getAudioBalance())
+        view.setAudioBalanceSeekBar(model.audioBalance)
+        view.setAudioBalanceText(model.audioBalance)
     }
 
     fun onAudioBalanceChanged(balance: Int) {
-        model.setAudioBalance(balance)
+        model.audioBalance = balance
         view.setAudioBalanceText(balance)
     }
 }
