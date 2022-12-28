@@ -1,7 +1,6 @@
 package com.example.musicplayer.player
 
 import com.example.musicplayer.db.Track
-import com.example.musicplayer.service.PlayerAudioManager
 import com.example.musicplayer.ui.prefs.Prefs
 
 class Player(

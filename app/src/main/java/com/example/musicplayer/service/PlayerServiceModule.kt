@@ -1,6 +1,7 @@
 package com.example.musicplayer.service
 
 import com.example.musicplayer.player.Player
+import com.example.musicplayer.player.PlayerAudioManager
 import dagger.Module
 import dagger.Provides
 

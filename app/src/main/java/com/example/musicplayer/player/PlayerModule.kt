@@ -1,7 +1,6 @@
 package com.example.musicplayer.player
 
 import android.media.MediaPlayer
-import com.example.musicplayer.service.PlayerAudioManager
 import com.example.musicplayer.service.PlayerServiceScope
 import com.example.musicplayer.ui.prefs.Prefs
 import dagger.Module
