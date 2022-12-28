@@ -36,6 +36,7 @@ class Player(
     }
 
     fun pause() {
+        audioEngine.pause()
         audioManager.setFocused(false)
     }
 }
