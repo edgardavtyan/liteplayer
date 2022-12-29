@@ -42,11 +42,11 @@ class EqActivity: Activity() {
     }
 
     fun setBandGain(band: Int, gain: Int) {
-        eqBands[band].gain = gain
+        eqBands[band].setGain(gain)
     }
 
     fun setBandFreq(band: Int, freq: Int) {
-        eqBands[band].freq = freq
+        eqBands[band].setFreq(freq)
     }
 
     fun setMaxGain(maxGain: Int) {

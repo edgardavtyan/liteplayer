@@ -62,24 +62,24 @@ class TestEqBandView {
     }
 
     @Test fun should_set_positive_gain() {
-        eqBandView.gain = 5
+        eqBandView.setGain(5)
         verify { band.progress = 20 }
         verify { gain.text = "+5 dB" }
     }
 
     @Test fun should_set_negative_gain() {
-        eqBandView.gain = -3
+        eqBandView.setGain(-3)
         verify { band.progress = 12 }
         verify { gain.text = "-3 dB" }
     }
 
     @Test fun should_set_frequency_above_thousand() {
-        eqBandView.freq = 3000
+        eqBandView.setFreq(3000)
         verify { freq.text = "3 kHz" }
     }
 
     @Test fun should_set_frequency_below_thousand() {
-        eqBandView.freq = 600
+        eqBandView.setFreq(600)
         verify { freq.text = "600 Hz" }
     }
 

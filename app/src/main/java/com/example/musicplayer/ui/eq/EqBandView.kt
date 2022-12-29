@@ -30,21 +30,17 @@ class EqBandView @JvmOverloads constructor(
         get() = binding.band.max / 2
         set(gain) { binding.band.max = gain * 2 }
 
-    var gain: Int
-        get() = binding.band.progress - (maxGain)
-        set(gain) {
-            binding.band.progress = gain + (maxGain)
-            val sign = if (gain > 0) "+" else ""
-            binding.gain.text = "$sign$gain dB"
-        }
+    fun setGain(gain: Int) {
+        binding.band.progress = gain + (maxGain)
+        val sign = if (gain > 0) "+" else ""
+        binding.gain.text = "$sign$gain dB"
+    }
 
-    var freq: Int = 0
-        set(freq) {
-            if (freq >= 1000) {
-                binding.freq.text = "${freq / 1000} kHz"
-            } else {
-                binding.freq.text = "$freq Hz"
-            }
-            field = freq
+    fun setFreq(freq: Int) {
+        if (freq >= 1000) {
+            binding.freq.text = "${freq / 1000} kHz"
+        } else {
+            binding.freq.text = "$freq Hz"
         }
+    }
 }
