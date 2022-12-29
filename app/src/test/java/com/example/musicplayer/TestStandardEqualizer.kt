@@ -24,7 +24,7 @@ class TestStandardEqualizer {
     }
 
     @Test fun should_return_min_max_gain() {
-        every { innerEq.bandLevelRange } returns shortArrayOf(-15000, 15000)
+        every { innerEq.bandLevelRange } returns shortArrayOf(-1500, 1500)
         assertEquals(-15, eq.minGain)
         assertEquals(15, eq.maxGain)
     }
@@ -36,20 +36,20 @@ class TestStandardEqualizer {
 
     @Test fun should_set_band_gain() {
         eq.setBandGain(3, 8)
-        verify { innerEq.setBandLevel(3, 8000) }
+        verify { innerEq.setBandLevel(3, 800) }
     }
 
     @Test fun should_return_band_gains() {
         every { innerEq.numberOfBands } returns 5
-        every { innerEq.getBandLevel(0) } returns 5000
-        every { innerEq.getBandLevel(2) } returns 3000
+        every { innerEq.getBandLevel(0) } returns 500
+        every { innerEq.getBandLevel(2) } returns 300
         assertEquals(5, eq.getBandGain(0))
         assertEquals(3, eq.getBandGain(2))
     }
 
     @Test fun should_save_bands_to_prefs() {
         every { innerEq.numberOfBands } returns 5
-        every { innerEq.getBandLevel(3) } returns 8000
+        every { innerEq.getBandLevel(3) } returns 800
         eq.setBandGain(3, 8)
         verify { prefs.standardEqBands = arrayOf(0, 0, 0, 8, 0) }
     }

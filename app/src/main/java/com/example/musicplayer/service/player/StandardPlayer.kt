@@ -32,6 +32,7 @@ class StandardPlayer(private val player: MediaPlayer): Player {
         onIsPlayingChangedListeners.remove(listener)
     }
 
+    override val sessionId: Int = player.audioSessionId
     override val isPlaying: Boolean get() = player.isPlaying
     override var track: Track? = null
 

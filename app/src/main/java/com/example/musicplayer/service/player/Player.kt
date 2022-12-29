@@ -4,6 +4,7 @@ import com.example.musicplayer.db.Track
 
 interface Player {
     var onPreparedListener: (() -> Unit)?
+    val sessionId: Int
     val isPlaying: Boolean
     val track: Track?
     var balance: Int

@@ -38,6 +38,10 @@ class NowPlayingBarPresenter(
         view.gotoPrefs()
     }
 
+    fun onBtnEqClicked() {
+        view.gotoEq()
+    }
+
     fun onBarClicked() {
         view.gotoNowPlaying()
     }

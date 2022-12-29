@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.musicplayer.R
 import com.example.musicplayer.databinding.FragmentNowplayingBinding
+import com.example.musicplayer.ui.eq.EqActivity
 import com.example.musicplayer.ui.nowplaying.NowPlayingActivity
 import com.example.musicplayer.ui.prefs.PrefsActivity
 import javax.inject.Inject
@@ -33,6 +34,7 @@ class NowPlayingBarFragment: Fragment() {
         presenter.onCreateView()
         binding.btnPlayPause.setOnClickListener { presenter.onBtnPlayPauseClicked() }
         binding.btnSettings.setOnClickListener { presenter.onBtnSettingsClicked() }
+        binding.btnEq.setOnClickListener { presenter.onBtnEqClicked() }
         binding.title.setOnClickListener { presenter.onBarClicked() }
         binding.cover.setOnClickListener { presenter.onBarClicked() }
         return binding.root
@@ -63,6 +65,10 @@ class NowPlayingBarFragment: Fragment() {
 
     fun gotoNowPlaying() {
         requireContext().startActivity(Intent(requireContext(), NowPlayingActivity::class.java))
+    }
+
+    fun gotoEq() {
+        requireContext().startActivity(Intent(requireContext(), EqActivity::class.java))
     }
 
     fun setCover(cover: Bitmap?) {
