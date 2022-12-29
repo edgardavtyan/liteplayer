@@ -10,7 +10,7 @@ class CustomSeekBar(context: Context, attrs: AttributeSet): SeekBar(context, att
     init {
         setOnSeekBarChangeListener(object: OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                onProgressChangedListener(progress)
+                if (fromUser) onProgressChangedListener(progress)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) { }

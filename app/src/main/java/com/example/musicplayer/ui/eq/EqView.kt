@@ -20,7 +20,7 @@ class EqView @JvmOverloads constructor(
             val gain = it - maxGain
             val sign = if (gain > 0) "+" else ""
             binding.gain.text = "$sign$gain dB"
-            onProgressChangedListener?.invoke(it)
+            onProgressChangedListener?.invoke(gain)
         }
     }
 
