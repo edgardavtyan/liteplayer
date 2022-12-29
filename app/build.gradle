@@ -16,6 +16,10 @@ plugins {
 
 apply plugin: 'com.dicedmelon.gradle.jacoco-android'
 
+jacoco {
+  toolVersion = "0.8.8"
+}
+
 jacocoAndroidUnitTestReport {
     excludes += [
         'com/example/musicplayer/databinding/*',
