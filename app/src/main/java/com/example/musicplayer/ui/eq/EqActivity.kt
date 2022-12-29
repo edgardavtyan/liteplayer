@@ -10,7 +10,7 @@ class EqActivity: Activity() {
 
     private lateinit var binding: ActivityEqBinding
 
-    private var eqBands: ArrayList<EqView> = ArrayList()
+    private var eqBands: ArrayList<EqBandView> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,7 @@ class EqActivity: Activity() {
     fun setBandCount(count: Int) {
         eqBands = ArrayList()
         for (i in 0 until count) {
-            val view = EqView(this, null)
+            val view = EqBandView(this, null)
             view.onProgressChangedListener = { presenter.onBandGainChanged(i, it) }
             binding.eq.addView(view)
             eqBands.add(view)

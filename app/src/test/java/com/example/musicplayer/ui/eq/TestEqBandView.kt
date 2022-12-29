@@ -12,13 +12,13 @@ import org.junit.jupiter.api.extension.ExtendWith
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
-class TestEqView {
+class TestEqBandView {
     @MockK lateinit var binding: PartialEqBandBinding
     @MockK lateinit var band: CustomSeekBar
     @MockK lateinit var freq: TextView
     @MockK lateinit var gain: TextView
 
-    private lateinit var eqView: EqView
+    private lateinit var eqBandView: EqBandView
     private lateinit var onProgressChangedListener: (Int) -> Unit
 
     @BeforeAll fun beforeAll() {
@@ -31,7 +31,7 @@ class TestEqView {
 
         mockkStatic(PartialEqBandBinding::class)
         every { PartialEqBandBinding.inflate(any(), any(), any()) } returns binding
-        eqView = EqView(mockk(), null)
+        eqBandView = EqBandView(mockk(), null)
 
         onProgressChangedListener = slot.captured
 
@@ -53,33 +53,33 @@ class TestEqView {
     }
 
     @Test fun should_return_max_gain() {
-        assertEquals(15, eqView.maxGain)
+        assertEquals(15, eqBandView.maxGain)
     }
 
     @Test fun should_set_max_gain() {
-        eqView.maxGain = 10
+        eqBandView.maxGain = 10
         verify { band.max = 20 }
     }
 
     @Test fun should_set_positive_gain() {
-        eqView.gain = 5
+        eqBandView.gain = 5
         verify { band.progress = 20 }
         verify { gain.text = "+5 dB" }
     }
 
     @Test fun should_set_negative_gain() {
-        eqView.gain = -3
+        eqBandView.gain = -3
         verify { band.progress = 12 }
         verify { gain.text = "-3 dB" }
     }
 
     @Test fun should_set_frequency_above_thousand() {
-        eqView.freq = 3000
+        eqBandView.freq = 3000
         verify { freq.text = "3 kHz" }
     }
 
     @Test fun should_set_frequency_below_thousand() {
-        eqView.freq = 600
+        eqBandView.freq = 600
         verify { freq.text = "600 Hz" }
     }
 

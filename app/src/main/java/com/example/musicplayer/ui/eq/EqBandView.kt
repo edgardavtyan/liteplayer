@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.example.musicplayer.databinding.PartialEqBandBinding
 
-class EqView @JvmOverloads constructor(
+class EqBandView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
