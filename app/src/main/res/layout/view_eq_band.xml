@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="24dp">
+    android:layout_height="32dp">
 
     <TextView
         android:id="@+id/freq"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.20"
+        android:layout_weight="0.15"
+        android:layout_gravity="center_vertical"
         android:textSize="14sp"
         android:textColor="#fff"
         android:gravity="right"
@@ -20,7 +21,8 @@
         android:id="@+id/band"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.65"
+        android:layout_weight="0.70"
+        android:layout_gravity="center_vertical"
         />
 
     <TextView
@@ -28,7 +30,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.15"
-        android:gravity="right"
+        android:layout_gravity="center_vertical"
+        android:gravity="right|center_vertical"
         android:textSize="14sp"
         android:textColor="#fff"
         tools:text="+6 dB"
