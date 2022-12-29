@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import com.example.musicplayer.databinding.PartialEqBandBinding
+import com.example.musicplayer.databinding.ViewEqBandBinding
 
 class EqBandView @JvmOverloads constructor(
     context: Context,
@@ -13,7 +13,7 @@ class EqBandView @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr, defStyleRes)
 {
-    private val binding = PartialEqBandBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding = ViewEqBandBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
         binding.band.onProgressChangedListener = {

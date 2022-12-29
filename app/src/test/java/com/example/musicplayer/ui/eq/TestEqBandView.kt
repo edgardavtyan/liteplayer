@@ -1,7 +1,7 @@
 package com.example.musicplayer.ui.eq
 
 import android.widget.TextView
-import com.example.musicplayer.databinding.PartialEqBandBinding
+import com.example.musicplayer.databinding.ViewEqBandBinding
 import com.example.musicplayer.ui.CustomSeekBar
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
 class TestEqBandView {
-    @MockK lateinit var binding: PartialEqBandBinding
+    @MockK lateinit var binding: ViewEqBandBinding
     @MockK lateinit var band: CustomSeekBar
     @MockK lateinit var freq: TextView
     @MockK lateinit var gain: TextView
@@ -29,8 +29,8 @@ class TestEqBandView {
         val slot = slot<(Int) -> Unit>()
         every { band.onProgressChangedListener = capture(slot) } answers {}
 
-        mockkStatic(PartialEqBandBinding::class)
-        every { PartialEqBandBinding.inflate(any(), any(), any()) } returns binding
+        mockkStatic(ViewEqBandBinding::class)
+        every { ViewEqBandBinding.inflate(any(), any(), any()) } returns binding
         eqBandView = EqBandView(mockk(), null)
 
         onProgressChangedListener = slot.captured
@@ -39,7 +39,7 @@ class TestEqBandView {
     }
 
     @AfterAll fun afterAll() {
-        unmockkStatic(PartialEqBandBinding::class)
+        unmockkStatic(ViewEqBandBinding::class)
     }
 
     @Test fun should_set_positive_gain_text_on_progress_change() {
@@ -84,7 +84,7 @@ class TestEqBandView {
     }
 
     private fun setField(clazz: Any, name: String, field: Any) {
-        val c = PartialEqBandBinding::class.java
+        val c = ViewEqBandBinding::class.java
         val f = c.getDeclaredField(name)
         f.isAccessible = true
         f.set(clazz, field)
