@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 
 class Prefs(val context: Context) {
+    var standardEqBands: Array<Int>
+        get() = TODO()
+        set(bands) = TODO()
+
     private val PREF_AUDIO_BALANCE = "audio_balance"
 
     private val prefs = context.getSharedPreferences("prefs", MODE_PRIVATE)
