@@ -65,8 +65,8 @@ class TestStandardEqualizer {
     }
 
     @Test fun should_return_frequencies() {
-        every { innerEq.getCenterFreq(0) } returns 1000
-        every { innerEq.getCenterFreq(3) } returns 3500
+        every { innerEq.getCenterFreq(0) } returns 1_000_000
+        every { innerEq.getCenterFreq(3) } returns 3_500_000
         assertEquals(1000, eq.getBandFreq(0))
         assertEquals(3500, eq.getBandFreq(3))
 
