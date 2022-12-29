@@ -54,6 +54,16 @@ class TestStandardEqualizer {
         verify { prefs.standardEqBands = arrayOf(0, 0, 0, 8, 0) }
     }
 
+    @Test fun should_get_bands_from_prefs() {
+        every { prefs.standardEqBands } returns arrayOf(1, 2, 3, 4, 5)
+        val newEq = StandardEqualizer(innerEq, prefs)
+        verify { newEq.setBandGain(0, 1) }
+        verify { newEq.setBandGain(1, 2) }
+        verify { newEq.setBandGain(2, 3) }
+        verify { newEq.setBandGain(3, 4) }
+        verify { newEq.setBandGain(4, 5) }
+    }
+
     @Test fun should_return_frequencies() {
         every { innerEq.getCenterFreq(0) } returns 1000
         every { innerEq.getCenterFreq(3) } returns 3500
