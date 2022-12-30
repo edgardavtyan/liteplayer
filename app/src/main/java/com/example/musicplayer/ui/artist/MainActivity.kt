@@ -21,8 +21,7 @@ class MainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val i = Intent(this, PlayerService::class.java)
-        startService(i)
+        startService(Intent(this, PlayerService::class.java))
 
         DaggerMainComponent.builder()
             .appDaggerComponent((application as App).appComponent)
