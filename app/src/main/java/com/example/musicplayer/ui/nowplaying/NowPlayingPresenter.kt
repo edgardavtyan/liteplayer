@@ -5,7 +5,7 @@ class NowPlayingPresenter(
     private val model: NowPlayingModel) {
 
     init {
-        model.onServiceConnectedListener = OnServiceConnectedListener { onServiceConnected() }
+        model.onServiceConnectedListener = { onServiceConnected() }
         model.onIsPlayingChangedListener = { onIsPlayingChanged(it) }
     }
 

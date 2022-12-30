@@ -16,7 +16,7 @@ class NowPlayingModel(context: Context, private val coverReader: CoverReader)
     val info get() = service.player.track?.artistTitle
     val isPlaying get() = service.player.isPlaying
 
-    var onServiceConnectedListener: OnServiceConnectedListener? = null
+    var onServiceConnectedListener: (() -> Unit)? = null
     var onIsPlayingChangedListener: ((isPlaying: Boolean) -> Unit)? = null
 
     fun playPause() {
@@ -31,6 +31,6 @@ class NowPlayingModel(context: Context, private val coverReader: CoverReader)
             coverArt = coverReader.getCover(service.player.track!!.path)
         }
 
-        onServiceConnectedListener?.onConnected()
+        onServiceConnectedListener?.invoke()
     }
 }
