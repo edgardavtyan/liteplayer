@@ -1,7 +1,7 @@
 package com.example.musicplayer.ui.track
 
 import android.content.Context
-import com.example.musicplayer.PlayerServiceConnection
+import com.example.musicplayer.lib.PlayerServiceConnection
 import com.example.musicplayer.db.TrackDB
 
 class TrackModel(context: Context, albumId: Int): PlayerServiceConnection(context) {

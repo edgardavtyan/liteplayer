@@ -1,7 +1,7 @@
 package com.example.musicplayer.ui.eq
 
 import android.content.Context
-import com.example.musicplayer.PlayerServiceConnection
+import com.example.musicplayer.lib.PlayerServiceConnection
 import com.example.musicplayer.service.player.StandardEqualizer
 
 class EqModel(context: Context): PlayerServiceConnection(context) {
