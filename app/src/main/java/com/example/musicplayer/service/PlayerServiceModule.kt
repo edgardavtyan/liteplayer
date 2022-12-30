@@ -35,4 +35,10 @@ class PlayerServiceModule(private val service: PlayerService) {
     fun provideNotification(): PlayerNotification {
         return PlayerNotification(service)
     }
+
+    @Provides
+    @PlayerServiceScope
+    fun provideAudioNoisyReceiver(player: Player): AudioNoisyReceiver {
+        return AudioNoisyReceiver(player)
+    }
 }

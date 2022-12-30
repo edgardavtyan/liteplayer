@@ -1,8 +1,6 @@
 package com.example.musicplayer.service
 
 import android.app.Service
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioManager
@@ -16,23 +14,17 @@ import javax.inject.Inject
 
 
 class PlayerService: Service() {
-    inner class AudioNoisyReceiver: BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            player.pause()
-        }
-    }
-
     inner class PlayerBinder: Binder() {
         fun getService() = this@PlayerService
     }
 
     @Inject lateinit var audioManager: PlayerAudioManager
     @Inject lateinit var notification: PlayerNotification
+    @Inject lateinit var audioNoisyReceiver: AudioNoisyReceiver
     @Inject lateinit var player: Player
     @Inject lateinit var eq: StandardEqualizer
 
     private val binder = PlayerBinder()
-    private val audioNoisyReceiver = AudioNoisyReceiver()
 
     override fun onBind(intent: Intent?): IBinder {
         return binder
