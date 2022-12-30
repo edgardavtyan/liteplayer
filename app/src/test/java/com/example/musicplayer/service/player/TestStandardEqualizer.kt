@@ -56,12 +56,12 @@ class TestStandardEqualizer {
 
     @Test fun should_get_bands_from_prefs() {
         every { prefs.standardEqBands } returns arrayOf(1, 2, 3, 4, 5)
-        val newEq = StandardEqualizer(innerEq, prefs)
-        verify { newEq.setBandGain(0, 1) }
-        verify { newEq.setBandGain(1, 2) }
-        verify { newEq.setBandGain(2, 3) }
-        verify { newEq.setBandGain(3, 4) }
-        verify { newEq.setBandGain(4, 5) }
+        StandardEqualizer(innerEq, prefs)
+        verify { innerEq.setBandLevel(0, 100) }
+        verify { innerEq.setBandLevel(1, 200) }
+        verify { innerEq.setBandLevel(2, 300) }
+        verify { innerEq.setBandLevel(3, 400) }
+        verify { innerEq.setBandLevel(4, 500) }
     }
 
     @Test fun should_return_frequencies_reversed() {
