@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import com.example.musicplayer.service.PlayerService
+import com.example.musicplayer.service.PlayerServiceBinder
 
 abstract class PlayerServiceConnection(private val context: Context): ServiceConnection {
     protected lateinit var service: PlayerService
@@ -20,7 +21,7 @@ abstract class PlayerServiceConnection(private val context: Context): ServiceCon
     }
 
     override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
-        service = (binder as PlayerService.PlayerBinder).getService()
+        service = (binder as PlayerServiceBinder).service
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {}

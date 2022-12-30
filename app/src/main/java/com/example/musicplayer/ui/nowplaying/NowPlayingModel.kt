@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
 import android.os.IBinder
 import com.example.musicplayer.service.PlayerService
+import com.example.musicplayer.service.PlayerServiceBinder
 
 class NowPlayingModel(private val context: Context)
     : ServiceConnection {
@@ -34,7 +35,7 @@ class NowPlayingModel(private val context: Context)
     }
 
     override fun onServiceConnected(name: ComponentName?, binder: IBinder) {
-        service = (binder as PlayerService.PlayerBinder).getService()
+        service = (binder as PlayerServiceBinder).service
         service.player.addOnIsPlayingChangedListener { onIsPlayingChangedListener?.invoke(it) }
 
         if (service.player.track != null) {

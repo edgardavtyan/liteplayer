@@ -41,4 +41,10 @@ class PlayerServiceModule(private val service: PlayerService) {
     fun provideAudioNoisyReceiver(player: Player): AudioNoisyReceiver {
         return AudioNoisyReceiver(player)
     }
+
+    @Provides
+    @PlayerServiceScope
+    fun providePlayerServiceBinder(): PlayerServiceBinder {
+        return PlayerServiceBinder(service)
+    }
 }
