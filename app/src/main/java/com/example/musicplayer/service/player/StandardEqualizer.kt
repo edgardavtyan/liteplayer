@@ -6,7 +6,9 @@ import com.example.musicplayer.ui.prefs.Prefs
 class StandardEqualizer(private val eq: Equalizer, private val prefs: Prefs) {
     init {
         eq.enabled = true
-        prefs.standardEqBands.forEachIndexed { i, gain -> setBandGain(i, gain) }
+        prefs.standardEqBands.forEachIndexed { i, gain ->
+            eq.setBandLevel(i.toShort(), (gain * 100).toShort())
+        }
     }
 
     fun setBandGain(band: Int, gain: Int) {
