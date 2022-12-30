@@ -1,8 +1,7 @@
-package com.example.musicplayer
+package com.example.musicplayer.service.player
 
 import android.media.MediaPlayer
 import com.example.musicplayer.db.Track
-import com.example.musicplayer.service.player.StandardPlayer
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension

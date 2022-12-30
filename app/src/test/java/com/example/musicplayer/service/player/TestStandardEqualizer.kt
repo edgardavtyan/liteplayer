@@ -1,4 +1,4 @@
-package com.example.musicplayer
+package com.example.musicplayer.service.player
 
 import android.media.audiofx.Equalizer
 import com.example.musicplayer.service.player.StandardEqualizer

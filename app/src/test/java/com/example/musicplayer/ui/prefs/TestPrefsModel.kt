@@ -1,9 +1,7 @@
-package com.example.musicplayer
+package com.example.musicplayer.ui.prefs
 
 import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.service.player.Player
-import com.example.musicplayer.ui.prefs.Prefs
-import com.example.musicplayer.ui.prefs.PrefsModel
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension

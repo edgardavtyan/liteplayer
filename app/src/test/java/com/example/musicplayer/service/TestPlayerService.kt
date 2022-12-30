@@ -1,4 +1,4 @@
-package com.example.musicplayer
+package com.example.musicplayer.service
 
 import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.service.player.PlayerAudioManager
