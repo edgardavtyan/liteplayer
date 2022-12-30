@@ -22,8 +22,11 @@ abstract class PlayerServiceConnection(private val context: Context): ServiceCon
         context.unbindService(this)
     }
 
+    protected open fun onServiceConnected() {}
+
     override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
         service = (binder as PlayerServiceBinder).service
+        onServiceConnected()
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {}

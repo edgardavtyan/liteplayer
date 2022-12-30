@@ -1,9 +1,7 @@
 package com.example.musicplayer.ui.nowplaying
 
-import android.content.ComponentName
 import android.content.Context
 import android.graphics.Bitmap
-import android.os.IBinder
 import com.example.musicplayer.PlayerServiceConnection
 import com.example.musicplayer.ui.CoverReader
 
@@ -28,8 +26,7 @@ class NowPlayingModel(context: Context, private val coverReader: CoverReader)
         service.player.removeOnIsPlayingChangedListener(listener)
     }
 
-    override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
-        super.onServiceConnected(name, binder)
+    override fun onServiceConnected() {
         if (service.player.track != null) {
             coverArt = coverReader.getCover(service.player.track!!.path)
         }

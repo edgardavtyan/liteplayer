@@ -1,8 +1,6 @@
 package com.example.musicplayer.ui.eq
 
-import android.content.ComponentName
 import android.content.Context
-import android.os.IBinder
 import com.example.musicplayer.PlayerServiceConnection
 import com.example.musicplayer.service.player.StandardEqualizer
 
@@ -17,8 +15,7 @@ class EqModel(context: Context): PlayerServiceConnection(context) {
         eq.setBandGain(band, gain)
     }
 
-    override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
-        super.onServiceConnected(name, binder)
+    override fun onServiceConnected() {
         eq = service.eq
         onDataLoaded?.invoke()
     }
