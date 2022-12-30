@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import com.example.musicplayer.R
 import com.example.musicplayer.databinding.ActivityNowplayingBinding
+import com.example.musicplayer.ui.CoverReader
 
 class NowPlayingActivity : Activity() {
     private lateinit var binding: ActivityNowplayingBinding
@@ -15,7 +16,7 @@ class NowPlayingActivity : Activity() {
         binding = ActivityNowplayingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = NowPlayingPresenter(this, NowPlayingModel(this))
+        presenter = NowPlayingPresenter(this, NowPlayingModel(this, CoverReader()))
         presenter.onCreate()
 
         binding.btnPlaypause.setOnClickListener { presenter.onPlayPauseClick() }

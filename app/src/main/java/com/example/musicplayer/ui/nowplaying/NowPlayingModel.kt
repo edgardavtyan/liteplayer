@@ -5,13 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.media.MediaMetadataRetriever
 import android.os.IBinder
 import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.service.PlayerServiceBinder
+import com.example.musicplayer.ui.CoverReader
 
-class NowPlayingModel(private val context: Context)
+class NowPlayingModel(private val context: Context, private val coverReader: CoverReader)
     : ServiceConnection {
 
     private lateinit var service: PlayerService
@@ -39,13 +38,7 @@ class NowPlayingModel(private val context: Context)
         service.player.addOnIsPlayingChangedListener { onIsPlayingChangedListener?.invoke(it) }
 
         if (service.player.track != null) {
-            val mmr = MediaMetadataRetriever()
-            mmr.setDataSource(service.player.track?.path)
-            val data = mmr.embeddedPicture
-
-            if (data != null) {
-                coverArt = BitmapFactory.decodeByteArray(data, 0, data.size)
-            }
+            coverArt = coverReader.getCover(service.player.track!!.path)
         }
 
         onServiceConnectedListener?.onConnected()
