@@ -2,8 +2,8 @@ package com.example.musicplayer.ui.nowplaying_bar
 
 import android.content.Context
 import android.graphics.Bitmap
-import com.example.musicplayer.lib.PlayerServiceConnection
 import com.example.musicplayer.lib.CoverReader
+import com.example.musicplayer.lib.PlayerServiceConnection
 
 class NowPlayingBarModel(context: Context, private val coverReader: CoverReader)
     : PlayerServiceConnection(context)
