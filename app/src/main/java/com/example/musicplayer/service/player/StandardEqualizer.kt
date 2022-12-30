@@ -11,6 +11,10 @@ class StandardEqualizer(private val eq: Equalizer, private val prefs: Prefs) {
         }
     }
 
+    val minGain: Int get() = eq.bandLevelRange[0] / 100
+    val maxGain: Int get() = eq.bandLevelRange[1] / 100
+    val bandCount: Int get() = eq.numberOfBands.toInt()
+
     fun setBandGain(band: Int, gain: Int) {
         val newBand = bandCount - band - 1
         eq.setBandLevel(newBand.toShort(), (gain * 100).toShort())
@@ -24,8 +28,4 @@ class StandardEqualizer(private val eq: Equalizer, private val prefs: Prefs) {
     fun getBandFreq(band: Int): Int {
         return eq.getCenterFreq((bandCount - band - 1).toShort()) / 1000
     }
-
-    val minGain: Int get() = eq.bandLevelRange[0] / 100
-    val maxGain: Int get() = eq.bandLevelRange[1] / 100
-    val bandCount: Int get() = eq.numberOfBands.toInt()
 }
