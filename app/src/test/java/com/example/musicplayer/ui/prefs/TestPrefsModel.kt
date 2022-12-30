@@ -1,6 +1,7 @@
 package com.example.musicplayer.ui.prefs
 
 import com.example.musicplayer.service.PlayerService
+import com.example.musicplayer.service.PlayerServiceBinder
 import com.example.musicplayer.service.player.Player
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -13,14 +14,14 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExtendWith(MockKExtension::class)
 class TestPrefsModel {
     @MockK lateinit var prefs: Prefs
-    @MockK lateinit var binder: PlayerService.PlayerBinder
+    @MockK lateinit var binder: PlayerServiceBinder
     @MockK lateinit var service: PlayerService
     @MockK lateinit var player: Player
 
     private lateinit var model: PrefsModel
 
     @BeforeEach fun beforeEach() {
-        every { binder.getService() } returns service
+        every { binder.service } returns service
         every { service.player } returns player
         model = PrefsModel(prefs)
         model.onServiceConnected(null, binder)

@@ -1,6 +1,7 @@
 package com.example.musicplayer.ui.eq
 
 import com.example.musicplayer.service.PlayerService
+import com.example.musicplayer.service.PlayerServiceBinder
 import com.example.musicplayer.service.player.StandardEqualizer
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -21,8 +22,8 @@ class TestEqModel {
     private lateinit var model: EqModel
 
     @BeforeEach fun beforeEach() {
-        val binder = mockk<PlayerService.PlayerBinder>()
-        every { binder.getService() } returns service
+        val binder = mockk<PlayerServiceBinder>()
+        every { binder.service } returns service
         every { service.eq } returns eq
         model = EqModel(mockk())
         model.onServiceConnected(null, binder)
