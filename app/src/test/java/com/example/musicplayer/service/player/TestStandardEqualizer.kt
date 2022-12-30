@@ -1,7 +1,6 @@
 package com.example.musicplayer.service.player
 
 import android.media.audiofx.Equalizer
-import com.example.musicplayer.service.player.StandardEqualizer
 import com.example.musicplayer.ui.prefs.Prefs
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -34,17 +33,18 @@ class TestStandardEqualizer {
         assertEquals(5, eq.bandCount)
     }
 
-    @Test fun should_set_band_gain() {
-        eq.setBandGain(3, 8)
+    @Test fun should_set_band_gain_reversed() {
+        every { innerEq.numberOfBands } returns 5
+        eq.setBandGain(1, 8)
         verify { innerEq.setBandLevel(3, 800) }
     }
 
-    @Test fun should_return_band_gains() {
+    @Test fun should_return_band_gains_reversed() {
         every { innerEq.numberOfBands } returns 5
         every { innerEq.getBandLevel(0) } returns 500
-        every { innerEq.getBandLevel(2) } returns 300
-        assertEquals(5, eq.getBandGain(0))
-        assertEquals(3, eq.getBandGain(2))
+        every { innerEq.getBandLevel(3) } returns 300
+        assertEquals(5, eq.getBandGain(4))
+        assertEquals(3, eq.getBandGain(1))
     }
 
     @Test fun should_save_bands_to_prefs() {
@@ -64,11 +64,12 @@ class TestStandardEqualizer {
         verify { newEq.setBandGain(4, 5) }
     }
 
-    @Test fun should_return_frequencies() {
+    @Test fun should_return_frequencies_reversed() {
+        every { innerEq.numberOfBands } returns 5
         every { innerEq.getCenterFreq(0) } returns 1_000_000
         every { innerEq.getCenterFreq(3) } returns 3_500_000
-        assertEquals(1000, eq.getBandFreq(0))
-        assertEquals(3500, eq.getBandFreq(3))
+        assertEquals(1000, eq.getBandFreq(4))
+        assertEquals(3500, eq.getBandFreq(1))
 
     }
 }
