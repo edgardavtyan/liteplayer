@@ -11,6 +11,8 @@ import com.example.musicplayer.service.PlayerServiceBinder
 abstract class PlayerServiceConnection(private val context: Context): ServiceConnection {
     protected lateinit var service: PlayerService
 
+    var onDataLoaded: (() -> Unit)? = null
+
     fun bind() {
         val intent = Intent(context, PlayerService::class.java)
         context.bindService(intent, this, Context.BIND_AUTO_CREATE)

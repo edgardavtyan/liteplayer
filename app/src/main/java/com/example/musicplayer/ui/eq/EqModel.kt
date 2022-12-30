@@ -15,8 +15,6 @@ class EqModel(context: Context): PlayerServiceConnection(context) {
 
     val gains get() = (0 until eq.bandCount).map { eq.getBandGain(it) }.toTypedArray()
 
-    var onServiceConnectedListener: (() -> Unit)? = null
-
     fun setBandGain(band: Int, gain: Int) {
         eq.setBandGain(band, gain)
     }
@@ -24,6 +22,6 @@ class EqModel(context: Context): PlayerServiceConnection(context) {
     override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
         super.onServiceConnected(name, binder)
         eq = service.eq
-        onServiceConnectedListener?.invoke()
+        onDataLoaded?.invoke()
     }
 }

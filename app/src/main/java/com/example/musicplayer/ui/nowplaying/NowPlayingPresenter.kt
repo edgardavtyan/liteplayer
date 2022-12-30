@@ -5,8 +5,13 @@ class NowPlayingPresenter(
     private val model: NowPlayingModel) {
 
     init {
-        model.onServiceConnectedListener = { onServiceConnected() }
         model.onIsPlayingChangedListener = { onIsPlayingChanged(it) }
+        model.onDataLoaded = {
+            view.setTrackTitle(model.title.toString())
+            view.setTrackInfo(model.info.toString())
+            view.setCoverArt(model.coverArt)
+            onIsPlayingChanged(model.isPlaying)
+        }
     }
 
     fun onCreate() {
@@ -27,12 +32,5 @@ class NowPlayingPresenter(
         } else {
             view.setPaused()
         }
-    }
-
-    private fun onServiceConnected() {
-        view.setTrackTitle(model.title.toString())
-        view.setTrackInfo(model.info.toString())
-        view.setCoverArt(model.coverArt)
-        onIsPlayingChanged(model.isPlaying)
     }
 }

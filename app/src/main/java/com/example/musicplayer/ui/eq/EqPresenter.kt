@@ -3,7 +3,7 @@ package com.example.musicplayer.ui.eq
 class EqPresenter(private val view: EqActivity, private val model: EqModel) {
     fun onCreate() {
         model.bind()
-        model.onServiceConnectedListener = {
+        model.onDataLoaded = {
             view.setBandCount(model.gains.size)
             view.setMaxGain(model.maxGain)
             model.gains.forEachIndexed { i, gain -> view.setBandGain(i, gain) }
