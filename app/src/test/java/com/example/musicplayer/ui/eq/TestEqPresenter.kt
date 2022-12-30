@@ -30,9 +30,9 @@ class TestEqPresenter {
         verify { model.unbind() }
     }
 
-    @Test fun should_set_eq_gains_on_service_connected() {
+    @Test fun should_set_eq_gains_on_data_loaded() {
         every { model.gains } returns arrayOf(1, 2, 3, 4, 5)
-        invokeOnServiceConnected()
+        invokeOnDataConnected()
         verify { view.setBandGain(0, 1) }
         verify { view.setBandGain(1, 2) }
         verify { view.setBandGain(2, 3) }
@@ -40,9 +40,9 @@ class TestEqPresenter {
         verify { view.setBandGain(4, 5) }
     }
 
-    @Test fun should_set_eq_frequencies_on_service_connected() {
+    @Test fun should_set_eq_frequencies_on_data_loaded() {
         every { model.freqs } returns arrayOf(100, 500, 2000, 5000, 10000)
-        invokeOnServiceConnected()
+        invokeOnDataConnected()
         verify { view.setBandFreq(0, 100) }
         verify { view.setBandFreq(1, 500) }
         verify { view.setBandFreq(2, 2000) }
@@ -50,15 +50,15 @@ class TestEqPresenter {
         verify { view.setBandFreq(4, 10000) }
     }
 
-    @Test fun should_set_eq_band_count_on_service_connected() {
+    @Test fun should_set_eq_band_count_on_data_loaded() {
         every { model.gains } returns arrayOf(100, 500, 2000, 5000, 10000)
-        invokeOnServiceConnected()
+        invokeOnDataConnected()
         verify { view.setBandCount(5) }
     }
 
     @Test fun should_set_band_max_gain_on_service_connected() {
         every { model.maxGain } returns 15
-        invokeOnServiceConnected()
+        invokeOnDataConnected()
         verify { view.setMaxGain(15) }
     }
 
@@ -67,9 +67,9 @@ class TestEqPresenter {
         verify { model.setBandGain(2, 5) }
     }
 
-    private fun invokeOnServiceConnected() {
+    private fun invokeOnDataConnected() {
         val slot = slot<() -> Unit>()
-        every { model.onServiceConnectedListener = capture(slot) } answers {}
+        every { model.onDataLoaded = capture(slot) } answers {}
         presenter.onCreate()
         slot.captured()
     }
