@@ -1,6 +1,6 @@
 package com.example.musicplayer.ui.artist
 
-import com.example.musicplayer.ActivityScope
+import com.example.musicplayer.ui.ActivityScope
 import com.example.musicplayer.AppDaggerComponent
 import dagger.Component
 

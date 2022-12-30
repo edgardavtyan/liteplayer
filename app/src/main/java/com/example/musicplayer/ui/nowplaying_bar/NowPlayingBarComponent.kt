@@ -1,6 +1,6 @@
 package com.example.musicplayer.ui.nowplaying_bar
 
-import com.example.musicplayer.FragmentScope
+import com.example.musicplayer.ui.FragmentScope
 import dagger.Component
 
 @FragmentScope

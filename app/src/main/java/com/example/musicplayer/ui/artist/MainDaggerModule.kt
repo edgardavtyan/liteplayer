@@ -1,7 +1,7 @@
 package com.example.musicplayer.ui.artist
 
 import android.content.Context
-import com.example.musicplayer.ActivityScope
+import com.example.musicplayer.ui.ActivityScope
 import com.example.musicplayer.db.AlbumDB
 import com.example.musicplayer.db.ArtistDB
 import dagger.Module

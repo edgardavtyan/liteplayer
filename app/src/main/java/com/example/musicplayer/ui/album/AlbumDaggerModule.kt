@@ -1,6 +1,6 @@
 package com.example.musicplayer.ui.album
 
-import com.example.musicplayer.ActivityScope
+import com.example.musicplayer.ui.ActivityScope
 import com.example.musicplayer.db.AlbumDB
 import dagger.Module
 import dagger.Provides

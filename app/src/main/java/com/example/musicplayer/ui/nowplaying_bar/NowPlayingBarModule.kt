@@ -1,6 +1,6 @@
 package com.example.musicplayer.ui.nowplaying_bar
 
-import com.example.musicplayer.FragmentScope
+import com.example.musicplayer.ui.FragmentScope
 import com.example.musicplayer.lib.CoverReader
 import dagger.Module
 import dagger.Provides

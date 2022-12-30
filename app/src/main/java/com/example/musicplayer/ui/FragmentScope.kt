@@ -1,4 +1,4 @@
-package com.example.musicplayer
+package com.example.musicplayer.ui
 
 import javax.inject.Scope
 

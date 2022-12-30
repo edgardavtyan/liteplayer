@@ -1,6 +1,6 @@
 package com.example.musicplayer.ui.eq
 
-import com.example.musicplayer.ActivityScope
+import com.example.musicplayer.ui.ActivityScope
 import dagger.Component
 
 @ActivityScope
