@@ -4,7 +4,8 @@ class NowPlayingPresenter(
     private val view: NowPlayingActivity,
     private val model: NowPlayingModel) {
 
-    init {
+    fun onCreate() {
+        model.bind()
         model.onIsPlayingChangedListener = { onIsPlayingChanged(it) }
         model.onDataLoaded = {
             view.setTrackTitle(model.title.toString())
@@ -12,10 +13,6 @@ class NowPlayingPresenter(
             view.setCoverArt(model.coverArt)
             onIsPlayingChanged(model.isPlaying)
         }
-    }
-
-    fun onCreate() {
-        model.bind()
     }
 
     fun onDestroy() {
