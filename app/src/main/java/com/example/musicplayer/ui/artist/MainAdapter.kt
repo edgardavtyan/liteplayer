@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.View
 import com.example.musicplayer.R
 import com.example.musicplayer.db.Artist
-import com.example.musicplayer.ui.CustomAdapter
+import com.example.musicplayer.lib.CustomAdapter
 
 class MainAdapter(context: Context, private val presenter: MainPresenter)
     : CustomAdapter<MainViewHolder, Artist>(context) {

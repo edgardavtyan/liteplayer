@@ -17,7 +17,7 @@
         tools:text="500 Hz"
         />
 
-    <com.example.musicplayer.ui.CustomSeekBar
+    <com.example.musicplayer.lib.CustomSeekBar
         android:id="@+id/band"
         android:layout_width="0dp"
         android:layout_height="match_parent"

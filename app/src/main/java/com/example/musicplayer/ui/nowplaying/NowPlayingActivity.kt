@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import com.example.musicplayer.R
 import com.example.musicplayer.databinding.ActivityNowplayingBinding
-import com.example.musicplayer.ui.CoverReader
+import com.example.musicplayer.lib.CoverReader
 
 class NowPlayingActivity : Activity() {
     private lateinit var binding: ActivityNowplayingBinding

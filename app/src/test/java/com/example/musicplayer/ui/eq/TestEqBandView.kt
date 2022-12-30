@@ -2,7 +2,7 @@ package com.example.musicplayer.ui.eq
 
 import android.widget.TextView
 import com.example.musicplayer.databinding.ViewEqBandBinding
-import com.example.musicplayer.ui.CustomSeekBar
+import com.example.musicplayer.lib.CustomSeekBar
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension

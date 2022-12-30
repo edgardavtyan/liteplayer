@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.View
 import com.example.musicplayer.R
 import com.example.musicplayer.db.Track
-import com.example.musicplayer.ui.CustomAdapter
+import com.example.musicplayer.lib.CustomAdapter
 
 class TrackAdapter(context: Context, private val presenter: TrackPresenter)
     : CustomAdapter<TrackViewHolder, Track>(context) {

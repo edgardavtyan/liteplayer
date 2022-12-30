@@ -3,7 +3,7 @@ package com.example.musicplayer.ui.nowplaying
 import android.content.Context
 import android.graphics.Bitmap
 import com.example.musicplayer.PlayerServiceConnection
-import com.example.musicplayer.ui.CoverReader
+import com.example.musicplayer.lib.CoverReader
 
 class NowPlayingModel(context: Context, private val coverReader: CoverReader)
     : PlayerServiceConnection(context) {
