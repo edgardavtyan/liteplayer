@@ -1,14 +1,14 @@
 package com.example.musicplayer.ui.artist
 
 import android.content.Context
-import com.example.musicplayer.ui.ActivityScope
 import com.example.musicplayer.db.AlbumDB
 import com.example.musicplayer.db.ArtistDB
+import com.example.musicplayer.ui.ActivityScope
 import dagger.Module
 import dagger.Provides
 
 @Module
-class MainDaggerModule(private val activity: MainActivity) {
+class MainModule(private val activity: MainActivity) {
     @ActivityScope
     @Provides
     fun provideContext(): Context {

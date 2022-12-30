@@ -26,7 +26,7 @@ class AlbumActivity : FragmentActivity() {
         DaggerAlbumComponent
             .builder()
             .appDaggerComponent((application as App).appComponent)
-            .albumDaggerModule(AlbumDaggerModule(this))
+            .albumModule(AlbumModule(this))
             .build()
             .inject(this)
 

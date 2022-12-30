@@ -7,7 +7,7 @@ import dagger.Component
 @ActivityScope
 @Component(
     dependencies = [AppDaggerComponent::class],
-    modules = [AlbumDaggerModule::class])
+    modules = [AlbumModule::class])
 interface AlbumComponent {
     fun inject(activity: AlbumActivity)
 }

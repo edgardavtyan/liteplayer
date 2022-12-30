@@ -26,7 +26,7 @@ class MainActivity : FragmentActivity() {
 
         DaggerMainComponent.builder()
             .appDaggerComponent((application as App).appComponent)
-            .mainDaggerModule(MainDaggerModule(this))
+            .mainModule(MainModule(this))
             .build()
             .inject(this)
 

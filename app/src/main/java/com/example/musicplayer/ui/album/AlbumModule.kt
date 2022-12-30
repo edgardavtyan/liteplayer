@@ -1,12 +1,12 @@
 package com.example.musicplayer.ui.album
 
-import com.example.musicplayer.ui.ActivityScope
 import com.example.musicplayer.db.AlbumDB
+import com.example.musicplayer.ui.ActivityScope
 import dagger.Module
 import dagger.Provides
 
 @Module
-class AlbumDaggerModule(private val activity: AlbumActivity) {
+class AlbumModule(private val activity: AlbumActivity) {
     @ActivityScope
     @Provides
     fun provideAlbumModel(albumDB: AlbumDB): AlbumModel {
