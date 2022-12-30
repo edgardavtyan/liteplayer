@@ -2,11 +2,11 @@ package com.example.musicplayer.ui.nowplaying_bar
 
 import android.content.Context
 import android.graphics.Bitmap
+import com.example.musicplayer.PlayerServiceConnection
 import com.example.musicplayer.ui.CoverReader
-import com.example.musicplayer.ui.ServiceModel
 
 class NowPlayingBarModel(context: Context, private val coverReader: CoverReader)
-    : ServiceModel(context)
+    : PlayerServiceConnection(context)
 {
     val cover: Bitmap? get() {
         if (service.player.track == null) {

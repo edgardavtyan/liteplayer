@@ -31,18 +31,13 @@ class NowPlayingBarFragment: Fragment() {
             .inject(this)
 
         binding = FragmentNowplayingBinding.inflate(inflater)
-        presenter.onCreateView()
         binding.btnPlayPause.setOnClickListener { presenter.onBtnPlayPauseClicked() }
         binding.btnSettings.setOnClickListener { presenter.onBtnSettingsClicked() }
         binding.btnEq.setOnClickListener { presenter.onBtnEqClicked() }
         binding.title.setOnClickListener { presenter.onBarClicked() }
         binding.cover.setOnClickListener { presenter.onBarClicked() }
+        presenter.onCreateView()
         return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        presenter.onResume()
     }
 
     override fun onDestroyView() {
