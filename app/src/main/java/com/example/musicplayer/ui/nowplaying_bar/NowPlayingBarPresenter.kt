@@ -4,17 +4,28 @@ class NowPlayingBarPresenter(
     private val view: NowPlayingBarFragment,
     private val model: NowPlayingBarModel)
 {
+    private var isDataLoaded: Boolean = false
+
     fun onCreateView() {
         model.bind()
         model.onDataLoaded = {
-            if (model.hasTrack) {
-                view.setTitle(model.nowPlayingTitle)
-                view.setCover(model.cover)
-                view.setIsPlaying(model.isPlaying)
-            } else {
-                view.setTitle("LitePlayer")
-                view.setIsPlaying(false)
-            }
+            isDataLoaded = true
+            onResume()
+        }
+    }
+
+    fun onResume() {
+        if (!isDataLoaded) {
+            return
+        }
+
+        if (model.hasTrack) {
+            view.setTitle(model.nowPlayingTitle)
+            view.setCover(model.cover)
+            view.setIsPlaying(model.isPlaying)
+        } else {
+            view.setTitle("LitePlayer")
+            view.setIsPlaying(false)
         }
     }
 

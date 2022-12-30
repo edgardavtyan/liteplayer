@@ -40,6 +40,11 @@ class NowPlayingBarFragment: Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         presenter.onDestroy()
