@@ -10,7 +10,16 @@
         android:id="@+id/cover"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/ic_launcher"
+        android:visibility="gone"
+        android:src="@drawable/ic_music_note"
+        />
+
+    <ImageView
+        android:id="@+id/cover_fallback"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_music_note"
         />
 
     <TextView

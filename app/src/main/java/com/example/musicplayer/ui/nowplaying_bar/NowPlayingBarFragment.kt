@@ -72,6 +72,13 @@ class NowPlayingBarFragment: Fragment() {
     }
 
     fun setCover(cover: Bitmap?) {
-        binding.cover.setImageBitmap(cover)
+        if (cover == null) {
+            binding.cover.visibility = View.GONE
+            binding.coverFallback.visibility = View.VISIBLE
+        } else {
+            binding.cover.setImageBitmap(cover)
+            binding.cover.visibility = View.VISIBLE
+            binding.coverFallback.visibility = View.GONE
+        }
     }
 }
