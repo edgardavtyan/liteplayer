@@ -10,9 +10,7 @@ class EqModel(context: Context): PlayerServiceConnection(context) {
     private lateinit var eq: StandardEqualizer
 
     val maxGain get() = eq.maxGain
-
     val freqs get() = (0 until eq.bandCount).map { eq.getBandFreq(it) }.toTypedArray()
-
     val gains get() = (0 until eq.bandCount).map { eq.getBandGain(it) }.toTypedArray()
 
     fun setBandGain(band: Int, gain: Int) {
