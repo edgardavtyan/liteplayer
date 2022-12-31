@@ -22,9 +22,7 @@ class PlayerService: Service() {
     @Inject lateinit var virtualizer: StandardVirtualizer
     @Inject lateinit var binder: PlayerServiceBinder
 
-    override fun onBind(intent: Intent?): IBinder {
-        return binder
-    }
+    override fun onBind(intent: Intent?): IBinder = binder
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         audioManager.onFocusLossListener = { player.pause() }
@@ -34,7 +32,6 @@ class PlayerService: Service() {
 
     override fun onCreate() {
         super.onCreate()
-
         startForeground(101010, notification.notification)
         registerReceiver(audioNoisyReceiver, IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY))
     }
