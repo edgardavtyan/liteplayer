@@ -15,4 +15,8 @@ class Prefs(val context: Context) {
     var audioBalance: Int
         get() = prefs.getInt(PREF_AUDIO_BALANCE, 20)
         set(balance) = prefs.edit().putInt(PREF_AUDIO_BALANCE, balance).apply()
+
+    var virtualizerStrength: Int
+        get() = prefs.getInt("virtualizer", 0)
+        set(str) { prefs.edit().putInt("virtualizer", str).apply() }
 }

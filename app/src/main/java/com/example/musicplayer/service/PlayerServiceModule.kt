@@ -41,8 +41,8 @@ class PlayerServiceModule {
 
     @Provides
     @ServiceScoped
-    fun provideVirtualizer(player: Player): StandardVirtualizer {
-        return StandardVirtualizer(Virtualizer(0, player.sessionId))
+    fun provideVirtualizer(player: Player, prefs: Prefs): StandardVirtualizer {
+        return StandardVirtualizer(Virtualizer(0, player.sessionId), prefs)
     }
 
     @Provides

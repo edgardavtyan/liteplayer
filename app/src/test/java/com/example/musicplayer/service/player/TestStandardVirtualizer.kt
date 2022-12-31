@@ -1,6 +1,7 @@
 package com.example.musicplayer.service.player
 
 import android.media.audiofx.Virtualizer
+import com.example.musicplayer.ui.prefs.Prefs
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
@@ -15,11 +16,12 @@ import org.junit.jupiter.api.extension.ExtendWith
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestStandardVirtualizer {
     @MockK lateinit var baseVirtualizer: Virtualizer
+    @MockK lateinit var prefs: Prefs
 
     private lateinit var virtualizer: StandardVirtualizer
 
     @BeforeAll fun beforeAll() {
-        virtualizer = StandardVirtualizer(baseVirtualizer)
+        virtualizer = StandardVirtualizer(baseVirtualizer, prefs)
     }
 
     @Test fun should_be_enabled() {
@@ -34,5 +36,16 @@ class TestStandardVirtualizer {
     @Test fun should_return_strength() {
         every { baseVirtualizer.roundedStrength } returns 420
         assertEquals(42, virtualizer.strength)
+    }
+
+    @Test fun should_set_strength_from_prefs() {
+        every { prefs.virtualizerStrength } returns 28
+        StandardVirtualizer(baseVirtualizer, prefs)
+        verify { baseVirtualizer.setStrength(280) }
+    }
+
+    @Test fun should_save_strength_to_prefs() {
+        virtualizer.strength = 33
+        verify { prefs.virtualizerStrength = 33 }
     }
 }
