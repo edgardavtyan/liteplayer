@@ -67,6 +67,23 @@ class TestEqPresenter {
         verify { model.setBandGain(2, 5) }
     }
 
+    @Test fun should_set_virtualizer_max_strength() {
+        every { model.virtualizerMaxStrength } returns 100
+        invokeOnDataConnected()
+        verify { view.setVirtualizerMaxStrength(100) }
+    }
+
+    @Test fun should_set_virtualizer_strength() {
+        presenter.onVirtualizerStrengthChanged(75)
+        verify { model.virtualizerStrength = 75 }
+    }
+
+    @Test fun should_get_virtualizer_strength_from_model() {
+        every { model.virtualizerStrength } returns 65
+        invokeOnDataConnected()
+        verify { view.setVirtualizerStrength(65) }
+    }
+
     private fun invokeOnDataConnected() {
         val slot = slot<() -> Unit>()
         every { model.onDataLoaded = capture(slot) } answers {}
