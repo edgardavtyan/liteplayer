@@ -3,10 +3,8 @@ package com.example.musicplayer.service
 import android.app.Service
 import android.media.MediaPlayer
 import android.media.audiofx.Equalizer
-import com.example.musicplayer.service.player.Player
-import com.example.musicplayer.service.player.PlayerAudioManager
-import com.example.musicplayer.service.player.StandardEqualizer
-import com.example.musicplayer.service.player.StandardPlayer
+import android.media.audiofx.Virtualizer
+import com.example.musicplayer.service.player.*
 import com.example.musicplayer.ui.prefs.Prefs
 import dagger.Module
 import dagger.Provides
@@ -39,6 +37,12 @@ class PlayerServiceModule {
     @ServiceScoped
     fun provideEqualizer(prefs: Prefs, player: Player): StandardEqualizer {
         return StandardEqualizer(Equalizer(0, player.sessionId), prefs)
+    }
+
+    @Provides
+    @ServiceScoped
+    fun provideVirtualizer(player: Player): StandardVirtualizer {
+        return StandardVirtualizer(Virtualizer(0, player.sessionId))
     }
 
     @Provides
