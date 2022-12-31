@@ -24,4 +24,8 @@ class NowPlayingBarModel @Inject constructor(context: Context, private val cover
     fun playPause() {
         service.player.playPause()
     }
+
+    override fun onServiceConnected() {
+        onDataLoaded?.invoke()
+    }
 }
