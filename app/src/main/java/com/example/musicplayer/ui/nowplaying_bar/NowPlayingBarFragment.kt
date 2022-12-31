@@ -12,8 +12,10 @@ import com.example.musicplayer.databinding.FragmentNowplayingBinding
 import com.example.musicplayer.ui.eq.EqActivity
 import com.example.musicplayer.ui.nowplaying.NowPlayingActivity
 import com.example.musicplayer.ui.prefs.PrefsActivity
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class NowPlayingBarFragment: Fragment() {
     @Inject lateinit var presenter: NowPlayingBarPresenter
 
@@ -24,12 +26,6 @@ class NowPlayingBarFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        DaggerNowPlayingBarComponent
-            .builder()
-            .nowPlayingBarModule(NowPlayingBarModule(this))
-            .build()
-            .inject(this)
-
         binding = FragmentNowplayingBinding.inflate(inflater)
         binding.btnPlayPause.setOnClickListener { presenter.onBtnPlayPauseClicked() }
         binding.btnSettings.setOnClickListener { presenter.onBtnSettingsClicked() }

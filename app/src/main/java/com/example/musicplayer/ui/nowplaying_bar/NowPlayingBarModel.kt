@@ -4,8 +4,9 @@ import android.content.Context
 import android.graphics.Bitmap
 import com.example.musicplayer.lib.CoverReader
 import com.example.musicplayer.lib.PlayerServiceConnection
+import javax.inject.Inject
 
-class NowPlayingBarModel(context: Context, private val coverReader: CoverReader)
+class NowPlayingBarModel @Inject constructor(context: Context, private val coverReader: CoverReader)
     : PlayerServiceConnection(context)
 {
     val cover: Bitmap? get() {

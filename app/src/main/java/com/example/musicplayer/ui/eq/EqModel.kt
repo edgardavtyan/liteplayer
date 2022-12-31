@@ -3,8 +3,9 @@ package com.example.musicplayer.ui.eq
 import android.content.Context
 import com.example.musicplayer.lib.PlayerServiceConnection
 import com.example.musicplayer.service.player.StandardEqualizer
+import javax.inject.Inject
 
-class EqModel(context: Context): PlayerServiceConnection(context) {
+class EqModel @Inject constructor(context: Context): PlayerServiceConnection(context) {
     private lateinit var eq: StandardEqualizer
 
     val maxGain get() = eq.maxGain

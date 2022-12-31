@@ -5,13 +5,13 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioManager
 import android.os.IBinder
-import com.example.musicplayer.App
 import com.example.musicplayer.service.player.Player
 import com.example.musicplayer.service.player.PlayerAudioManager
 import com.example.musicplayer.service.player.StandardEqualizer
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class PlayerService: Service() {
     @Inject lateinit var audioManager: PlayerAudioManager
     @Inject lateinit var notification: PlayerNotification
@@ -32,13 +32,6 @@ class PlayerService: Service() {
 
     override fun onCreate() {
         super.onCreate()
-
-        DaggerPlayerServiceComponent
-            .builder()
-            .appDaggerComponent((application as App).appComponent)
-            .playerServiceModule(PlayerServiceModule(this))
-            .build()
-            .inject(this)
 
         startForeground(101010, notification.notification)
         registerReceiver(audioNoisyReceiver, IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY))

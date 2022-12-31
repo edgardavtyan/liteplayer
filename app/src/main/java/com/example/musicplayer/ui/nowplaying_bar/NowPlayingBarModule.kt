@@ -1,21 +1,32 @@
 package com.example.musicplayer.ui.nowplaying_bar
 
-import com.example.musicplayer.ui.FragmentScope
+import androidx.fragment.app.Fragment
 import com.example.musicplayer.lib.CoverReader
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.scopes.FragmentScoped
 
 @Module
-class NowPlayingBarModule(private val fragment: NowPlayingBarFragment) {
+@InstallIn(FragmentComponent::class)
+class NowPlayingBarModule() {
     @Provides
-    @FragmentScope
-    fun provideModel(): NowPlayingBarModel {
+    @FragmentScoped
+    fun provideFragment(fragment: Fragment): NowPlayingBarFragment {
+        return fragment as NowPlayingBarFragment
+    }
+
+    @Provides
+    @FragmentScoped
+    fun provideModel(fragment: NowPlayingBarFragment): NowPlayingBarModel {
         return NowPlayingBarModel(fragment.requireContext(), CoverReader())
     }
 
     @Provides
-    @FragmentScope
-    fun providePresenter(model: NowPlayingBarModel): NowPlayingBarPresenter {
+    @FragmentScoped
+    fun providePresenter(fragment: NowPlayingBarFragment, model: NowPlayingBarModel)
+    : NowPlayingBarPresenter {
         return NowPlayingBarPresenter(fragment, model)
     }
 }

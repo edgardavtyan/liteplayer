@@ -12,6 +12,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id "de.mannodermaus.android-junit5" version "1.8.2.1"
+    id 'com.google.dagger.hilt.android'
 }
 
 apply plugin: 'com.dicedmelon.gradle.jacoco-android'
@@ -67,12 +68,16 @@ android {
     }
 }
 
+kapt {
+  correctErrorTypes true
+}
+
 dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "androidx.fragment:fragment-ktx:1.5.5"
 
-    implementation 'com.google.dagger:dagger:2.44'
-    kapt 'com.google.dagger:dagger-compiler:2.44'
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.1"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.1"

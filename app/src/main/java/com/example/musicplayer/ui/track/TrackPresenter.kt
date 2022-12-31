@@ -1,6 +1,11 @@
 package com.example.musicplayer.ui.track
 
-class TrackPresenter(private val view: TrackActivity, private val model: TrackModel) {
+import javax.inject.Inject
+
+class TrackPresenter @Inject constructor(
+    private val view: TrackActivity,
+    private val model: TrackModel)
+{
     fun onCreate() {
         model.bind()
         view.updateListData(model.tracks)

@@ -1,22 +1,19 @@
 package com.example.musicplayer
 
-import android.content.Context
+import android.app.Application
 import com.example.musicplayer.ui.prefs.Prefs
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-class AppDaggerModule(private val app: App) {
-    @Singleton
+@InstallIn(SingletonComponent::class)
+class AppDaggerModule {
     @Provides
-    fun provideContext(): Context {
-        return app
-    }
-
     @Singleton
-    @Provides
-    fun providePrefs(context: Context): Prefs {
-        return Prefs(context)
+    fun providePrefs(app: Application): Prefs {
+        return Prefs(app)
     }
 }

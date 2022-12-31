@@ -1,13 +1,13 @@
 package com.example.musicplayer.ui.nowplaying
 
-import android.app.Activity
 import android.graphics.Bitmap
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import com.example.musicplayer.R
 import com.example.musicplayer.databinding.ActivityNowplayingBinding
 import com.example.musicplayer.lib.CoverReader
 
-class NowPlayingActivity : Activity() {
+class NowPlayingActivity : FragmentActivity() {
     private lateinit var binding: ActivityNowplayingBinding
     private lateinit var presenter: NowPlayingPresenter
 

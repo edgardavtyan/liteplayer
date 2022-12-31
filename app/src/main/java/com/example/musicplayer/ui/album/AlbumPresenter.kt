@@ -1,6 +1,11 @@
 package com.example.musicplayer.ui.album
 
-class AlbumPresenter(private val view: AlbumActivity, private val model: AlbumModel) {
+import javax.inject.Inject
+
+class AlbumPresenter @Inject constructor(
+    private val view: AlbumActivity,
+    private val model: AlbumModel)
+{
     fun onCreate() {
         view.updateData(model.albums)
     }

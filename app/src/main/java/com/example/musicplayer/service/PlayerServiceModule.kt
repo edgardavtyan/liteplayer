@@ -1,5 +1,6 @@
 package com.example.musicplayer.service
 
+import android.app.Service
 import android.media.MediaPlayer
 import android.media.audiofx.Equalizer
 import com.example.musicplayer.service.player.Player
@@ -9,42 +10,52 @@ import com.example.musicplayer.service.player.StandardPlayer
 import com.example.musicplayer.ui.prefs.Prefs
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ServiceComponent
+import dagger.hilt.android.scopes.ServiceScoped
 
 @Module
-class PlayerServiceModule(private val service: PlayerService) {
+@InstallIn(ServiceComponent::class)
+class PlayerServiceModule() {
     @Provides
-    @PlayerServiceScope
-    fun provideAudioManager(): PlayerAudioManager {
+    @ServiceScoped
+    fun provideService(service: Service): PlayerService {
+        return service as PlayerService
+    }
+
+    @Provides
+    @ServiceScoped
+    fun provideAudioManager(service: PlayerService): PlayerAudioManager {
         return PlayerAudioManager(service)
     }
 
     @Provides
-    @PlayerServiceScope
+    @ServiceScoped
     fun providePlayer(): Player {
         return StandardPlayer(MediaPlayer())
     }
 
     @Provides
-    @PlayerServiceScope
+    @ServiceScoped
     fun provideEqualizer(prefs: Prefs, player: Player): StandardEqualizer {
         return StandardEqualizer(Equalizer(0, player.sessionId), prefs)
     }
 
     @Provides
-    @PlayerServiceScope
-    fun provideNotification(): PlayerNotification {
+    @ServiceScoped
+    fun provideNotification(service: PlayerService): PlayerNotification {
         return PlayerNotification(service)
     }
 
     @Provides
-    @PlayerServiceScope
+    @ServiceScoped
     fun provideAudioNoisyReceiver(player: Player): AudioNoisyReceiver {
         return AudioNoisyReceiver(player)
     }
 
     @Provides
-    @PlayerServiceScope
-    fun providePlayerServiceBinder(): PlayerServiceBinder {
+    @ServiceScoped
+    fun providePlayerServiceBinder(service: PlayerService): PlayerServiceBinder {
         return PlayerServiceBinder(service)
     }
 }

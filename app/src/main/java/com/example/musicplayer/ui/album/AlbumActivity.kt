@@ -5,12 +5,13 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.musicplayer.App
 import com.example.musicplayer.R
 import com.example.musicplayer.db.Album
 import com.example.musicplayer.ui.track.TrackActivity
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class AlbumActivity : FragmentActivity() {
     companion object {
         const val EXTRA_ARTIST = "extra_artist"
@@ -22,13 +23,6 @@ class AlbumActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album)
-
-        DaggerAlbumComponent
-            .builder()
-            .appDaggerComponent((application as App).appComponent)
-            .albumModule(AlbumModule(this))
-            .build()
-            .inject(this)
 
         presenter.onCreate()
 

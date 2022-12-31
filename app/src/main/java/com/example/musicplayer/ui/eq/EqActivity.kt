@@ -1,11 +1,13 @@
 package com.example.musicplayer.ui.eq
 
-import android.app.Activity
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import com.example.musicplayer.databinding.ActivityEqBinding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class EqActivity: Activity() {
+@AndroidEntryPoint
+class EqActivity: FragmentActivity() {
     @Inject lateinit var presenter: EqPresenter
 
     private lateinit var binding: ActivityEqBinding
@@ -16,12 +18,6 @@ class EqActivity: Activity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEqBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        DaggerEqComponent
-            .builder()
-            .eqModule(EqModule(this))
-            .build()
-            .inject(this)
 
         presenter.onCreate()
     }

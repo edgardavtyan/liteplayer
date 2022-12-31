@@ -1,27 +1,30 @@
 package com.example.musicplayer.db
 
-import android.content.Context
+import android.app.Application
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class DbModule {
-    @Singleton
     @Provides
-    fun provideArtistDB(context: Context): ArtistDB {
-        return ArtistDB(context)
+    @Singleton
+    fun provideArtistDB(app: Application): ArtistDB {
+        return ArtistDB(app)
     }
 
-    @Singleton
     @Provides
-    fun provideAlbumDB(context: Context): AlbumDB {
-        return AlbumDB(context)
+    @Singleton
+    fun provideAlbumDB(app: Application): AlbumDB {
+        return AlbumDB(app)
     }
 
-    @Singleton
     @Provides
-    fun provideTrackDB(context: Context): TrackDB {
-        return TrackDB(context)
+    @Singleton
+    fun provideTrackDB(app: Application): TrackDB {
+        return TrackDB(app)
     }
 }

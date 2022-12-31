@@ -1,27 +1,37 @@
 package com.example.musicplayer.ui.album
 
+import android.app.Activity
 import com.example.musicplayer.db.AlbumDB
-import com.example.musicplayer.ui.ActivityScope
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.scopes.ActivityScoped
 
 @Module
-class AlbumModule(private val activity: AlbumActivity) {
-    @ActivityScope
+@InstallIn(ActivityComponent::class)
+class AlbumModule {
     @Provides
-    fun provideAlbumModel(albumDB: AlbumDB): AlbumModel {
+    @ActivityScoped
+    fun provideActivity(activity: Activity): AlbumActivity {
+        return activity as AlbumActivity
+    }
+
+    @Provides
+    @ActivityScoped
+    fun provideAlbumModel(activity: AlbumActivity, albumDB: AlbumDB): AlbumModel {
         return AlbumModel(albumDB, activity.intent.getStringExtra(AlbumActivity.EXTRA_ARTIST)!!)
     }
 
-    @ActivityScope
     @Provides
-    fun provideAlbumPresenter(model: AlbumModel): AlbumPresenter {
+    @ActivityScoped
+    fun provideAlbumPresenter(activity: AlbumActivity, model: AlbumModel): AlbumPresenter {
         return AlbumPresenter(activity, model)
     }
 
-    @ActivityScope
     @Provides
-    fun provideAlbumAdapter(presenter: AlbumPresenter): AlbumAdapter {
+    @ActivityScoped
+    fun provideAlbumAdapter(activity: AlbumActivity, presenter: AlbumPresenter): AlbumAdapter {
         return AlbumAdapter(activity, presenter)
     }
 }

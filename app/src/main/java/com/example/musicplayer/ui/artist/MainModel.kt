@@ -2,8 +2,9 @@ package com.example.musicplayer.ui.artist
 
 import com.example.musicplayer.db.AlbumDB
 import com.example.musicplayer.db.ArtistDB
+import javax.inject.Inject
 
-class MainModel(artistDB: ArtistDB, private val albumDB: AlbumDB) {
+class MainModel @Inject constructor(artistDB: ArtistDB, private val albumDB: AlbumDB) {
     val artists = artistDB.getAllArtists()
 
     fun albumCount(artist: String): Int {

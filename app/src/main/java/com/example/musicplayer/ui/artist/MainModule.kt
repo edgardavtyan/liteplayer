@@ -1,35 +1,38 @@
 package com.example.musicplayer.ui.artist
 
-import android.content.Context
+import android.app.Activity
 import com.example.musicplayer.db.AlbumDB
 import com.example.musicplayer.db.ArtistDB
-import com.example.musicplayer.ui.ActivityScope
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.scopes.ActivityScoped
 
 @Module
-class MainModule(private val activity: MainActivity) {
-    @ActivityScope
+@InstallIn(ActivityComponent::class)
+class MainModule() {
     @Provides
-    fun provideContext(): Context {
-        return activity
+    @ActivityScoped
+    fun provideActivity(activity: Activity): MainActivity {
+        return activity as MainActivity
     }
 
-    @ActivityScope
     @Provides
+    @ActivityScoped
     fun provideMainModel(artistDB: ArtistDB, albumDB: AlbumDB): MainModel {
         return MainModel(artistDB, albumDB)
     }
 
-    @ActivityScope
     @Provides
-    fun provideMainPresenter(model: MainModel): MainPresenter {
+    @ActivityScoped
+    fun provideMainPresenter(activity: MainActivity, model: MainModel): MainPresenter {
         return MainPresenter(model, activity)
     }
 
-    @ActivityScope
     @Provides
-    fun provideMainAdapter(presenter: MainPresenter): MainAdapter {
+    @ActivityScoped
+    fun provideMainAdapter(activity: MainActivity, presenter: MainPresenter): MainAdapter {
         return MainAdapter(activity, presenter)
     }
 }

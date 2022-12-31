@@ -1,12 +1,13 @@
 package com.example.musicplayer.ui.prefs
 
-import android.app.Activity
 import android.os.Bundle
-import com.example.musicplayer.App
+import androidx.fragment.app.FragmentActivity
 import com.example.musicplayer.databinding.ActivityPrefsBinding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class PrefsActivity : Activity() {
+@AndroidEntryPoint
+class PrefsActivity : FragmentActivity() {
     private lateinit var binding: ActivityPrefsBinding
 
     @Inject lateinit var prefs: Prefs
@@ -14,13 +15,6 @@ class PrefsActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        DaggerPrefsComponent
-            .builder()
-            .appDaggerComponent((application as App).appComponent)
-            .prefsModule(PrefsModule(this))
-            .build()
-            .inject(this)
 
         binding = ActivityPrefsBinding.inflate(layoutInflater)
         setContentView(binding.root)
