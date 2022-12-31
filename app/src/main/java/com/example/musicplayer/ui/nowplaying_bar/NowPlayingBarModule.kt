@@ -10,7 +10,7 @@ import dagger.hilt.android.scopes.FragmentScoped
 
 @Module
 @InstallIn(FragmentComponent::class)
-class NowPlayingBarModule() {
+class NowPlayingBarModule {
     @Provides
     @FragmentScoped
     fun provideFragment(fragment: Fragment): NowPlayingBarFragment {
