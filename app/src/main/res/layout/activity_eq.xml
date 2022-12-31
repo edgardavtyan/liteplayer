@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:text="Virtualizer"
             android:textColor="#fff"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <com.example.musicplayer.lib.CustomSeekBar
             android:id="@+id/virtualizerSeekBar"
