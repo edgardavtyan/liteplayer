@@ -12,18 +12,6 @@ class StandardPlayer(private val player: MediaPlayer): Player {
 
     override var onPreparedListener: (() -> Unit)? = null
 
-    override var balance: Int = 0
-        set(value) {
-            field = value
-            if (value < 0) {
-                player.setVolume(1.0f, (100 + value) / 100.0f)
-            } else if (value > 0) {
-                player.setVolume((100 - value) / 100.0f, 1.0f)
-            } else {
-                player.setVolume(1.0f, 1.0f)
-            }
-        }
-
     override fun addOnIsPlayingChangedListener(listener: (Boolean) -> Unit) {
         onIsPlayingChangedListeners.add(listener)
     }
@@ -35,6 +23,18 @@ class StandardPlayer(private val player: MediaPlayer): Player {
     override val sessionId: Int = player.audioSessionId
     override val isPlaying: Boolean get() = player.isPlaying
     override var track: Track? = null
+
+    override var balance: Int = 0
+        set(value) {
+            field = value
+            if (value < 0) {
+                player.setVolume(1.0f, (100 + value) / 100.0f)
+            } else if (value > 0) {
+                player.setVolume((100 - value) / 100.0f, 1.0f)
+            } else {
+                player.setVolume(1.0f, 1.0f)
+            }
+        }
 
     override fun playPause() {
         if (player.isPlaying) {
