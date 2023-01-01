@@ -1,12 +1,14 @@
 package com.example.musicplayer.service.player
 
+import android.content.SharedPreferences
 import android.media.audiofx.Equalizer
-import com.example.musicplayer.ui.prefs.Prefs
 
-class StandardEqualizer(private val eq: Equalizer, private val prefs: Prefs) {
+class StandardEqualizer(private val eq: Equalizer, private val prefs: SharedPreferences) {
+    private val PREF_GAINS = "eq-gains"
+
     init {
         eq.enabled = true
-        prefs.standardEqBands.forEachIndexed { i, gain ->
+        getGainsFromPrefs().forEachIndexed { i, gain ->
             eq.setBandLevel(i.toShort(), (gain * 100).toShort())
         }
     }
@@ -18,7 +20,7 @@ class StandardEqualizer(private val eq: Equalizer, private val prefs: Prefs) {
     fun setBandGain(band: Int, gain: Int) {
         val newBand = bandCount - band - 1
         eq.setBandLevel(newBand.toShort(), (gain * 100).toShort())
-        prefs.standardEqBands = (0 until 5).map { eq.getBandLevel(it.toShort()) / 100 }.toTypedArray()
+        saveGainsToPrefs((0 until 5).map { eq.getBandLevel(it.toShort()) / 100 })
     }
 
     fun getBandGain(band: Int): Int {
@@ -27,5 +29,13 @@ class StandardEqualizer(private val eq: Equalizer, private val prefs: Prefs) {
 
     fun getBandFreq(band: Int): Int {
         return eq.getCenterFreq((bandCount - band - 1).toShort()) / 1000
+    }
+
+    private fun saveGainsToPrefs(gains: List<Int>) {
+        prefs.edit().putString(PREF_GAINS, gains.joinToString(";")).apply()
+    }
+
+    private fun getGainsFromPrefs(): List<Int> {
+        return prefs.getString(PREF_GAINS, "0;0;0;0;0")!!.split(";").map { it.toInt() }
     }
 }

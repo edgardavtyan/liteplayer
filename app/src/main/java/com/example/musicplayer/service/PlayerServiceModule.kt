@@ -6,7 +6,6 @@ import android.media.MediaPlayer
 import android.media.audiofx.Equalizer
 import android.media.audiofx.Virtualizer
 import com.example.musicplayer.service.player.*
-import com.example.musicplayer.ui.prefs.Prefs
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,7 +35,7 @@ class PlayerServiceModule {
 
     @Provides
     @ServiceScoped
-    fun provideEqualizer(prefs: Prefs, player: Player): StandardEqualizer {
+    fun provideEqualizer(prefs: SharedPreferences, player: Player): StandardEqualizer {
         return StandardEqualizer(Equalizer(0, player.sessionId), prefs)
     }
 

@@ -1,7 +1,7 @@
 package com.example.musicplayer.service.player
 
+import android.content.SharedPreferences
 import android.media.audiofx.Equalizer
-import com.example.musicplayer.ui.prefs.Prefs
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
@@ -14,11 +14,12 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExtendWith(MockKExtension::class)
 class TestStandardEqualizer {
     @MockK lateinit var innerEq: Equalizer
-    @MockK lateinit var prefs: Prefs
+    @MockK lateinit var prefs: SharedPreferences
 
     private lateinit var eq: StandardEqualizer
 
     @BeforeEach fun beforeEach() {
+        every { prefs.getString("eq-gains", any()) } returns "0;0;0;0;0"
         eq = StandardEqualizer(innerEq, prefs)
     }
 
@@ -51,11 +52,11 @@ class TestStandardEqualizer {
         every { innerEq.numberOfBands } returns 5
         every { innerEq.getBandLevel(3) } returns 800
         eq.setBandGain(3, 8)
-        verify { prefs.standardEqBands = arrayOf(0, 0, 0, 8, 0) }
+        verify { prefs.edit().putString("eq-gains", "0;0;0;8;0").apply() }
     }
 
     @Test fun should_get_bands_from_prefs() {
-        every { prefs.standardEqBands } returns arrayOf(1, 2, 3, 4, 5)
+        every { prefs.getString("eq-gains", any()) } returns "1;2;3;4;5"
         StandardEqualizer(innerEq, prefs)
         verify { innerEq.setBandLevel(0, 100) }
         verify { innerEq.setBandLevel(1, 200) }
