@@ -23,7 +23,7 @@ class PlayerNotification(service: PlayerService) {
         val intent = Intent(service, PlayerService::class.java)
         val pi = PendingIntent.getActivity(service, 0, intent, 0)
         notification = NotificationCompat.Builder(service, "com.example.musicplayer")
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.drawable.ic_status)
             .setContentTitle(service.getString(R.string.app_name))
             .setContentText("Running")
             .setContentIntent(pi)
