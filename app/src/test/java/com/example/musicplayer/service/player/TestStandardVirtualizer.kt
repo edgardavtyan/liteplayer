@@ -1,7 +1,7 @@
 package com.example.musicplayer.service.player
 
+import android.content.SharedPreferences
 import android.media.audiofx.Virtualizer
-import com.example.musicplayer.ui.prefs.Prefs
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestStandardVirtualizer {
     @MockK lateinit var baseVirtualizer: Virtualizer
-    @MockK lateinit var prefs: Prefs
+    @MockK lateinit var prefs: SharedPreferences
 
     private lateinit var virtualizer: StandardVirtualizer
 
@@ -39,13 +39,13 @@ class TestStandardVirtualizer {
     }
 
     @Test fun should_set_strength_from_prefs() {
-        every { prefs.virtualizerStrength } returns 28
+        every { prefs.getInt("virtualizer-strength", 0) } returns 28
         StandardVirtualizer(baseVirtualizer, prefs)
         verify { baseVirtualizer.setStrength(280) }
     }
 
     @Test fun should_save_strength_to_prefs() {
         virtualizer.strength = 33
-        verify { prefs.virtualizerStrength = 33 }
+        verify { prefs.edit().putInt("virtualizer-strength", 33).apply() }
     }
 }

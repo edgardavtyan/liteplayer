@@ -1,6 +1,7 @@
 package com.example.musicplayer.service
 
 import android.app.Service
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.media.audiofx.Equalizer
 import android.media.audiofx.Virtualizer
@@ -41,7 +42,7 @@ class PlayerServiceModule {
 
     @Provides
     @ServiceScoped
-    fun provideVirtualizer(player: Player, prefs: Prefs): StandardVirtualizer {
+    fun provideVirtualizer(player: Player, prefs: SharedPreferences): StandardVirtualizer {
         return StandardVirtualizer(Virtualizer(0, player.sessionId), prefs)
     }
 

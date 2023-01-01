@@ -1,12 +1,17 @@
 package com.example.musicplayer.service.player
 
+import android.content.SharedPreferences
 import android.media.audiofx.Virtualizer
-import com.example.musicplayer.ui.prefs.Prefs
 
-class StandardVirtualizer(private val virtualizer: Virtualizer, private val prefs: Prefs) {
+class StandardVirtualizer(
+    private val virtualizer: Virtualizer,
+    private val prefs: SharedPreferences
+) {
+    private val PREF_KEY_STRENGTH = "virtualizer-strength"
+
     init {
         virtualizer.enabled = true
-        virtualizer.setStrength((prefs.virtualizerStrength * 10).toShort())
+        virtualizer.setStrength((prefs.getInt(PREF_KEY_STRENGTH, 0) * 10).toShort())
     }
 
     val maxStrength: Int = 100
@@ -15,6 +20,6 @@ class StandardVirtualizer(private val virtualizer: Virtualizer, private val pref
         get() = virtualizer.roundedStrength / 10
         set(str) {
             virtualizer.setStrength((str * 10).toShort())
-            prefs.virtualizerStrength = str
+            prefs.edit().putInt(PREF_KEY_STRENGTH, str).apply()
         }
 }
