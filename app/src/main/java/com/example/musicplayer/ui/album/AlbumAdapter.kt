@@ -5,10 +5,8 @@ import android.view.View
 import com.example.musicplayer.R
 import com.example.musicplayer.db.Album
 import com.example.musicplayer.lib.CustomAdapter
-import javax.inject.Inject
 
-
-class AlbumAdapter @Inject constructor(context: Context, private val presenter: AlbumPresenter)
+class AlbumAdapter(context: Context, private val presenter: AlbumPresenter)
     : CustomAdapter<AlbumViewHolder, Album>(context) {
 
     override val layout = R.layout.listitem_album

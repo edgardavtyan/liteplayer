@@ -4,9 +4,8 @@ import android.content.Context
 import com.example.musicplayer.lib.PlayerServiceConnection
 import com.example.musicplayer.service.player.StandardEqualizer
 import com.example.musicplayer.service.player.StandardVirtualizer
-import javax.inject.Inject
 
-class EqModel @Inject constructor(context: Context): PlayerServiceConnection(context) {
+class EqModel(context: Context): PlayerServiceConnection(context) {
     private lateinit var eq: StandardEqualizer
     private lateinit var virtualizer: StandardVirtualizer
 

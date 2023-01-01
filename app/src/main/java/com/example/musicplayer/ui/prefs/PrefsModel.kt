@@ -3,9 +3,8 @@ package com.example.musicplayer.ui.prefs
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.musicplayer.lib.PlayerServiceConnection
-import javax.inject.Inject
 
-class PrefsModel @Inject constructor(context: Context, private val prefs: SharedPreferences)
+class PrefsModel(context: Context, private val prefs: SharedPreferences)
     : PlayerServiceConnection(context)
 {
     private val PREF_AUDIO_BALANCE = "audio-balance"

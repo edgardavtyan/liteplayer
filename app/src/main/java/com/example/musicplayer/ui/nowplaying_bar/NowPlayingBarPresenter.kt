@@ -1,8 +1,6 @@
 package com.example.musicplayer.ui.nowplaying_bar
 
-import javax.inject.Inject
-
-class NowPlayingBarPresenter @Inject constructor(
+class NowPlayingBarPresenter(
     private val view: NowPlayingBarFragment,
     private val model: NowPlayingBarModel)
 {
