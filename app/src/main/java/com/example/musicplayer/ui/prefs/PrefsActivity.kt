@@ -10,7 +10,6 @@ import javax.inject.Inject
 class PrefsActivity : FragmentActivity() {
     private lateinit var binding: ActivityPrefsBinding
 
-    @Inject lateinit var prefs: Prefs
     @Inject lateinit var presenter: PrefsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {

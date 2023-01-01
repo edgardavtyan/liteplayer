@@ -1,6 +1,7 @@
 package com.example.musicplayer.ui.prefs
 
 import android.app.Activity
+import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +19,8 @@ class PrefsModule {
 
     @Provides
     @ActivityScoped
-    fun provideModel(prefs: Prefs): PrefsModel {
-        return PrefsModel(prefs)
+    fun provideModel(activity: Activity, prefs: SharedPreferences): PrefsModel {
+        return PrefsModel(activity, prefs)
     }
 
     @Provides
