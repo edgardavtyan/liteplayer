@@ -7,11 +7,11 @@ class StandardVirtualizer(
     private val virtualizer: Virtualizer,
     private val prefs: SharedPreferences
 ) {
-    private val PREF_KEY_STRENGTH = "virtualizer-strength"
+    private val PREF_STRENGTH = "virtualizer-strength"
 
     init {
         virtualizer.enabled = true
-        virtualizer.setStrength((prefs.getInt(PREF_KEY_STRENGTH, 0) * 10).toShort())
+        virtualizer.setStrength((prefs.getInt(PREF_STRENGTH, 0) * 10).toShort())
     }
 
     val maxStrength: Int = 100
@@ -20,6 +20,6 @@ class StandardVirtualizer(
         get() = virtualizer.roundedStrength / 10
         set(str) {
             virtualizer.setStrength((str * 10).toShort())
-            prefs.edit().putInt(PREF_KEY_STRENGTH, str).apply()
+            prefs.edit().putInt(PREF_STRENGTH, str).apply()
         }
 }
