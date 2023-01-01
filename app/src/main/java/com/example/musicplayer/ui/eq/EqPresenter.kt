@@ -4,10 +4,10 @@ class EqPresenter(private val view: EqActivity, private val model: EqModel) {
     fun onCreate() {
         model.bind()
         model.onDataLoaded = {
-            view.setBandCount(model.gains.size)
-            view.setMaxGain(model.maxGain)
-            model.gains.forEachIndexed { i, gain -> view.setBandGain(i, gain) }
-            model.freqs.forEachIndexed { i, freq -> view.setBandFreq(i, freq) }
+            view.setEQBandCount(model.eqGains.size)
+            view.setEQMaxGain(model.eqMaxGain)
+            model.eqGains.forEachIndexed { i, gain -> view.setEQBandGain(i, gain) }
+            model.eqFreqs.forEachIndexed { i, freq -> view.setEQBandFreq(i, freq) }
 
             view.setVirtualizerMaxStrength(100)
             view.setVirtualizerStrength(model.virtualizerStrength)
@@ -18,8 +18,8 @@ class EqPresenter(private val view: EqActivity, private val model: EqModel) {
         model.unbind()
     }
 
-    fun onBandGainChanged(band: Int, gain: Int) {
-        model.setBandGain(band, gain)
+    fun onEQBandGainChanged(band: Int, gain: Int) {
+        model.setEQBandGain(band, gain)
     }
 
     fun onVirtualizerStrengthChanged(str: Int) {

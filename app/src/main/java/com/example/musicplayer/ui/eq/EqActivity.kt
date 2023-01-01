@@ -30,25 +30,25 @@ class EqActivity: FragmentActivity() {
         presenter.onDestroy()
     }
 
-    fun setBandCount(count: Int) {
+    fun setEQBandCount(count: Int) {
         eqBands = ArrayList()
         for (i in 0 until count) {
             val view = EqBandView(this, null)
-            view.onProgressChangedListener = { presenter.onBandGainChanged(i, it) }
+            view.onProgressChangedListener = { presenter.onEQBandGainChanged(i, it) }
             binding.eq.addView(view)
             eqBands.add(view)
         }
     }
 
-    fun setBandGain(band: Int, gain: Int) {
+    fun setEQBandGain(band: Int, gain: Int) {
         eqBands[band].setGain(gain)
     }
 
-    fun setBandFreq(band: Int, freq: Int) {
+    fun setEQBandFreq(band: Int, freq: Int) {
         eqBands[band].setFreq(freq)
     }
 
-    fun setMaxGain(maxGain: Int) {
+    fun setEQMaxGain(maxGain: Int) {
         eqBands.forEach { it.maxGain = maxGain }
     }
 

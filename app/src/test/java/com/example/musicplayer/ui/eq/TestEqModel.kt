@@ -32,28 +32,28 @@ class TestEqModel {
         model.onServiceConnected(null, binder)
     }
 
-    @Test fun should_set_band_gain() {
-        model.setBandGain(2, 5)
+    @Test fun should_set_eq_band_gain() {
+        model.setEQBandGain(2, 5)
         verify { eq.setBandGain(2, 5) }
     }
 
-    @Test fun should_return_gains() {
+    @Test fun should_return_eq_gains() {
         every { eq.bandCount } returns 5
         every { eq.getBandGain(0) } returns 3
         every { eq.getBandGain(3) } returns 5
-        assertArrayEquals(arrayOf(3, 0, 0, 5, 0), model.gains)
+        assertArrayEquals(arrayOf(3, 0, 0, 5, 0), model.eqGains)
     }
 
-    @Test fun should_return_freqs() {
+    @Test fun should_return_eq_freqs() {
         every { eq.bandCount } returns 5
         every { eq.getBandFreq(0) } returns 3000
         every { eq.getBandFreq(3) } returns 12000
-        assertArrayEquals(arrayOf(3000, 0, 0, 12000, 0), model.freqs)
+        assertArrayEquals(arrayOf(3000, 0, 0, 12000, 0), model.eqFreqs)
     }
 
-    @Test fun should_return_max_gain() {
+    @Test fun should_return_eq_max_gain() {
         every { eq.maxGain } returns 15
-        assertEquals(15, model.maxGain)
+        assertEquals(15, model.eqMaxGain)
     }
 
     @Test fun should_return_virtualizer_max_strength() {
