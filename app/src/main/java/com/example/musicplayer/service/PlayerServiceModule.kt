@@ -59,6 +59,12 @@ class PlayerServiceModule {
 
     @Provides
     @ServiceScoped
+    fun providePlayPauseReceiver(service: PlayerService): PlayPauseReceiver {
+        return PlayPauseReceiver(service)
+    }
+
+    @Provides
+    @ServiceScoped
     fun providePlayerServiceBinder(service: PlayerService): PlayerServiceBinder {
         return PlayerServiceBinder(service)
     }

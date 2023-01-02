@@ -17,6 +17,7 @@ class PlayerService: Service() {
     @Inject lateinit var audioManager: PlayerAudioManager
     @Inject lateinit var notification: PlayerNotification
     @Inject lateinit var audioNoisyReceiver: AudioNoisyReceiver
+    @Inject lateinit var playPauseReceiver: PlayPauseReceiver
     @Inject lateinit var player: Player
     @Inject lateinit var eq: StandardEqualizer
     @Inject lateinit var virtualizer: StandardVirtualizer
@@ -34,6 +35,7 @@ class PlayerService: Service() {
         super.onCreate()
         startForeground(101010, notification.notification)
         registerReceiver(audioNoisyReceiver, IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY))
+        registerReceiver(playPauseReceiver, IntentFilter(PlayerNotification.ACTION_PLAY_PAUSE))
     }
 
     override fun onDestroy() {
