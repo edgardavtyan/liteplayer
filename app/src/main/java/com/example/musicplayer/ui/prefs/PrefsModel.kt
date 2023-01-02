@@ -13,6 +13,6 @@ class PrefsModel(context: Context, private val prefs: SharedPreferences)
         get() = prefs.getInt(PREF_AUDIO_BALANCE, 20)
         set(balance) {
             prefs.edit().putInt(PREF_AUDIO_BALANCE, balance).apply()
-            service.player.balance = balance
+            service.player.setBalance(balance)
         }
 }

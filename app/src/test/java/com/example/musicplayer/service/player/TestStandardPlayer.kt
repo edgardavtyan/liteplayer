@@ -31,17 +31,17 @@ class TestStandardPlayer {
     }
 
     @Test fun should_set_zero_balance() {
-        audioEngine.balance = 0
+        audioEngine.setBalance(0)
         verify { player.setVolume(1.0f, 1.0f) }
     }
 
     @Test fun should_set_left_balance() {
-        audioEngine.balance = -35
+        audioEngine.setBalance(-35)
         verify { player.setVolume(1.0f, 0.65f) }
     }
 
     @Test fun should_set_right_balance() {
-        audioEngine.balance = 68
+        audioEngine.setBalance(68)
         verify { player.setVolume(0.32f, 1.0f) }
     }
 

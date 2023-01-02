@@ -7,9 +7,9 @@ interface Player {
     val sessionId: Int
     val isPlaying: Boolean
     val track: Track?
-    var balance: Int
     fun addOnIsPlayingChangedListener(listener: (Boolean) -> Unit)
     fun removeOnIsPlayingChangedListener(listener: (Boolean) -> Unit)
+    fun setBalance(balance: Int)
     fun playPause()
     fun pause()
     fun playTrack(track: Track)
