@@ -14,6 +14,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class PlayerService: Service() {
+    private val NOTIF_ID = 12345
+
     @Inject lateinit var audioManager: PlayerAudioManager
     @Inject lateinit var notification: PlayerNotification
     @Inject lateinit var audioNoisyReceiver: AudioNoisyReceiver
@@ -28,12 +30,13 @@ class PlayerService: Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         audioManager.onFocusLossListener = { player.pause() }
         player.addOnIsPlayingChangedListener { audioManager.setFocused(it) }
+        player.onPreparedListener = { updateNotification() }
         return START_STICKY
     }
 
     override fun onCreate() {
         super.onCreate()
-        startForeground(101010, notification.notification)
+        startForeground(NOTIF_ID, notification.build())
         registerReceiver(audioNoisyReceiver, IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY))
         registerReceiver(playPauseReceiver, IntentFilter(PlayerNotification.ACTION_PLAY_PAUSE))
     }
@@ -41,5 +44,10 @@ class PlayerService: Service() {
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(audioNoisyReceiver)
+    }
+
+    private fun updateNotification() {
+        notification.setTitle(player.track?.title)
+        startForeground(NOTIF_ID, notification.build())
     }
 }

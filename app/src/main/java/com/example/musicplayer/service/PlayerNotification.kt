@@ -18,7 +18,7 @@ class PlayerNotification(service: PlayerService) {
 
     private val viewCompact = RemoteViews(service.packageName, R.layout.notif_compact)
 
-    val notification: Notification
+    private val builder: NotificationCompat.Builder
 
     init {
         val chan = NotificationChannel("com.example.musicplayer", "channel", NotificationManager.IMPORTANCE_HIGH)
@@ -29,16 +29,23 @@ class PlayerNotification(service: PlayerService) {
 
         val intent = Intent(service, PlayerService::class.java)
         val pi = PendingIntent.getActivity(service, 0, intent, 0)
-        notification = NotificationCompat.Builder(service, "com.example.musicplayer")
+        builder = NotificationCompat.Builder(service, "com.example.musicplayer")
             .setSmallIcon(R.drawable.ic_status)
             .setContentTitle(service.getString(R.string.app_name))
             .setCustomContentView(viewCompact)
             .setContentText("Running")
             .setContentIntent(pi)
-            .build()
 
         val playPauseIntent = Intent(ACTION_PLAY_PAUSE)
         val playPausePendingIntent = PendingIntent.getBroadcast(service, 0, playPauseIntent, 0)
         viewCompact.setOnClickPendingIntent(R.id.btnPlayPause, playPausePendingIntent)
+    }
+
+    fun build(): Notification {
+        return builder.build()
+    }
+
+    fun setTitle(title: String?) {
+        viewCompact.setTextViewText(R.id.title, title)
     }
 }
