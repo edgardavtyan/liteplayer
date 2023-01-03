@@ -2,6 +2,7 @@ package com.example.musicplayer.ui.nowplaying
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.FragmentActivity
 import com.example.musicplayer.R
 import com.example.musicplayer.databinding.ActivityNowplayingBinding
@@ -37,7 +38,12 @@ class NowPlayingActivity : FragmentActivity() {
 
     fun setCoverArt(cover: Bitmap?) {
         if (cover != null) {
+            binding.artFallback.visibility = View.GONE
+            binding.art.visibility = View.VISIBLE
             binding.art.setImageBitmap(cover)
+        } else {
+            binding.artFallback.visibility = View.VISIBLE
+            binding.art.visibility = View.GONE
         }
     }
 

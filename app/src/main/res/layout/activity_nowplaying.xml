@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
+    android:background="@color/primaryBackground"
     android:orientation="vertical"
     tools:context=".ui.nowplaying.NowPlayingActivity">
 
@@ -14,6 +14,16 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_music_note"
+        android:visibility="gone"
+        />
+
+    <com.example.musicplayer.lib.SquareImageView
+        android:id="@+id/artFallback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_music_note"
+        android:tint="@color/text"
         />
 
     <TextView
@@ -22,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
-        android:textColor="#fff"
+        android:textColor="@color/text"
         android:textSize="20sp"
         tools:text="This is a track title"
         />
@@ -32,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textColor="#aaa"
+        android:textColor="@color/textFade"
         android:textSize="18sp"
         tools:text="This is additional track info"
         />
