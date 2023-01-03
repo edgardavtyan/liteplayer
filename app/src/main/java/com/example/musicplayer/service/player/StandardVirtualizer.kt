@@ -1,10 +1,10 @@
 package com.example.musicplayer.service.player
 
 import android.content.SharedPreferences
-import android.media.audiofx.Virtualizer
+import com.h6ah4i.android.media.audiofx.IVirtualizer
 
 class StandardVirtualizer(
-    private val virtualizer: Virtualizer,
+    private val virtualizer: IVirtualizer,
     private val prefs: SharedPreferences
 ) {
     private val PREF_STRENGTH = "virtualizer-strength"

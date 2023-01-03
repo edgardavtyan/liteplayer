@@ -1,9 +1,9 @@
 package com.example.musicplayer.service.player
 
 import android.content.SharedPreferences
-import android.media.audiofx.Equalizer
+import com.h6ah4i.android.media.audiofx.IEqualizer
 
-class StandardEqualizer(private val eq: Equalizer, private val prefs: SharedPreferences) {
+class StandardEqualizer(private val eq: IEqualizer, private val prefs: SharedPreferences) {
     private val PREF_GAINS = "eq-gains"
 
     init {
