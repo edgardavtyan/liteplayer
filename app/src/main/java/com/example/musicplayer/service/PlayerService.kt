@@ -29,7 +29,10 @@ class PlayerService: Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         audioManager.onFocusLossListener = { player.pause() }
-        player.addOnIsPlayingChangedListener { audioManager.setFocused(it) }
+        player.addOnIsPlayingChangedListener {
+            updateNotificationPlayPause()
+            startForeground(NOTIF_ID, notification.build())
+        }
         player.onPreparedListener = { updateNotification() }
         return START_STICKY
     }
@@ -48,6 +51,12 @@ class PlayerService: Service() {
 
     private fun updateNotification() {
         notification.setTitle(player.track?.title)
+        notification.setIsPlaying(player.isPlaying)
+        startForeground(NOTIF_ID, notification.build())
+    }
+
+    private fun updateNotificationPlayPause() {
+        notification.setIsPlaying(player.isPlaying)
         startForeground(NOTIF_ID, notification.build())
     }
 }

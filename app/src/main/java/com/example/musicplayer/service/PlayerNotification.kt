@@ -48,4 +48,9 @@ class PlayerNotification(service: PlayerService) {
     fun setTitle(title: String?) {
         viewCompact.setTextViewText(R.id.title, title)
     }
+
+    fun setIsPlaying(isPlaying: Boolean) {
+        val resId = if (isPlaying) R.drawable.ic_pause else R.drawable.ic_play
+        viewCompact.setImageViewResource(R.id.btnPlayPause, resId)
+    }
 }

@@ -61,6 +61,5 @@ class StandardPlayer(private val player: MediaPlayer): Player {
     private fun onPrepared() {
         player.start()
         onPreparedListener?.invoke()
-        onIsPlayingChangedListeners.forEach { it(isPlaying) }
     }
 }
