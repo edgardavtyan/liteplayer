@@ -36,6 +36,7 @@
         android:layout_marginStart="16dp"
         android:textColor="@color/text"
         android:textSize="20sp"
+        android:textFontWeight="600"
         tools:text="This is a track title"
         />
 
@@ -46,6 +47,7 @@
         android:layout_marginStart="16dp"
         android:textColor="@color/textFade"
         android:textSize="18sp"
+        android:textFontWeight="600"
         tools:text="This is additional track info"
         />
 

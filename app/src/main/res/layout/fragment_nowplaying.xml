@@ -32,6 +32,7 @@
         android:layout_marginLeft="10dp"
         android:textColor="@color/text"
         android:textSize="16sp"
+        android:textFontWeight="600"
         android:maxLines="1"
         android:ellipsize="end"
         tools:text="Song title"
