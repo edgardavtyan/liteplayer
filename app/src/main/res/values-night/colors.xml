@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="text">#fff</color>
-    <color name="textFade">#aaa</color>
+    <color name="primary">#3A5712</color>
+    <color name="primaryBackground">#052B00</color>
+    <color name="text">#E9FFCD</color>
+    <color name="textFade">#54870D</color>
 </resources>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#3A5712</color>
-    <color name="primaryBackground">#052B00</color>
-    <color name="gray_dark">#333</color>
-    <color name="black">#000</color>
-
-    <color name="text">#000</color>
+    <color name="primary">#A2D559</color>
+    <color name="primaryBackground">#BED59F</color>
+    <color name="text">#233905</color>
     <color name="textFade">#777</color>
+
+    <color name="black">#000</color>
 </resources>
