@@ -23,7 +23,7 @@
         <activity
             android:name=".ui.nowplaying.NowPlayingActivity"
             android:exported="false"
-            android:theme="@style/Theme.MusicPlayer" />
+            android:theme="@style/Theme.MusicPlayer.NowPlaying" />
         <activity
             android:name=".ui.track.TrackActivity"
             android:exported="false"
