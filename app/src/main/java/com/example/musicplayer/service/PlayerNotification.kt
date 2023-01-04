@@ -31,10 +31,9 @@ class PlayerNotification(service: PlayerService) {
         val pi = PendingIntent.getActivity(service, 0, intent, 0)
         builder = NotificationCompat.Builder(service, "com.example.musicplayer")
             .setSmallIcon(R.drawable.ic_status)
-            .setContentTitle(service.getString(R.string.app_name))
             .setCustomContentView(viewCompact)
-            .setContentText("Running")
             .setContentIntent(pi)
+            .setStyle(NotificationCompat.DecoratedCustomViewStyle())
 
         val playPauseIntent = Intent(ACTION_PLAY_PAUSE)
         val playPausePendingIntent = PendingIntent.getBroadcast(service, 0, playPauseIntent, 0)
