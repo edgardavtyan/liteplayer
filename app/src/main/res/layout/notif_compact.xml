@@ -40,10 +40,10 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="12dp"
         android:gravity="center_vertical"
-        android:textColor="@color/text"
+        android:maxLines="1"
         android:textSize="14sp"
-        android:textFontWeight="600"
         android:text="Nothing is playing"
+        style="@style/TextView"
         />
 
     <ImageButton
