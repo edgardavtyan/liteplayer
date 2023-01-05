@@ -51,8 +51,7 @@ class PlayerServiceModule {
     @ServiceScoped
     fun provideEqualizer(
         prefs: SharedPreferences,
-        factory: IMediaPlayerFactory,
-        player: Player
+        factory: IMediaPlayerFactory
     ): StandardEqualizer {
         return StandardEqualizer(factory.createHQEqualizer(), prefs)
     }
