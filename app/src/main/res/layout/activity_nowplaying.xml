@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_music_note"
         android:visibility="gone"
         />
 
@@ -23,8 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_music_note"
+        android:padding="30dp"
+        android:background="@color/primary"
+        android:src="@drawable/ic_note"
         android:tint="@color/text"
         />
 
