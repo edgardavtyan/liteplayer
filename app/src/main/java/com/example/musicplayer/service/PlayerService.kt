@@ -33,7 +33,7 @@ class PlayerService: Service() {
             updateNotificationPlayPause()
             startForeground(NOTIF_ID, notification.build())
         }
-        player.onPreparedListener = { updateNotification() }
+        player.addOnPreparedListener { updateNotification() }
         return START_STICKY
     }
 

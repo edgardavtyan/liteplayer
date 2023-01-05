@@ -10,4 +10,17 @@ class TrackModel(context: Context, albumId: Int): PlayerServiceConnection(contex
     fun playTrack(position: Int) {
         service.player.playTrack(tracks[position])
     }
+
+    fun addOnPreparedListener(listener: () -> Unit) {
+        service.player.addOnPreparedListener(listener)
+    }
+
+    fun removeOnPreparedListener(listener: () -> Unit) {
+        service.player.removeOnPreparedListener(listener)
+    }
+
+    override fun onServiceConnected() {
+        super.onServiceConnected()
+        onDataLoaded?.invoke()
+    }
 }

@@ -5,12 +5,11 @@ import com.h6ah4i.android.media.IBasicMediaPlayer
 
 class StandardPlayer(private val player: IBasicMediaPlayer): Player {
     private val onIsPlayingChangedListeners = ArrayList<(Boolean) -> Unit>()
+    private val onPreparedListeners = ArrayList<() -> Unit>()
 
     init {
         player.setOnPreparedListener { onPrepared() }
     }
-
-    override var onPreparedListener: (() -> Unit)? = null
 
     override fun addOnIsPlayingChangedListener(listener: (Boolean) -> Unit) {
         onIsPlayingChangedListeners.add(listener)
@@ -18,6 +17,14 @@ class StandardPlayer(private val player: IBasicMediaPlayer): Player {
 
     override fun removeOnIsPlayingChangedListener(listener: (Boolean) -> Unit) {
         onIsPlayingChangedListeners.remove(listener)
+    }
+
+    override fun addOnPreparedListener(listener: () -> Unit) {
+        onPreparedListeners.add(listener)
+    }
+
+    override fun removeOnPreparedListener(listener: () -> Unit) {
+        onPreparedListeners.remove(listener)
     }
 
     override val sessionId: Int = player.audioSessionId
@@ -60,7 +67,7 @@ class StandardPlayer(private val player: IBasicMediaPlayer): Player {
 
     private fun onPrepared() {
         player.start()
-        onPreparedListener?.invoke()
+        onPreparedListeners.forEach { it() }
         onIsPlayingChangedListeners.forEach { it(isPlaying) }
     }
 }
