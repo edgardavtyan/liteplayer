@@ -11,10 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.15"
         android:layout_gravity="center_vertical"
-        android:textSize="14sp"
-        android:textColor="#fff"
         android:gravity="right"
         tools:text="500 Hz"
+        style="@style/TextView.Small"
         />
 
     <com.example.musicplayer.lib.CustomSeekBar
@@ -23,6 +22,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.70"
         android:layout_gravity="center_vertical"
+        style="@style/SeekBar"
         />
 
     <TextView
@@ -32,9 +32,8 @@
         android:layout_weight="0.15"
         android:layout_gravity="center_vertical"
         android:gravity="right|center_vertical"
-        android:textSize="14sp"
-        android:textColor="#fff"
         tools:text="+6 dB"
+        style="@style/TextView.Small"
         />
 
 </LinearLayout>

@@ -2,6 +2,8 @@
 <resources>
     <color name="primary">#A2D559</color>
     <color name="primaryBackground">#BED59F</color>
+    <color name="primaryContrast">#74A62C</color>
+    <color name="primaryContrastFade">#4C770F</color>
     <color name="text">#233905</color>
     <color name="textFade">#777</color>
 
