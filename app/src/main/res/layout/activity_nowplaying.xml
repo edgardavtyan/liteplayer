@@ -80,7 +80,7 @@
         <ImageButton
             android:id="@+id/btn_playpause"
             android:src="@drawable/ic_play"
-            style="@style/NowPlayingButton" />
+            style="@style/NowPlayingButton.PlayPause" />
 
         <Space
             android:layout_width="0dp"
