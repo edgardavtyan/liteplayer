@@ -6,7 +6,6 @@ import android.view.View
 import androidx.fragment.app.FragmentActivity
 import com.example.musicplayer.R
 import com.example.musicplayer.databinding.ActivityNowplayingBinding
-import com.example.musicplayer.lib.CoverReader
 
 class NowPlayingActivity : FragmentActivity() {
     private lateinit var binding: ActivityNowplayingBinding
@@ -17,7 +16,7 @@ class NowPlayingActivity : FragmentActivity() {
         binding = ActivityNowplayingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = NowPlayingPresenter(this, NowPlayingModel(this, CoverReader()))
+        presenter = NowPlayingPresenter(this, NowPlayingModel(this))
         presenter.onCreate()
 
         binding.btnPlaypause.setOnClickListener { presenter.onPlayPauseClick() }

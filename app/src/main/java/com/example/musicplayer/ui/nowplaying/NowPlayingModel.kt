@@ -1,17 +1,12 @@
 package com.example.musicplayer.ui.nowplaying
 
 import android.content.Context
-import android.graphics.Bitmap
 import com.example.musicplayer.lib.PlayerServiceConnection
-import com.example.musicplayer.lib.CoverReader
 
-class NowPlayingModel(context: Context, private val coverReader: CoverReader)
-    : PlayerServiceConnection(context) {
-
-    var coverArt: Bitmap? = null
-
+class NowPlayingModel(context: Context): PlayerServiceConnection(context) {
     val title get() = service.player.track?.title
     val info get() = service.player.track?.artistTitle
+    val cover get() = service.player.track?.cover
     val isPlaying get() = service.player.isPlaying
 
     fun playPause() {
@@ -27,10 +22,6 @@ class NowPlayingModel(context: Context, private val coverReader: CoverReader)
     }
 
     override fun onServiceConnected() {
-        if (service.player.track != null) {
-            coverArt = coverReader.getCover(service.player.track!!.path)
-        }
-
         onDataLoaded?.invoke()
     }
 }

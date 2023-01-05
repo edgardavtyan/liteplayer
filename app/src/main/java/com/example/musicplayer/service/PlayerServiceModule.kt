@@ -2,6 +2,7 @@ package com.example.musicplayer.service
 
 import android.app.Service
 import android.content.SharedPreferences
+import com.example.musicplayer.lib.CoverReader
 import com.example.musicplayer.service.player.*
 import com.h6ah4i.android.media.IMediaPlayerFactory
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext
@@ -43,7 +44,7 @@ class PlayerServiceModule {
     @Provides
     @ServiceScoped
     fun providePlayer(factory: IMediaPlayerFactory): Player {
-        return StandardPlayer(factory.createMediaPlayer())
+        return StandardPlayer(factory.createMediaPlayer(), CoverReader())
     }
 
     @Provides

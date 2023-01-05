@@ -12,7 +12,7 @@ class NowPlayingPresenter(
             model.addOnIsPlayingChangedListener(onIsPlayingChangedListener)
             view.setTrackTitle(model.title.toString())
             view.setTrackInfo(model.info.toString())
-            view.setCoverArt(model.coverArt)
+            view.setCoverArt(model.cover)
             onIsPlayingChanged(model.isPlaying)
         }
     }

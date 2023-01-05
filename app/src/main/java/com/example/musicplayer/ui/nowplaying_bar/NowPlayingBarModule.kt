@@ -1,7 +1,6 @@
 package com.example.musicplayer.ui.nowplaying_bar
 
 import androidx.fragment.app.Fragment
-import com.example.musicplayer.lib.CoverReader
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +19,7 @@ class NowPlayingBarModule {
     @Provides
     @FragmentScoped
     fun provideModel(fragment: NowPlayingBarFragment): NowPlayingBarModel {
-        return NowPlayingBarModel(fragment.requireContext(), CoverReader())
+        return NowPlayingBarModel(fragment.requireContext())
     }
 
     @Provides

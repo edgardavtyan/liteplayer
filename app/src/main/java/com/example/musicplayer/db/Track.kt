@@ -1,5 +1,7 @@
 package com.example.musicplayer.db
 
+import android.graphics.Bitmap
+
 class Track {
     var id = 0
     var track = 0
@@ -12,4 +14,5 @@ class Track {
     var albumId = 0
     var albumTitle: String? = null
     var queueIndex = 0
+    var cover: Bitmap? = null
 }

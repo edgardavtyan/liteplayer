@@ -1,9 +1,13 @@
 package com.example.musicplayer.service.player
 
 import com.example.musicplayer.db.Track
+import com.example.musicplayer.lib.CoverReader
 import com.h6ah4i.android.media.IBasicMediaPlayer
 
-class StandardPlayer(private val player: IBasicMediaPlayer): Player {
+class StandardPlayer(
+    private val player: IBasicMediaPlayer,
+    private val coverReader: CoverReader): Player
+{
     private val onIsPlayingChangedListeners = ArrayList<(Boolean) -> Unit>()
     private val onPreparedListeners = ArrayList<() -> Unit>()
 
@@ -66,6 +70,7 @@ class StandardPlayer(private val player: IBasicMediaPlayer): Player {
     }
 
     private fun onPrepared() {
+        track?.cover = coverReader.getCover(track!!.path)
         player.start()
         onPreparedListeners.forEach { it() }
         onIsPlayingChangedListeners.forEach { it(isPlaying) }
