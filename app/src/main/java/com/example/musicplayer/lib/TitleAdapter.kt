@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.R
 import com.example.musicplayer.ui.TitleViewHolder
 
-abstract class TitleAdapter<T : RecyclerView.ViewHolder, TItem>()
+abstract class TitleAdapter<T : RecyclerView.ViewHolder, TItem>
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_TITLE = 0
