@@ -19,8 +19,7 @@ class TrackModule {
     @Provides
     @ActivityScoped
     fun providesTrackModel(activity: TrackActivity): TrackModel {
-        val intent = activity.intent
-        return TrackModel(activity, intent.getIntExtra(TrackActivity.EXTRA_ALBUM, -1))
+        return TrackModel(activity, activity.intent.getIntExtra(TrackActivity.EXTRA_ALBUM, -1))
     }
 
     @Provides
