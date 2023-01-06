@@ -19,7 +19,8 @@ class TrackModule {
     @Provides
     @ActivityScoped
     fun providesTrackModel(activity: TrackActivity): TrackModel {
-        return TrackModel(activity, activity.intent.getIntExtra(TrackActivity.EXTRA_ALBUM, -1))
+        val intent = activity.intent
+        return TrackModel(activity, intent.getIntExtra(TrackActivity.EXTRA_ALBUM, -1))
     }
 
     @Provides
@@ -31,6 +32,7 @@ class TrackModule {
     @Provides
     @ActivityScoped
     fun providesAdapter(activity: TrackActivity, presenter: TrackPresenter): TrackAdapter {
-        return TrackAdapter(activity, presenter)
+        return TrackAdapter(
+            presenter, activity.intent.getStringExtra(TrackActivity.EXTRA_ALBUM_TITLE)!!)
     }
 }

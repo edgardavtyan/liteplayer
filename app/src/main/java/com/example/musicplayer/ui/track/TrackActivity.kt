@@ -15,14 +15,19 @@ import javax.inject.Inject
 class TrackActivity : FragmentActivity() {
     companion object {
         const val EXTRA_ALBUM = "extra_album"
+        const val EXTRA_ALBUM_TITLE = "extra_album_title"
     }
 
     @Inject lateinit var adapter: TrackAdapter
     @Inject lateinit var presenter: TrackPresenter
 
+    var albumTitle: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_track)
+
+        albumTitle = intent.getStringExtra(EXTRA_ALBUM_TITLE)!!
 
         presenter.onCreate()
 

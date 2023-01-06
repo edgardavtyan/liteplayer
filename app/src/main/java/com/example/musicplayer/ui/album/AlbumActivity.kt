@@ -31,9 +31,10 @@ class AlbumActivity : FragmentActivity() {
         list.adapter = adapter
     }
 
-    fun gotoTrackActivity(albumId: Int) {
+    fun gotoTrackActivity(albumId: Int, albumTitle: String) {
         val intent = Intent(this, TrackActivity::class.java)
         intent.putExtra(TrackActivity.EXTRA_ALBUM, albumId)
+        intent.putExtra(TrackActivity.EXTRA_ALBUM_TITLE, albumTitle)
         startActivity(intent)
     }
 

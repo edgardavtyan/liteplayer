@@ -17,6 +17,7 @@ class AlbumModule {
         return activity as AlbumActivity
     }
 
+
     @Provides
     @ActivityScoped
     fun provideAlbumModel(activity: AlbumActivity, albumDB: AlbumDB): AlbumModel {
@@ -31,7 +32,7 @@ class AlbumModule {
 
     @Provides
     @ActivityScoped
-    fun provideAlbumAdapter(activity: AlbumActivity, presenter: AlbumPresenter): AlbumAdapter {
-        return AlbumAdapter(activity, presenter)
+    fun provideAlbumAdapter(presenter: AlbumPresenter): AlbumAdapter {
+        return AlbumAdapter(presenter)
     }
 }

@@ -32,7 +32,7 @@ class MainModule {
 
     @Provides
     @ActivityScoped
-    fun provideMainAdapter(activity: MainActivity, presenter: MainPresenter): MainAdapter {
-        return MainAdapter(activity, presenter)
+    fun provideMainAdapter(presenter: MainPresenter): MainAdapter {
+        return MainAdapter(presenter)
     }
 }

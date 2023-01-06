@@ -11,7 +11,7 @@ class MainViewHolder(itemView: View, private val presenter: MainPresenter)
 
     init {
         titleView = itemView.findViewById(R.id.titleView)
-        itemView.setOnClickListener { presenter.onItemClick(bindingAdapterPosition) }
+        itemView.setOnClickListener { presenter.onItemClick(bindingAdapterPosition - 1) }
     }
 
     fun setTitle(title: String) {
