@@ -16,7 +16,7 @@
         style="@style/TextView.Small"
         />
 
-    <com.example.musicplayer.lib.CustomSeekBar
+    <com.example.musicplayer.lib.TwoWaySeekBar
         android:id="@+id/band"
         android:layout_width="0dp"
         android:layout_height="match_parent"
