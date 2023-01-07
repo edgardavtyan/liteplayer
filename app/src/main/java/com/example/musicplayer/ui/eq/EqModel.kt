@@ -2,11 +2,11 @@ package com.example.musicplayer.ui.eq
 
 import android.content.Context
 import com.example.musicplayer.lib.PlayerServiceConnection
-import com.example.musicplayer.service.player.StandardEqualizer
+import com.example.musicplayer.service.player.BassEqualizer
 import com.example.musicplayer.service.player.StandardVirtualizer
 
 class EqModel(context: Context): PlayerServiceConnection(context) {
-    private lateinit var eq: StandardEqualizer
+    private lateinit var eq: BassEqualizer
     private lateinit var virtualizer: StandardVirtualizer
 
     val eqMaxGain get() = eq.maxGain

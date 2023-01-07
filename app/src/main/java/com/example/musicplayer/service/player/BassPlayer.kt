@@ -2,17 +2,18 @@ package com.example.musicplayer.service.player
 
 import com.example.musicplayer.db.Track
 import com.un4seen.bass.BASS
+import com.un4seen.bass.BASSmix
 
 class BassPlayer: Player {
-    private var channel = 0
-
     init {
         BASS.BASS_Init(-1, 44100, 0)
     }
 
-    override val sessionId: Int = 0
+    private var stream = 0
 
-    override val isPlaying: Boolean get() = BASS.BASS_ChannelIsActive(channel) == BASS.BASS_ACTIVE_PLAYING
+    override var sessionId: Int = BASSmix.BASS_Mixer_StreamCreate(44100, 2, 0)
+
+    override val isPlaying: Boolean get() = BASS.BASS_ChannelIsActive(sessionId) == BASS.BASS_ACTIVE_PLAYING
 
     override var track: Track? = null
 
@@ -37,28 +38,28 @@ class BassPlayer: Player {
     }
 
     override fun setBalance(balance: Int) {
-        BASS.BASS_ChannelSetAttribute(channel, BASS.BASS_ATTRIB_PAN, balance / 100f)
+        BASS.BASS_ChannelSetAttribute(sessionId, BASS.BASS_ATTRIB_PAN, balance / 100f)
     }
 
     override fun playPause() {
-        when(BASS.BASS_ChannelIsActive(channel)) {
-            BASS.BASS_ACTIVE_PLAYING -> BASS.BASS_ChannelPause(channel)
-            BASS.BASS_ACTIVE_PAUSED -> BASS.BASS_ChannelStart(channel)
+        when(BASS.BASS_ChannelIsActive(sessionId)) {
+            BASS.BASS_ACTIVE_PLAYING -> BASS.BASS_ChannelPause(sessionId)
+            BASS.BASS_ACTIVE_PAUSED -> BASS.BASS_ChannelStart(sessionId)
         }
 
         onIsPlayingChangedListeners.forEach { it(isPlaying) }
     }
 
     override fun pause() {
-        BASS.BASS_ChannelPause(channel)
+        BASS.BASS_ChannelPause(sessionId)
         onIsPlayingChangedListeners.forEach { it(false) }
     }
 
     override fun playTrack(track: Track) {
         this.track = track
-        BASS.BASS_ChannelFree(channel)
-        channel = BASS.BASS_StreamCreateFile(track.path, 0, 0, 0)
-        BASS.BASS_ChannelPlay(channel, true)
+        BASS.BASS_ChannelFree(sessionId)
+        sessionId = BASS.BASS_StreamCreateFile(track.path, 0, 0, 0)
+        BASS.BASS_ChannelPlay(sessionId, false)
         onPreparedListeners.forEach { it() }
     }
 }

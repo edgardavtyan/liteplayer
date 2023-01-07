@@ -19,7 +19,7 @@ class PlayerService: Service() {
     @Inject lateinit var playPauseReceiver: PlayPauseReceiver
     @Inject lateinit var oldPlayer: Player
     @Inject lateinit var player: BassPlayer
-    @Inject lateinit var eq: StandardEqualizer
+    @Inject lateinit var eq: BassEqualizer
     @Inject lateinit var virtualizer: StandardVirtualizer
     @Inject lateinit var binder: PlayerServiceBinder
 
@@ -31,7 +31,10 @@ class PlayerService: Service() {
             updateNotificationPlayPause()
             startForeground(NOTIF_ID, notification.build())
         }
-        player.addOnPreparedListener { updateNotification() }
+        player.addOnPreparedListener {
+            updateNotification()
+            eq.update(player.sessionId)
+        }
         return START_STICKY
     }
 

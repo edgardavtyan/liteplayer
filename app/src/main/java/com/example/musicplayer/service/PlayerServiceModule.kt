@@ -50,10 +50,10 @@ class PlayerServiceModule {
     @Provides
     @ServiceScoped
     fun provideEqualizer(
-        prefs: SharedPreferences,
-        factory: IMediaPlayerFactory
-    ): StandardEqualizer {
-        return StandardEqualizer(factory.createHQEqualizer(), prefs)
+        player: Player,
+        prefs: SharedPreferences
+    ): BassEqualizer {
+        return BassEqualizer(player.sessionId, prefs)
     }
 
     @Provides
