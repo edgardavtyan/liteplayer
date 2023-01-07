@@ -5,7 +5,7 @@ import com.example.musicplayer.db.Track
 interface Player {
     val sessionId: Int
     val isPlaying: Boolean
-    val track: Track?
+    var track: Track?
     fun addOnIsPlayingChangedListener(listener: (Boolean) -> Unit)
     fun removeOnIsPlayingChangedListener(listener: (Boolean) -> Unit)
     fun addOnPreparedListener(listener: () -> Unit)

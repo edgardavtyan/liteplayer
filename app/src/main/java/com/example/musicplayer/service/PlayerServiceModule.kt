@@ -89,4 +89,10 @@ class PlayerServiceModule {
     fun providePlayerServiceBinder(service: PlayerService): PlayerServiceBinder {
         return PlayerServiceBinder(service)
     }
+
+    @Provides
+    @ServiceScoped
+    fun provideBassPlayer(): BassPlayer {
+        return BassPlayer()
+    }
 }
