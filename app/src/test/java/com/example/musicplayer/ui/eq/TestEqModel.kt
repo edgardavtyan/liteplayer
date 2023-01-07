@@ -2,8 +2,6 @@ package com.example.musicplayer.ui.eq
 
 import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.service.PlayerServiceBinder
-import com.example.musicplayer.service.player.StandardEqualizer
-import com.example.musicplayer.service.player.StandardVirtualizer
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension

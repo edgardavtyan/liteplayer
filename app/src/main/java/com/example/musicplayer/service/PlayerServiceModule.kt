@@ -2,11 +2,7 @@ package com.example.musicplayer.service
 
 import android.app.Service
 import android.content.SharedPreferences
-import com.example.musicplayer.lib.CoverReader
 import com.example.musicplayer.service.player.*
-import com.h6ah4i.android.media.IMediaPlayerFactory
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,46 +20,14 @@ class PlayerServiceModule {
 
     @Provides
     @ServiceScoped
-    fun providePlayerFactory(service: PlayerService): IMediaPlayerFactory {
-        val params = OpenSLMediaPlayerContext.Parameters()
-        params.options =
-            OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER or
-            OpenSLMediaPlayerContext.OPTION_USE_VIRTUALIZER
-        params.longFadeDuration = 0
-        params.shortFadeDuration = 0
-        return OpenSLMediaPlayerFactory(service, params)
-
-    }
-
-    @Provides
-    @ServiceScoped
     fun provideAudioManager(service: PlayerService): PlayerAudioManager {
         return PlayerAudioManager(service)
     }
 
     @Provides
     @ServiceScoped
-    fun providePlayer(factory: IMediaPlayerFactory): Player {
-        return StandardPlayer(factory.createMediaPlayer(), CoverReader())
-    }
-
-    @Provides
-    @ServiceScoped
-    fun provideEqualizer(
-        player: Player,
-        prefs: SharedPreferences
-    ): BassEqualizer {
-        return BassEqualizer(player.sessionId, prefs)
-    }
-
-    @Provides
-    @ServiceScoped
-    fun provideVirtualizer(
-        prefs: SharedPreferences,
-        factory: IMediaPlayerFactory,
-        player: Player
-    ): StandardVirtualizer {
-        return StandardVirtualizer(factory.createVirtualizer(player.sessionId), prefs)
+    fun provideEqualizer(prefs: SharedPreferences): BassEqualizer {
+        return BassEqualizer(prefs)
     }
 
     @Provides
@@ -92,7 +56,7 @@ class PlayerServiceModule {
 
     @Provides
     @ServiceScoped
-    fun provideBassPlayer(): BassPlayer {
+    fun providePlayer(): Player {
         return BassPlayer()
     }
 }

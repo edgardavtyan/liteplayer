@@ -3,7 +3,7 @@ package com.example.musicplayer.service.player
 import android.content.SharedPreferences
 import com.un4seen.bass.BASS
 
-class BassEqualizer(audioChannel: Int, private val prefs: SharedPreferences) {
+class BassEqualizer(private val prefs: SharedPreferences) {
     private val PREF_GAINS = "eq-gains"
 
     private val bands = arrayListOf<BASS.BASS_DX8_PARAMEQ>()
@@ -18,17 +18,14 @@ class BassEqualizer(audioChannel: Int, private val prefs: SharedPreferences) {
             .toTypedArray()
 
         for (i in frequencies.indices) {
-            channels[i] = BASS.BASS_ChannelSetFX(audioChannel, BASS.BASS_FX_DX8_PARAMEQ, 0)
             val band = BASS.BASS_DX8_PARAMEQ()
             band.fCenter = frequencies[i].toFloat()
             band.fBandwidth = 10f
             band.fGain = gains[i].toFloat()
             bands.add(band)
-            BASS.BASS_FXSetParameters(channels[i], band)
         }
     }
 
-    val minGain = -15
     val maxGain = 15
     val bandCount = 10
 

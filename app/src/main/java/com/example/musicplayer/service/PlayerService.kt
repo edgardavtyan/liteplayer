@@ -5,7 +5,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioManager
 import android.os.IBinder
-import com.example.musicplayer.service.player.*
+import com.example.musicplayer.service.player.BassEqualizer
+import com.example.musicplayer.service.player.Player
+import com.example.musicplayer.service.player.PlayerAudioManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -17,10 +19,8 @@ class PlayerService: Service() {
     @Inject lateinit var notification: PlayerNotification
     @Inject lateinit var audioNoisyReceiver: AudioNoisyReceiver
     @Inject lateinit var playPauseReceiver: PlayPauseReceiver
-    @Inject lateinit var oldPlayer: Player
-    @Inject lateinit var player: BassPlayer
+    @Inject lateinit var player: Player
     @Inject lateinit var eq: BassEqualizer
-    @Inject lateinit var virtualizer: StandardVirtualizer
     @Inject lateinit var binder: PlayerServiceBinder
 
     override fun onBind(intent: Intent?): IBinder = binder

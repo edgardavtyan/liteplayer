@@ -1,8 +1,6 @@
 package com.example.musicplayer.service
 
-import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.service.player.PlayerAudioManager
-import com.example.musicplayer.service.player.StandardPlayer
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension

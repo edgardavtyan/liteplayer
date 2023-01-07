@@ -3,7 +3,6 @@ package com.example.musicplayer.ui.prefs
 import android.content.SharedPreferences
 import com.example.musicplayer.service.PlayerService
 import com.example.musicplayer.service.PlayerServiceBinder
-import com.example.musicplayer.service.player.Player
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension

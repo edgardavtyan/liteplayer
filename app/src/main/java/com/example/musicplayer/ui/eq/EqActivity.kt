@@ -20,9 +20,6 @@ class EqActivity: FragmentActivity() {
         setContentView(binding.root)
 
         presenter.onCreate()
-
-        binding.virtualizerSeekBar.onProgressChangedListener = {
-            presenter.onVirtualizerStrengthChanged(it) }
     }
 
     override fun onDestroy() {
@@ -50,13 +47,5 @@ class EqActivity: FragmentActivity() {
 
     fun setEQMaxGain(maxGain: Int) {
         eqBands.forEach { it.maxGain = maxGain }
-    }
-
-    fun setVirtualizerMaxStrength(maxStr: Int) {
-        binding.virtualizerSeekBar.max = maxStr
-    }
-
-    fun setVirtualizerStrength(str: Int) {
-        binding.virtualizerSeekBar.progress = str
     }
 }
