@@ -69,9 +69,6 @@ android {
     lintOptions {
         checkReleaseBuilds false
     }
-    packagingOptions {
-        exclude 'lib/armeabi-v7a/libOpenSLMediaPlayer-no-neon.so'
-    }
 }
 
 kapt {
