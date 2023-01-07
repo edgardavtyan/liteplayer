@@ -36,30 +36,31 @@ class TwoWaySeekBar(context: Context, attrs: AttributeSet): SeekBar(context, att
         val top = height / 2 + 3
         val bottom = height / 2 - 2
 
-        val leftPadding = paddingLeft - thumbOffset
-        val rightPadding = paddingRight - thumbOffset
-        val calcWidth = width - leftPadding - rightPadding
-
-        rect.set(leftPadding + rightPadding, top, calcWidth, bottom)
-        canvas.drawRect(rect, backgroundPaint)
+        val newLeftPadding = paddingLeft - thumbOffset
+        val newRightPadding = paddingRight - thumbOffset
+        val newWidth = width - newLeftPadding - newRightPadding
 
         val halfMax = (max / 2).toDouble()
-        val halfWidth = calcWidth / 2
+        val halfWidth = newWidth / 2
+
+        rect.set(newLeftPadding + newRightPadding, top, newWidth, bottom)
+        canvas.drawRect(rect, backgroundPaint)
+
         if (progress > halfMax) {
-            val calcRight = ((progress - halfMax) / halfMax * halfWidth + halfWidth).toInt()
-            rect.set(halfWidth + rightPadding, top, calcRight, bottom)
+            val right = ((progress - halfMax) / halfMax * halfWidth + halfWidth).toInt()
+            rect.set(halfWidth + newRightPadding, top, right, bottom)
             canvas.drawRect(rect, progressPaint)
         }
 
         if (progress < halfMax) {
-            val calcLeft = (progress / halfMax * halfWidth + leftPadding + rightPadding).toInt()
-            rect.set(calcLeft, top, calcWidth / 2 + leftPadding, bottom)
+            val left = (progress / halfMax * halfWidth + newLeftPadding + newRightPadding).toInt()
+            rect.set(left, top, newWidth / 2 + newLeftPadding, bottom)
             canvas.drawRect(rect, progressPaint)
         }
 
         val progressRatio = progress.toFloat() / max
         val thumbOffset = thumb.intrinsicWidth * (.5f - progressRatio)
-        val thumbX: Float = progressRatio * calcWidth + rightPadding + thumbOffset
+        val thumbX: Float = progressRatio * newWidth + newRightPadding + thumbOffset
         val thumbY: Float = height / 2f
         canvas.drawCircle(thumbX, thumbY, 12f, thumbPaint)
 
