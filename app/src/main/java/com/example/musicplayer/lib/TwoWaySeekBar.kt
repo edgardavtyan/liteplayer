@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
-import android.util.Log
 import android.widget.SeekBar
 
 class TwoWaySeekBar(context: Context, attrs: AttributeSet): SeekBar(context, attrs) {
@@ -63,7 +62,5 @@ class TwoWaySeekBar(context: Context, attrs: AttributeSet): SeekBar(context, att
         val thumbX: Float = progressRatio * newWidth + newRightPadding + thumbOffset
         val thumbY: Float = height / 2f
         canvas.drawCircle(thumbX, thumbY, 12f, thumbPaint)
-
-        Log.d("progress", "TwoWaySeekBar Progress = $progress")
     }
 }
