@@ -2,16 +2,13 @@ package com.example.musicplayer.service.player
 
 import com.example.musicplayer.db.Track
 import com.un4seen.bass.BASS
-import com.un4seen.bass.BASSmix
 
 class BassPlayer: Player {
     init {
         BASS.BASS_Init(-1, 44100, 0)
     }
 
-    private var stream = 0
-
-    override var sessionId: Int = BASSmix.BASS_Mixer_StreamCreate(44100, 2, 0)
+    override var sessionId: Int = 0
 
     override val isPlaying: Boolean get() = BASS.BASS_ChannelIsActive(sessionId) == BASS.BASS_ACTIVE_PLAYING
 
@@ -58,7 +55,7 @@ class BassPlayer: Player {
     override fun playTrack(track: Track) {
         this.track = track
         BASS.BASS_ChannelFree(sessionId)
-        sessionId = BASS.BASS_StreamCreateFile(track.path, 0, 0, 0)
+        sessionId = BASS.BASS_StreamCreateFile(track.path, 0, 0, BASS.BASS_SAMPLE_LOOP)
         BASS.BASS_ChannelPlay(sessionId, false)
         onPreparedListeners.forEach { it() }
     }
