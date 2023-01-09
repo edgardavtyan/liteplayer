@@ -10,9 +10,19 @@ class BassPlayer: Player {
 
     override var sessionId: Int = 0
 
+    override var track: Track? = null
+
     override val isPlaying: Boolean get() = BASS.BASS_ChannelIsActive(sessionId) == BASS.BASS_ACTIVE_PLAYING
 
-    override var track: Track? = null
+    override var seek: Int
+        get() {
+            val bytesPos = BASS.BASS_ChannelGetPosition(sessionId, BASS.BASS_POS_BYTE)
+            return BASS.BASS_ChannelBytes2Seconds(sessionId, bytesPos).toInt()
+        }
+        set(pos) {
+            val bytesPos = BASS.BASS_ChannelSeconds2Bytes(sessionId, pos.toDouble())
+            BASS.BASS_ChannelSetPosition(sessionId, bytesPos, BASS.BASS_POS_BYTE)
+        }
 
     private val onIsPlayingChangedListeners = ArrayList<(Boolean) -> Unit>()
 

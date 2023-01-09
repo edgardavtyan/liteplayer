@@ -6,10 +6,15 @@ import android.view.View
 import androidx.fragment.app.FragmentActivity
 import com.example.musicplayer.R
 import com.example.musicplayer.databinding.ActivityNowplayingBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NowPlayingActivity : FragmentActivity() {
     private lateinit var binding: ActivityNowplayingBinding
     private lateinit var presenter: NowPlayingPresenter
+
+    private val seekFormatHours = SimpleDateFormat("hh:mm:ss", Locale.getDefault())
+    private val seekFormatMinutes = SimpleDateFormat("mm:ss", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +25,7 @@ class NowPlayingActivity : FragmentActivity() {
         presenter.onCreate()
 
         binding.btnPlaypause.setOnClickListener { presenter.onPlayPauseClick() }
+        binding.seekBar.onProgressChangedListener = { presenter.onSeekChanged(it) }
     }
 
     override fun onDestroy() {
@@ -52,5 +58,17 @@ class NowPlayingActivity : FragmentActivity() {
 
     fun setPlaying() {
         binding.btnPlaypause.setImageResource(R.drawable.ic_pause)
+    }
+
+    fun setSeek(seek: Int) {
+        val format = if (seek >= 3600) seekFormatHours else seekFormatMinutes
+        binding.seekCurrent.text = format.format(Date(seek.toLong() * 1000))
+        binding.seekBar.progress = seek
+    }
+
+    fun setSeekMax(seekMax: Int) {
+        val format = if (seekMax >= 3600) seekFormatHours else seekFormatMinutes
+        binding.seekBar.max = seekMax
+        binding.seekTotal.text = format.format(Date(seekMax.toLong() * 1000))
     }
 }

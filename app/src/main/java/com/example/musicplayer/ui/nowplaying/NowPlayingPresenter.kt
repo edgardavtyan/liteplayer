@@ -1,8 +1,12 @@
 package com.example.musicplayer.ui.nowplaying
 
+import com.example.musicplayer.lib.Timer
+
 class NowPlayingPresenter(
     private val view: NowPlayingActivity,
     private val model: NowPlayingModel) {
+
+    val seekTimer = Timer(200) { view.setSeek(model.seek) }
 
     private val onIsPlayingChangedListener: (Boolean) -> Unit = { onIsPlayingChanged(it) }
 
@@ -13,6 +17,8 @@ class NowPlayingPresenter(
             view.setTrackTitle(model.title.toString())
             view.setTrackInfo(model.info.toString())
             view.setCoverArt(model.cover)
+            view.setSeekMax(model.seekMax ?: 0)
+            seekTimer.run()
             onIsPlayingChanged(model.isPlaying)
         }
     }
@@ -32,5 +38,9 @@ class NowPlayingPresenter(
         } else {
             view.setPaused()
         }
+    }
+
+    fun onSeekChanged(seek: Int) {
+        model.seek = seek
     }
 }

@@ -58,8 +58,56 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <TextView
+                android:id="@+id/seekCurrent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:text="3:43"
+                style="@style/TextView"
+                />
+
+            <TextView
+                android:id="@+id/seekTotal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right"
+                tools:text="24:56"
+                style="@style/TextView"
+                />
+
+        </LinearLayout>
+
+        <com.example.musicplayer.lib.CustomSeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            style="@style/SeekBar"
+            />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center">
 
         <Space

@@ -7,7 +7,7 @@ class BassEqualizer(private val prefs: SharedPreferences) {
     private val PREF_GAINS = "eq-gains"
 
     private val bands = arrayListOf<BASS.BASS_DX8_PARAMEQ>()
-    private val frequencies = arrayOf(31, 62, 125, 250, 500, 1000, 2000, 4000, 8000, 16000)
+    private val frequencies = arrayOf(16000, 8000, 4000, 2000, 1000, 500, 250, 125, 62, 31)
     private val gains: Array<Int>
     private val channels = Array(10) { it }
 
