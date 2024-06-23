@@ -8,6 +8,10 @@ class NowPlayingModel(context: Context): PlayerServiceConnection(context) {
     val info get() = service.player.track?.artistTitle
     val cover get() = service.player.track?.cover
     val isPlaying get() = service.player.isPlaying
+    val duration get() = service.player.duration
+    var position
+        get() = service.player.position
+        set(value) { service.player.position = value }
 
     fun playPause() {
         service.player.playPause()

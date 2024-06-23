@@ -3,9 +3,12 @@ package com.example.musicplayer.ui.nowplaying
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
+import android.widget.SeekBar
 import androidx.fragment.app.FragmentActivity
 import com.example.musicplayer.R
 import com.example.musicplayer.databinding.ActivityNowplayingBinding
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class NowPlayingActivity : FragmentActivity() {
     private lateinit var binding: ActivityNowplayingBinding
@@ -20,6 +23,7 @@ class NowPlayingActivity : FragmentActivity() {
         presenter.onCreate()
 
         binding.btnPlaypause.setOnClickListener { presenter.onPlayPauseClick() }
+        binding.seekbar.onProgressChangedListener = { presenter.onSeekbarStopTracking(it) }
     }
 
     override fun onDestroy() {
@@ -52,5 +56,15 @@ class NowPlayingActivity : FragmentActivity() {
 
     fun setPlaying() {
         binding.btnPlaypause.setImageResource(R.drawable.ic_pause)
+    }
+
+    fun setSeekTimeNow(time: Int) {
+        binding.seekTimeNow.text = SimpleDateFormat("mm:ss").format(Date(time.toLong()))
+        binding.seekbar.progress = time
+    }
+
+    fun setSeekTimeTotal(time: Int) {
+        binding.seekTimeTotal.text = SimpleDateFormat("mm:ss").format(Date(time.toLong()))
+        binding.seekbar.max = time
     }
 }

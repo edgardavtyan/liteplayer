@@ -33,6 +33,10 @@ class StandardPlayer(
 
     override val sessionId: Int = player.audioSessionId
     override val isPlaying: Boolean get() = player.isPlaying
+    override val duration: Int get() = player.duration
+    override var position: Int
+        get() = player.currentPosition
+        set(value) = player.seekTo(value)
     override var track: Track? = null
 
     override fun setBalance(balance: Int) {
