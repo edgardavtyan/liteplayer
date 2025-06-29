@@ -50,7 +50,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            testCoverageEnabled true
+            enableUnitTestCoverage true
+            enableAndroidTestCoverage true
         }
     }
     buildFeatures {
@@ -66,11 +67,14 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
-    lintOptions {
-        checkReleaseBuilds false
-    }
     packagingOptions {
-        exclude 'lib/armeabi-v7a/libOpenSLMediaPlayer-no-neon.so'
+        jniLibs {
+            excludes += ['lib/armeabi-v7a/libOpenSLMediaPlayer-no-neon.so']
+        }
+    }
+    namespace 'com.example.musicplayer'
+    lint {
+        checkReleaseBuilds false
     }
 }
 
