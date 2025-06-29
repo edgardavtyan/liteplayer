@@ -21,7 +21,7 @@ class PlayerNotification(service: PlayerService) {
     private val intentBuilder = IntentBuilder(service)
 
     init {
-        val chan = NotificationChannel(service.packageName, "channel", NotificationManager.IMPORTANCE_HIGH)
+        val chan = NotificationChannel(service.packageName, "Now Playing", NotificationManager.IMPORTANCE_LOW)
         chan.lightColor = Color.GREEN
         chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
         val manager = (service.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
