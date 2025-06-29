@@ -2,9 +2,6 @@ buildscript {
   repositories {
     maven { url 'https://plugins.gradle.org/m2/' }
   }
-  dependencies {
-    classpath 'com.dicedmelon.gradle:jacoco-android:0.1.5'
-  }
 }
 
 plugins {
@@ -13,21 +10,6 @@ plugins {
     id 'kotlin-kapt'
     id "de.mannodermaus.android-junit5" version "1.8.2.1"
     id 'com.google.dagger.hilt.android'
-}
-
-apply plugin: 'com.dicedmelon.gradle.jacoco-android'
-
-jacoco {
-  toolVersion = "0.8.8"
-}
-
-jacocoAndroidUnitTestReport {
-    excludes += [
-        'com/example/musicplayer/databinding/*',
-        '**/*Component.*',
-        '**/*Module.*',
-        '**/Dagger*ComponentImpl.*'
-    ]
 }
 
 android {
@@ -39,7 +21,6 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -48,10 +29,6 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            enableUnitTestCoverage true
-            enableAndroidTestCoverage true
         }
     }
     buildFeatures {
