@@ -42,7 +42,7 @@ class TrackDB(context: Context) {
 	fun getTracksWithAlbumId(albumId: Int): List<Track> {
 		val selection = "$KEY_ALBUM_ID=?"
 		val args = arrayOf(albumId.toString())
-		return getListOfTracks(selection, args)
+		return getListOfTracks(albumId)
 	}
 
 	private fun getTrackFromCursor(cursor: Cursor): Track {
@@ -59,11 +59,14 @@ class TrackDB(context: Context) {
 		return track
 	}
 
-	private fun getListOfTracks(selection: String, args: Array<String>): List<Track> {
+	private fun getListOfTracks(albumId: Int): List<Track> {
 		val tracks: MutableList<Track> = ArrayList()
-		val cursor = resolver.query(URI, PROJECTION, selection, args, KEY_TRACK)!!
+		val cursor = resolver.query(URI, PROJECTION, null, null, KEY_TRACK)!!
 		while (cursor.moveToNext()) {
-			tracks.add(getTrackFromCursor(cursor))
+			val track = getTrackFromCursor(cursor)
+			if (track.albumId == albumId) {
+				tracks.add(getTrackFromCursor(cursor))
+			}
 		}
 		cursor.close()
 		return tracks
