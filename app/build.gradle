@@ -8,17 +8,17 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id "de.mannodermaus.android-junit5" version "1.8.2.1"
+    id "de.mannodermaus.android-junit5" version "1.13.0.0"
     id 'com.google.dagger.hilt.android'
 }
 
 android {
-    compileSdk 32
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.example.musicplayer"
         minSdk 28
-        targetSdk 32
+        targetSdk 36
         versionCode 1
         versionName "1.0"
     }
@@ -60,15 +60,14 @@ kapt {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:1.5.1"
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation "androidx.fragment:fragment-ktx:1.5.5"
-    implementation 'com.h6ah4i.android:openslmediaplayer:0.7.5'
+    implementation "androidx.appcompat:appcompat:1.7.1"
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation "androidx.fragment:fragment-ktx:1.8.8"
 
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    implementation "com.google.dagger:hilt-android:2.56.2"
+    kapt "com.google.dagger:hilt-compiler:2.56.2"
 
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.1"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.1"
-    testImplementation "io.mockk:mockk:1.13.3"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.13.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.13.2"
+    testImplementation "io.mockk:mockk:1.14.4"
 }

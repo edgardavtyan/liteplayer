@@ -7,9 +7,6 @@ import com.example.musicplayer.service.player.*
 import com.example.musicplayer.service.player.vanilla.VanillaEqualizer
 import com.example.musicplayer.service.player.vanilla.VanillaPlayer
 import com.example.musicplayer.service.player.vanilla.VanillaVirtualizer
-import com.h6ah4i.android.media.IMediaPlayerFactory
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext
-import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
