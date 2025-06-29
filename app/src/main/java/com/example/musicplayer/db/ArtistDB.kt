@@ -22,7 +22,7 @@ class ArtistDB(context: Context) {
     private val resolver = context.contentResolver
 
     fun getAllArtists(): List<Artist> {
-        return getArtistsFromCursor(null, null)
+        return getArtistsFromCursor(null, null).sortedBy { it.title }
     }
 
     fun getArtistFromCursor(cursor: Cursor): Artist {

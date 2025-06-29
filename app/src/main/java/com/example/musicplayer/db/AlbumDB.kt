@@ -18,6 +18,7 @@ class AlbumDB(context: Context) {
     private val INDEX_ARTIST_TITLE = 2
     private val INDEX_ART = 3
     private val INDEX_TRACKS_COUNT = 4
+    private val INDEX_DATE  =5
 
     private val URI = MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI
     private val PROJECTION = arrayOf(
@@ -44,11 +45,12 @@ class AlbumDB(context: Context) {
         album.artistTitle = cursor.getString(INDEX_ARTIST_TITLE)
         album.art = cursor.getString(INDEX_ART)
         album.tracksCount = cursor.getInt(INDEX_TRACKS_COUNT)
+        album.date = cursor.getLong(INDEX_DATE)
         return album
     }
 
     private fun getListOfAlbums(selection: String?, args: Array<String>?): List<Album> {
-        val orderStr = String.format("%s, %s COLLATE LOCALIZED", KEY_DATE, KEY_TITLE)
+        val orderStr = String.format("%s, %s", KEY_DATE, KEY_TITLE)
         val cursor = resolver.query(URI, PROJECTION, selection, args, orderStr)!!
 
         val albums = ArrayList<Album>()
@@ -57,6 +59,6 @@ class AlbumDB(context: Context) {
         }
 
         cursor.close()
-        return albums
+        return albums.sortedBy { it.title }.sortedBy { it.date }
     }
 }

@@ -6,4 +6,5 @@ class Album {
     var artistTitle: String = ""
     var tracksCount = 0
     var art: String? = ""
+    var date: Long? = 0
 }
