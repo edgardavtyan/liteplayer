@@ -1,19 +1,27 @@
-package com.example.musicplayer.service.player
+package com.example.musicplayer.service.player.vanilla
 
+import android.media.MediaPlayer
 import com.example.musicplayer.db.Track
 import com.example.musicplayer.lib.CoverReader
-import com.h6ah4i.android.media.IBasicMediaPlayer
+import com.example.musicplayer.service.player.Player
 
-class StandardPlayer(
-    private val player: IBasicMediaPlayer,
-    private val coverReader: CoverReader): Player
-{
+class VanillaPlayer(private val coverReader: CoverReader) : Player {
+    private val player = MediaPlayer()
+
     private val onIsPlayingChangedListeners = ArrayList<(Boolean) -> Unit>()
     private val onPreparedListeners = ArrayList<() -> Unit>()
 
     init {
         player.setOnPreparedListener { onPrepared() }
     }
+
+    override val sessionId: Int = player.audioSessionId
+    override val isPlaying: Boolean get() = player.isPlaying
+    override val duration: Int get() = player.duration
+    override var position: Int
+        get() = player.currentPosition
+        set(value) { player.seekTo(value) }
+    override var track: Track? = null
 
     override fun addOnIsPlayingChangedListener(listener: (Boolean) -> Unit) {
         onIsPlayingChangedListeners.add(listener)
@@ -30,14 +38,6 @@ class StandardPlayer(
     override fun removeOnPreparedListener(listener: () -> Unit) {
         onPreparedListeners.remove(listener)
     }
-
-    override val sessionId: Int = player.audioSessionId
-    override val isPlaying: Boolean get() = player.isPlaying
-    override val duration: Int get() = player.duration
-    override var position: Int
-        get() = player.currentPosition
-        set(value) = player.seekTo(value)
-    override var track: Track? = null
 
     override fun setBalance(balance: Int) {
         if (balance < 0) {

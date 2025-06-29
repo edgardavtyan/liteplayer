@@ -4,6 +4,9 @@ import android.app.Service
 import android.content.SharedPreferences
 import com.example.musicplayer.lib.CoverReader
 import com.example.musicplayer.service.player.*
+import com.example.musicplayer.service.player.vanilla.VanillaEqualizer
+import com.example.musicplayer.service.player.vanilla.VanillaPlayer
+import com.example.musicplayer.service.player.vanilla.VanillaVirtualizer
 import com.h6ah4i.android.media.IMediaPlayerFactory
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerContext
 import com.h6ah4i.android.media.opensl.OpenSLMediaPlayerFactory
@@ -24,46 +27,26 @@ class PlayerServiceModule {
 
     @Provides
     @ServiceScoped
-    fun providePlayerFactory(service: PlayerService): IMediaPlayerFactory {
-        val params = OpenSLMediaPlayerContext.Parameters()
-        params.options =
-            OpenSLMediaPlayerContext.OPTION_USE_HQ_EQUALIZER or
-            OpenSLMediaPlayerContext.OPTION_USE_VIRTUALIZER
-        params.longFadeDuration = 0
-        params.shortFadeDuration = 0
-        return OpenSLMediaPlayerFactory(service, params)
-
-    }
-
-    @Provides
-    @ServiceScoped
     fun provideAudioManager(service: PlayerService): PlayerAudioManager {
         return PlayerAudioManager(service)
     }
 
     @Provides
     @ServiceScoped
-    fun providePlayer(factory: IMediaPlayerFactory): Player {
-        return StandardPlayer(factory.createMediaPlayer(), CoverReader())
+    fun providePlayer(): Player {
+        return VanillaPlayer(CoverReader())
     }
 
     @Provides
     @ServiceScoped
-    fun provideEqualizer(
-        prefs: SharedPreferences,
-        factory: IMediaPlayerFactory
-    ): StandardEqualizer {
-        return StandardEqualizer(factory.createHQEqualizer(), prefs)
+    fun provideEqualizer(player: Player, prefs: SharedPreferences): VanillaEqualizer {
+        return VanillaEqualizer(player.sessionId, prefs)
     }
 
     @Provides
     @ServiceScoped
-    fun provideVirtualizer(
-        prefs: SharedPreferences,
-        factory: IMediaPlayerFactory,
-        player: Player
-    ): StandardVirtualizer {
-        return StandardVirtualizer(factory.createVirtualizer(player.sessionId), prefs)
+    fun provideVirtualizer(player: Player, prefs: SharedPreferences): VanillaVirtualizer {
+        return VanillaVirtualizer(player.sessionId, prefs)
     }
 
     @Provides

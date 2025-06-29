@@ -2,12 +2,12 @@ package com.example.musicplayer.ui.eq
 
 import android.content.Context
 import com.example.musicplayer.lib.PlayerServiceConnection
-import com.example.musicplayer.service.player.StandardEqualizer
-import com.example.musicplayer.service.player.StandardVirtualizer
+import com.example.musicplayer.service.player.vanilla.VanillaEqualizer
+import com.example.musicplayer.service.player.vanilla.VanillaVirtualizer
 
 class EqModel(context: Context): PlayerServiceConnection(context) {
-    private lateinit var eq: StandardEqualizer
-    private lateinit var virtualizer: StandardVirtualizer
+    private lateinit var eq: VanillaEqualizer
+    private lateinit var virtualizer: VanillaVirtualizer
 
     val eqMaxGain get() = eq.maxGain
     val eqFreqs get() = (0 until eq.bandCount).map { eq.getBandFreq(it) }.toTypedArray()
