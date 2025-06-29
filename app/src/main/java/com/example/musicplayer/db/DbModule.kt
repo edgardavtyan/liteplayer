@@ -27,4 +27,10 @@ class DbModule {
     fun provideTrackDB(app: Application): TrackDB {
         return TrackDB(app)
     }
+
+    @Provides
+    @Singleton
+    fun provideDB(artistDB: ArtistDB, albumDB: AlbumDB, trackDB: TrackDB): DB {
+        return DB(artistDB, albumDB, trackDB)
+    }
 }

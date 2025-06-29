@@ -7,20 +7,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.R
 import com.example.musicplayer.ui.TitleViewHolder
 
-abstract class TitleAdapter<T : RecyclerView.ViewHolder, TItem>
+abstract class TitleAdapter<T : RecyclerView.ViewHolder>
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_TITLE = 0
     private val TYPE_NORMAL = 1
 
-    abstract val layout: Int
+    private var title: String = ""
 
-    abstract val title: String?
+    abstract val layout: Int
 
     abstract fun onCreateViewHolder(view: View): T
     abstract fun onBindNormalViewHolder(holder: T, position: Int)
 
-    protected var list: List<TItem> = ArrayList()
+    protected var list: List<String> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutId = if (viewType == TYPE_TITLE) R.layout.layout_title else layout
@@ -46,15 +46,16 @@ abstract class TitleAdapter<T : RecyclerView.ViewHolder, TItem>
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0) {
-            return TYPE_TITLE
+        return if (position == 0) {
+            TYPE_TITLE
         } else {
-            return TYPE_NORMAL
+            TYPE_NORMAL
         }
     }
 
-    fun update(newList: List<TItem>) {
-        list = newList
+    fun update(list: List<String>, title: String) {
+        this.list = list
+        this.title = title
         notifyDataSetChanged()
     }
 }

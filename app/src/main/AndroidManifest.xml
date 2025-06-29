@@ -27,14 +27,6 @@
             android:exported="false"
             android:theme="@style/Theme.MusicPlayer.NowPlaying" />
         <activity
-            android:name=".ui.track.TrackActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MusicPlayer" />
-        <activity
-            android:name=".ui.album.AlbumActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MusicPlayer" />
-        <activity
             android:name=".ui.eq.EqActivity"
             android:exported="false"
             android:theme="@style/Theme.MusicPlayer" />

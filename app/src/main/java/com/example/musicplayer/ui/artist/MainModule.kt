@@ -3,6 +3,7 @@ package com.example.musicplayer.ui.artist
 import android.app.Activity
 import com.example.musicplayer.db.AlbumDB
 import com.example.musicplayer.db.ArtistDB
+import com.example.musicplayer.db.DB
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,8 +21,8 @@ class MainModule {
 
     @Provides
     @ActivityScoped
-    fun provideMainModel(artistDB: ArtistDB, albumDB: AlbumDB): MainModel {
-        return MainModel(artistDB, albumDB)
+    fun provideMainModel(activity: MainActivity, db: DB): MainModel {
+        return MainModel(activity, db)
     }
 
     @Provides
